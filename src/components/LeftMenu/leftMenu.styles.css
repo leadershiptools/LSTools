@@ -1,0 +1,82 @@
+/* como não temos outros menus ainda, eu removi o .navigationBtn:hover,.navigationBtn:focus, deixando apenas o active. Quando criar outras páginas, voltar as duas pseudo classes */
+ol, li {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0 5px 0;
+}
+
+aside {
+    width: 15.9rem;
+    height: 1942px;
+    display: flex;
+    direction: row;
+    padding-right: 16px;
+}
+
+main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.container {
+    width: 256px;
+    height: 1942px;
+    padding: 16px;
+    left: 0px;
+    top: 0px;
+}
+
+.menuitem {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.headerName {
+    color: #1E1848 ;
+}
+
+.headerEmail {
+    color:#665DAA ;
+}
+.headerEmail, .headerEmail {
+    justify-content: left;
+    font-family:"Plus Jakarta Sans"
+}
+
+.textbox {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.navigationBtn {
+    width: 240px;
+    display: flex;
+    color:black !important;
+    justify-content: flex-start !important;
+    padding: 9px;
+}
+
+.navigationBtn p {
+    font-weight:700 !important;
+    font-size: 14px !important;
+    text-transform:none !important;
+    line-height: 160% !important;
+}
+
+.active{
+   background-color:#FEECF4 !important;
+   color:#C71760 !important;
+}
+
+.navigationBtn span {
+    margin: 0;
+    padding-right: 33px;
+}

@@ -1,0 +1,31 @@
+.smallText {
+    justify-content: left;
+    font-family:"Plus Jakarta Sans";
+    line-height: 15px;
+    color:  #665DAA;
+}
+
+.midText {
+    font-style: normal;
+    line-height: 20px;
+    color: #1E1848;
+}
+
+.bigText {
+    font-family: 'Plus Jakarta Sans';
+    justify-content: left;
+    font-style: normal;
+    line-height: 40px;
+    color: #1E1848;
+}
+
+.line {
+    width: 0.01rem;
+    height:90%;
+    display: flex;
+    direction: row;
+    top: 0;
+    background: #c9c6dc;
+    border: none;
+    margin: 0%;
+}

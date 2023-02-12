@@ -1,0 +1,6 @@
+.chart-container{
+    position: relative;
+    display: flex;
+    height: 10%;
+    width: 100%;
+}

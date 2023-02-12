@@ -1,0 +1,10 @@
+.Main {
+  display: flex;
+  flex-direction: row;
+}
+.Content {
+  display: flex;
+  flex-direction:column;
+  width: auto;
+}
+

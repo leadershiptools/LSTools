@@ -1,0 +1,21 @@
+nav ol li {
+    padding-left: 10px;
+}
+.breadcrumb {
+    padding: 35px 40px 40px 53px;
+    height: fit-content;
+    width: auto;
+}
+.ancestor {
+    color: #F1388D !important;
+}
+
+.actual {
+    color:#665DAA !important;
+}
+.ancestor, .actual {
+    font-family: 'Plus Jakarta Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+}

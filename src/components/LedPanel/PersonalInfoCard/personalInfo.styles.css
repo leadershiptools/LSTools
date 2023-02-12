@@ -1,0 +1,28 @@
+.ledInfos, .colaboratorInfo {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 56px 10px 10px;
+    align-items: flex-start;
+}
+
+.colaboratorInfo{
+    border-radius: 5px;
+}
+
+.colaboratorInfo:hover{
+    background-color: #c9c6dc1e;
+    text-decoration: none;
+}
+
+.colaboratorInfo p{
+    color: #665DAA;
+}
+
+.colaboratorInfo:hover, .colaboratorInfo:hover input {
+    cursor: pointer;
+}
+
+.colaboratorDetails {
+    display: flex;
+    flex-direction: row;
+}

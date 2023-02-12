@@ -1,0 +1,132 @@
+.oneToOne {
+    min-width: 300px;
+    font-family: 'Plus Jakarta Sans';
+    padding: 24px;
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+}
+
+.header > h3 {
+    margin: 0;
+    margin-bottom: 24px;
+    font-size: 24px;
+}
+
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.input-group input {
+    padding: 16px 16px 14px;
+    background-color: #f1f0f8;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.input-group span {
+    color: #665DAA;
+    font-size: 12px;
+}
+
+.header-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.criticityButton{
+    color: #f1388D !important;
+    font-size: 12px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+    padding: 8px 12px !important;
+    font-weight: 700 !important;
+    border-radius: 5px !important;
+}
+
+.criticityButton:hover{
+    background-color: #feecf4;
+}
+
+.addGoalSidebarButton{
+    padding: 8px 12px !important;
+    border-color: #fbc4dd !important;
+}
+
+.addGoalSidebarButton p{
+    color: #f1388D !important;
+    font-size: 12px !important;
+    text-transform: none !important;
+}
+
+.addGoalSidebarButton svg {
+    color: #f1388D !important;
+    font-size: 18px;
+}
+
+.addGoalSidebarButton:hover{
+    border-color: #f1388D !important;
+    background-color: white !important;
+}
+
+.sidebar-list{
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.sidebar-list-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    border-bottom: 1px solid #F1F0F8;
+    padding: 8px 0;
+    max-width: 300px;
+}
+
+.sidebar-list-item:first-child{
+    border-top: 1px solid #F1F0F8;
+}
+.sidebar-list-item-middle{
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-list-item-middle p{
+    font-size: 16px !important;
+    color: #1e1848 !important;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.sidebar-list-item-middle span{
+    font-size: 12px !important;
+    color: #665DAA !important;
+    font-weight: 400;
+    margin: 0;
+}
+
+.sidebar-list-item-right {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar-list-item-right button {
+    color: #f1388D !important;
+    min-width: unset !important;
+}
+
+.sidebar-list-item-right button:hover {
+    background-color: #feecf4 !important;
+}
