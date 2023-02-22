@@ -1,0 +1,80 @@
+.oneToOneContainer{
+    margin: 0 52px 40px;
+    padding: 24px;
+    border: 1px solid #C9C6DC;
+    border-radius: 5px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Plus Jakarta Sans';
+}
+
+.oneToOnePanel {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+.oneToOnePanel h2{
+    margin: 0;
+    margin-bottom: 24px;
+}
+
+.oneToOneList{
+    display: flex;
+    flex-direction: column;
+}
+
+.oneToOneListItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid #F1F0F8;
+    padding: 8px 0;
+}
+
+.oneToOneListItem:first-child{
+    border-top: 1px solid #F1F0F8;
+}
+.oneToOneListItemMiddle{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.oneToOneListItemMiddle p{
+    font-size: 16px !important;
+    color: #1e1848 !important;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.oneToOneListItemMiddle span{
+    font-size: 12px !important;
+    color: #665DAA !important;
+    font-weight: 400;
+    margin: 0;
+}
+
+.oneToOneListItemRight {
+    display: flex;
+    align-items: center;
+}
+
+.oneToOneListItemRight button {
+    color: #f1388D !important;
+    min-width: unset !important;
+}
+
+.oneToOneListItemRight button:hover {
+    background-color: #feecf4 !important;
+}
+
+.graphicOneToOne {
+    width: 45%;
+    max-height: 400px;
+}
