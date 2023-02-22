@@ -2,17 +2,100 @@
     margin: 0 52px 40px;
     padding: 24px;
     border: 1px solid #C9C6DC;
-    border-radius: 6px;
+    border-radius: 5px;
     height: fit-content;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Plus Jakarta Sans';
 }
 
 .skillsBoard {
-    background-color: aliceblue;
-    width: 100%;
+    width: 45%;
 }
+
+.skillsBoard h2{
+    margin: 0;
+    margin-bottom: 24px;
+}
+
+.skillsBoardForm{
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+
+}
+
+.skillsBoardForm .input-group{
+    flex: 1;
+}
+
+.skillsBoardFormButton{
+    height: 40px;
+    padding: 8px 12px !important;
+    border-color: #fbc4dd !important;
+}
+
+.skillsBoardFormButton p{
+    color: #f1388D !important;
+    font-size: 12px !important;
+    text-transform: none !important;
+}
+
+.skillsBoardFormButton svg {
+    color: #f1388D !important;
+    font-size: 18px;
+}
+
+.skillsBoardFormButton:hover{
+    border-color: #f1388D !important;
+    background-color: white !important;
+}
+
+.skillsBoardList{
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.skillsBoardListItem:first-child{
+    border-top: 1px solid #F1F0F8;
+}
+
+.skillsBoardListItem{
+    display: flex;
+    align-items: center;
+    border-bottom : 1px solid #F1F0F8;
+}
+
+.skillsBoardListItem p{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 160%;
+    flex: 0 0 80%;
+}
+
+.skillsBoardListItem span{
+    flex: 0 0 10%;
+    color: #F1388D;
+    font-weight: 700;
+}
+
+.skillsBoardListItem button{
+    flex: 0 0 10%;
+}
+
+.skillsBoardListItem button {
+    color: #f1388D !important;
+    min-width: unset !important;
+}
+
+.skillsBoardListItem button:hover {
+    background-color: #feecf4 !important;
+}
+
 .graphicSkillsBoard {
-    background-color: antiquewhite;
-    width: 100%;
+    width: 45%;
+    max-height: 400px;
 }
