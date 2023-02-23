@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "faker": "^6.6.6",
     "gh-pages": "^5.0.0"
   }
 }

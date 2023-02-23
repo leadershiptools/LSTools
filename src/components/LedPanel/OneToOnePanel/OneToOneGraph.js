@@ -1,37 +1,40 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
-  RadialLinearScale,
+  CategoryScale,
+  LinearScale,
   PointElement,
   LineElement,
-  Filler,
+  Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Radar } from 'react-chartjs-2';
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
-  RadialLinearScale,
+  CategoryScale,
+  LinearScale,
   PointElement,
   LineElement,
-  Filler,
+  Title,
   Tooltip,
   Legend
 );
 
-const data = {
-  labels: ['Thing 1', 'Thing 2', 'Thing 3', 'Thing 4', 'Thing 5', 'Thing 6'],
+const labels = ["January", "February", "March", "April", "May", "June", "July"];
+
+export const data = {
+  labels,
   datasets: [
     {
-      label: '# of Votes',
-      data: [2, 9, 3, 5, 2, 3],
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
+      label: "Dataset 1",
+      data: [1, 2, 3, 4, 5, 4, 3],
+      borderColor: "rgb(255, 99, 132)",
+      backgroundColor: "rgba(255, 99, 132, 0.5)",
     },
   ],
 };
 
-export function SkillsGraph() {
-  return <Radar data={data} />;
+export function OneToOneGraph() {
+  return <Line data={data} />;
 }
