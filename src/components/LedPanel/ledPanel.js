@@ -6,6 +6,7 @@ import PersonalInfo from "./PersonalInfoCard/personalInfo";
 import GoalsPanel from "./GoalsPanel/goalsPanel";
 import SkillsPanel from "./SkillsPanel/skillsPanel";
 import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
+import SalaryPanel from "./SalaryPanel/SalaryPanel";
 
 const LedPanel = () => {
   return (
@@ -24,6 +25,7 @@ const LedPanel = () => {
         <GoalsPanel />
         <SkillsPanel />
         <OneToOnePanel />
+        <SalaryPanel />
       </section>
     </>
   );

@@ -1,0 +1,122 @@
+.salaryPanelContainer{
+    margin: 0 52px 40px;
+    padding: 24px;
+    border: 1px solid #C9C6DC;
+    border-radius: 5px;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    font-family: 'Plus Jakarta Sans';
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.salaryPanel{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 50%;
+}
+
+.salaryPanelHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.salaryPanelHeader h2{
+    margin: 0;
+}
+
+
+.salaryPanelButton{
+    height: 40px;
+    padding: 8px 12px !important;
+    border-color: #fbc4dd !important;
+}
+
+.salaryPanelButton p{
+    color: #f1388D !important;
+    font-size: 12px !important;
+    text-transform: none !important;
+}
+
+.salaryPanelButton svg {
+    color: #f1388D !important;
+    font-size: 18px;
+}
+
+.salaryPanelButton:hover{
+    border-color: #f1388D !important;
+    background-color: white !important;
+}
+
+.salaryPanelList{
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.salaryPanelListItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    border-top: 1px solid #F1F0F8;
+    padding: 8px 0;
+}
+
+.salaryPanelListItemMiddle{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.salaryPanelListItemMiddle p{
+    font-size: 16px !important;
+    color: #1e1848 !important;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.salaryPanelListItemMiddle span{
+    font-size: 12px !important;
+    color: #665DAA !important;
+    font-weight: 400;
+    margin: 0;
+}
+
+.salaryPanelListItemRight {
+    display: flex;
+    align-items: center;
+}
+
+.salaryPanelListItemRight button {
+    color: #f1388D !important;
+    min-width: unset !important;
+}
+
+.salaryPanelListItemRight button:hover {
+    background-color: #feecf4 !important;
+}
+
+.graphicSalaryPanel {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.graphicSalaryBtn{
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    text-decoration: underline !important;
+    text-transform: uppercase;
+    color: #F1388D !important;
+}
+
+.graphicSalaryBtn > span{
+    display: none !important;
+}
