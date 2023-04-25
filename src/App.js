@@ -1,8 +1,7 @@
 import React from "react";
 import "./App.css";
 import LeftMenu from "./components/LeftMenu/leftMenu";
-import BreadCrumb from "./components/BreadCrumb/breadcrumb";
-import LedPanel from "./components/LedPanel/ledPanel";
+import PeopleScreen from "./components/PeopleScreen/PeopleScreen";
 
 function App() {
   return (
@@ -10,8 +9,7 @@ function App() {
       <div className="Main">
         <LeftMenu />
         <div className="Content">
-          <BreadCrumb />
-          <LedPanel />
+          <PeopleScreen />
         </div>
       </div>
     </>

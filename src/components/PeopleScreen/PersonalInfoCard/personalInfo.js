@@ -3,12 +3,22 @@ import "../../Styles/commons.styles.css";
 import * as React from "react";
 import { Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
+import { useRef } from "react";
 
-const PersonalInfo = () => {
-  const employeeRef = React.useRef(null);
-  const emailRef = React.useRef(null);
-  const phoneRef = React.useRef(null);
-  const positionRef = React.useRef(null);
+const PersonalInfo = ({
+  name,
+  setName,
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  position,
+  setPosition,
+}) => {
+  const employeeRef = useRef(null);
+  const emailRef = useRef(null);
+  const phoneRef = useRef(null);
+  const positionRef = useRef(null);
 
   const inputFocus = (ref) => {
     if (ref.current) ref.current.querySelector("input").focus();
@@ -31,7 +41,8 @@ const PersonalInfo = () => {
             fontSize: "32px",
             border: "none",
           }}
-          defaultValue="Amelia Earhearth"
+          onChange={(e) => setName(e.target.value)}
+          value={name}
         />
       </div>
       <div className="colaboratorDetails">
@@ -52,8 +63,9 @@ const PersonalInfo = () => {
               width: "250px",
               border: "none",
             }}
-            defaultValue="amelia.earhart@zendaya.com"
-          />{" "}
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+          />
         </div>
         <div
           role="contentinfo"
@@ -72,7 +84,8 @@ const PersonalInfo = () => {
               width: "150px",
               border: "none",
             }}
-            defaultValue="(31) 1234-9823"
+            onChange={(e) => setPhone(e.target.value)}
+            value={phone}
           />
         </div>
         <div
@@ -92,7 +105,8 @@ const PersonalInfo = () => {
               width: "225px",
               border: "none",
             }}
-            defaultValue="PM Cordinator Senior 3"
+            onChange={(e) => setPosition(e.target.value)}
+            value={position}
           />
         </div>
       </div>
