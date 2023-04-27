@@ -14,6 +14,7 @@ const PersonalInfo = ({
   setPhone,
   position,
   setPosition,
+  handleSaveInfo,
 }) => {
   const employeeRef = useRef(null);
   const emailRef = useRef(null);
@@ -43,6 +44,7 @@ const PersonalInfo = ({
           }}
           onChange={(e) => setName(e.target.value)}
           value={name}
+          onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
         />
       </div>
       <div className="colaboratorDetails">
@@ -65,6 +67,7 @@ const PersonalInfo = ({
             }}
             onChange={(e) => setEmail(e.target.value)}
             value={email}
+            onBlur={(e) => handleSaveInfo("replace", "/email", e.target.value)}
           />
         </div>
         <div
@@ -86,6 +89,7 @@ const PersonalInfo = ({
             }}
             onChange={(e) => setPhone(e.target.value)}
             value={phone}
+            onBlur={(e) => handleSaveInfo("replace", "/phone", e.target.value)}
           />
         </div>
         <div
@@ -107,6 +111,9 @@ const PersonalInfo = ({
             }}
             onChange={(e) => setPosition(e.target.value)}
             value={position}
+            onBlur={(e) =>
+              handleSaveInfo("replace", "/job/name", e.target.value)
+            }
           />
         </div>
       </div>

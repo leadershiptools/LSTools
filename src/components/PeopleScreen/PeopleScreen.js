@@ -8,7 +8,7 @@ import SkillsPanel from "./SkillsPanel/skillsPanel";
 import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
 import SalaryPanel from "./SalaryPanel/SalaryPanel";
 import { useEffect, useState } from "react";
-import { get } from "../../modules/request";
+import { get, patch } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 
 const PeopleScreen = () => {
@@ -26,6 +26,16 @@ const PeopleScreen = () => {
     setEmail(email ?? "");
     setPhone(phone ?? "");
     setPosition(job.name ?? "");
+  };
+
+  const updatePeople = async (action, path, value) => {
+    await patch(`/people/${MOCK_PEOPLE}`, [{
+      op: action,
+      path,
+      value,
+    }]);
+
+    await getPeople();
   };
 
   useEffect(() => {
@@ -51,6 +61,7 @@ const PeopleScreen = () => {
           setPhone={setPhone}
           position={position}
           setPosition={setPosition}
+          handleSaveInfo={updatePeople}
         />
       </section>
       <section>
