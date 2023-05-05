@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,8 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+} from "chart.js";
+import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -21,30 +21,29 @@ ChartJS.register(
 
 export const options = {
   responsive: true,
-      scales: {
-        x: {
-          stacked: true
-        },
-         y: {
-          stacked: true,
-          beginAtZero: true
-       }
-    }
+  scales: {
+    x: {
+      stacked: true,
+    },
+    y: {
+      stacked: true,
+      beginAtZero: true,
+    },
+  },
 };
 
-export function GraphicBar(percent) {
-  const myPercent = percent.percent
+export function GraphicBar({ goals }) {
+  console.log(goals)
   const labels = ["março de 2021", "junho de 2021", "agosto de 2021"];
-  const valores = [85,60];
-  valores.push(myPercent)
+  const values = [85, 60, 90];
   const data = {
     labels,
     datasets: [
       {
-        label: '',
-        data: valores,
-        backgroundColor: '#2f4390',
-        maxBarThickness: 90,
+        label: "",
+        data: values,
+        backgroundColor: "#2f4390",
+        maxBarThickness: 100,
       },
     ],
   };

@@ -16,24 +16,28 @@ const PeopleScreen = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
+  const [goals, setGoals] = useState(null);
 
-  const MOCK_PEOPLE = "demo-personal-organization-ava-torres";
+  const MOCK_PEOPLE = "sky-bridge-solutions-ava-torres";
 
   const getPeople = async () => {
     const result = await get(`/people/${MOCK_PEOPLE}`);
-    const { name, phone, email, job } = result;
+    const { name, phone, email, job, goals } = result;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
     setPosition(job.name ?? "");
+    setGoals(goals);
   };
 
   const updatePeople = async (action, path, value) => {
-    await patch(`/people/${MOCK_PEOPLE}`, [{
-      op: action,
-      path,
-      value,
-    }]);
+    await patch(`/people/${MOCK_PEOPLE}`, [
+      {
+        op: action,
+        path,
+        value,
+      },
+    ]);
 
     await getPeople();
   };
@@ -65,7 +69,7 @@ const PeopleScreen = () => {
         />
       </section>
       <section>
-        <GoalsPanel />
+        <GoalsPanel goals={goals} handleSaveInfo={updatePeople} />
         <SkillsPanel />
         <OneToOnePanel />
         <SalaryPanel />
