@@ -81,7 +81,6 @@ export function GraphicBar({ goals }) {
       const { month } = item;
       let sum = 0;
       Object.keys(lastThreeMonthsHistory[month] ?? {}).forEach((key) => {
-        console.log(lastThreeMonthsHistory[month][key]?.achievement);
         sum += lastThreeMonthsHistory[month][key]?.achievement;
       });
       const mean =

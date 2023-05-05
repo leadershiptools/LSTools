@@ -1,3 +1,32 @@
+.personalInfoContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.avatarContainer {
+    margin: 10px;
+    background-color: unset !important;
+    border: none !important;
+    cursor: pointer;
+    position: relative;
+}
+
+.iconCamera{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none !important;
+}
+
+.avatarContainer:hover .iconCamera{
+    display: block !important;
+}
+
+.avatarContainer:hover .iconAvatar{
+    opacity: 0.5;
+}
+
 .ledInfos, .colaboratorInfo {
     display: flex;
     flex-direction: column;
@@ -25,4 +54,26 @@
 .colaboratorDetails {
     display: flex;
     flex-direction: row;
+}
+
+.personalInfoDetails {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 8px 16px;
+    border-radius: 5px;
+    margin-right: 30px;
+}
+
+.personalInfoDetails p{
+    margin-bottom: 5px;
+}
+
+.personalInfoDetails:hover .personalInfoDetails:hover input{
+    background: #c9c6dc1e !important;
+    cursor: pointer;
+}
+
+.personalInfoDetails:hover input {
+    text-decoration: underline;
 }
