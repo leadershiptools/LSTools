@@ -1,4 +1,4 @@
-.oneToOne {
+.goalsSidebar {
     min-width: 300px;
     font-family: 'Plus Jakarta Sans';
     padding: 24px;
@@ -36,7 +36,7 @@
 
 .header-buttons{
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -86,8 +86,7 @@
 
 .sidebar-list-item{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 24px;
     border-bottom: 1px solid #F1F0F8;
     padding: 8px 0;
@@ -119,14 +118,21 @@
 
 .sidebar-list-item-right {
     display: flex;
-    align-items: center;
+    flex-direction: column;
 }
 
-.sidebar-list-item-right button {
-    color: #f1388D !important;
-    min-width: unset !important;
+
+.sidebar-list-item-right p{
+    font-size: 16px !important;
+    color: #1e1848 !important;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 5px;
 }
 
-.sidebar-list-item-right button:hover {
-    background-color: #feecf4 !important;
+.sidebar-list-item-right label{
+    font-size: 12px !important;
+    color: #665DAA !important;
+    font-weight: 400;
+    margin: 0;
 }

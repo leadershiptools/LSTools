@@ -9,10 +9,9 @@ import { GraphicBar } from "./gaphicBar";
 import InputBase from "@mui/material/InputBase";
 import React, { createRef, useEffect, useState } from "react";
 import Drawer from "@mui/material/Drawer";
-import OneToOne from "./oneToOne";
+import GoalsSidebar from "./goalsSidebar";
 
 const GoalsPanel = ({ goals, handleSaveInfo }) => {
-  console.log(goals);
   const [objectiveInputs, setObjectiveInputs] = useState([]);
   const [achievementInputs, setAchievementInputs] = useState([]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -73,7 +72,7 @@ const GoalsPanel = ({ goals, handleSaveInfo }) => {
                       fontWeight={400}
                       fontSize="12px"
                     >
-                      {name}
+                      Assunto
                     </Typography>
                     <InputBase
                       ref={objectiveInputs[index]}
@@ -161,7 +160,7 @@ const GoalsPanel = ({ goals, handleSaveInfo }) => {
         open={isSidebarOpen}
         onClose={handleCloseSidebar}
       >
-        <OneToOne />
+        <GoalsSidebar goals={goals} handleSaveInfo={handleSaveInfo} />
       </Drawer>
     </main>
   );
