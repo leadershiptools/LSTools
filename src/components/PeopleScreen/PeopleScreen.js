@@ -5,9 +5,10 @@ import GoalsPanel from "./GoalsPanel/goalsPanel";
 import SkillsPanel from "./SkillsPanel/skillsPanel";
 import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
 import SalaryPanel from "./SalaryPanel/SalaryPanel";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { get, patch } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
+import { useParams } from "react-router-dom";
 
 const PeopleScreen = () => {
   const [name, setName] = useState("");
@@ -15,21 +16,20 @@ const PeopleScreen = () => {
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
   const [goals, setGoals] = useState(null);
+  let { peopleId } = useParams();
 
-  const MOCK_PEOPLE = "sky-bridge-solutions-ava-torres";
-
-  const getPeople = async () => {
-    const result = await get(`/people/${MOCK_PEOPLE}`);
+  const getPeople = useCallback(async () => {
+    const result = await get(`/people/${peopleId}`);
     const { name, phone, email, job, goals } = result;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
     setPosition(job.name ?? "");
     setGoals(goals);
-  };
+  }, [peopleId]);
 
   const updatePeople = async (action, path, value) => {
-    await patch(`/people/${MOCK_PEOPLE}`, [
+    await patch(`/people/${peopleId}`, [
       {
         op: action,
         path,
@@ -42,7 +42,8 @@ const PeopleScreen = () => {
 
   useEffect(() => {
     getPeople();
-  }, []);
+  }, [getPeople]);
+
   return (
     <>
       <BreadCrumb name={name} />
