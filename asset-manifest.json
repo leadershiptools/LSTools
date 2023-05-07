@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/LSTools/static/css/main.538e581f.css",
-    "main.js": "/LSTools/static/js/main.ccb4cac6.js",
-    "static/js/787.cb22918c.chunk.js": "/LSTools/static/js/787.cb22918c.chunk.js",
-    "static/media/avatar.png": "/LSTools/static/media/avatar.a18f6834e79b4b209aed.png",
-    "index.html": "/LSTools/index.html",
-    "main.538e581f.css.map": "/LSTools/static/css/main.538e581f.css.map",
-    "main.ccb4cac6.js.map": "/LSTools/static/js/main.ccb4cac6.js.map",
-    "787.cb22918c.chunk.js.map": "/LSTools/static/js/787.cb22918c.chunk.js.map"
+    "main.css": "/static/css/main.538e581f.css",
+    "main.js": "/static/js/main.71688522.js",
+    "static/js/787.cb22918c.chunk.js": "/static/js/787.cb22918c.chunk.js",
+    "static/media/avatar.png": "/static/media/avatar.a18f6834e79b4b209aed.png",
+    "index.html": "/index.html",
+    "main.538e581f.css.map": "/static/css/main.538e581f.css.map",
+    "main.71688522.js.map": "/static/js/main.71688522.js.map",
+    "787.cb22918c.chunk.js.map": "/static/js/787.cb22918c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.538e581f.css",
-    "static/js/main.ccb4cac6.js"
+    "static/js/main.71688522.js"
   ]
 }
