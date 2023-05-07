@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/LSTools/static/css/main.5754038e.css",
-    "main.js": "/LSTools/static/js/main.2bdba0f1.js",
+    "main.css": "/LSTools/static/css/main.538e581f.css",
+    "main.js": "/LSTools/static/js/main.ccb4cac6.js",
     "static/js/787.cb22918c.chunk.js": "/LSTools/static/js/787.cb22918c.chunk.js",
     "static/media/avatar.png": "/LSTools/static/media/avatar.a18f6834e79b4b209aed.png",
     "index.html": "/LSTools/index.html",
-    "main.5754038e.css.map": "/LSTools/static/css/main.5754038e.css.map",
-    "main.2bdba0f1.js.map": "/LSTools/static/js/main.2bdba0f1.js.map",
+    "main.538e581f.css.map": "/LSTools/static/css/main.538e581f.css.map",
+    "main.ccb4cac6.js.map": "/LSTools/static/js/main.ccb4cac6.js.map",
     "787.cb22918c.chunk.js.map": "/LSTools/static/js/787.cb22918c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5754038e.css",
-    "static/js/main.2bdba0f1.js"
+    "static/css/main.538e581f.css",
+    "static/js/main.ccb4cac6.js"
   ]
 }
