@@ -16,16 +16,20 @@ const PeopleScreen = () => {
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
   const [goals, setGoals] = useState(null);
+  const [skills, setSkills] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
   let { peopleId } = useParams();
 
   const getPeople = useCallback(async () => {
     const result = await get(`/people/${peopleId}`);
-    const { name, phone, email, job, goals } = result;
+    const { name, phone, email, job, goals, skills, imageUrl } = result;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
     setPosition(job.name ?? "");
     setGoals(goals);
+    setSkills(skills);
+    setImageUrl(imageUrl);
   }, [peopleId]);
 
   const updatePeople = async (action, path, value) => {
@@ -57,12 +61,14 @@ const PeopleScreen = () => {
           setPhone={setPhone}
           position={position}
           setPosition={setPosition}
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
           handleSaveInfo={updatePeople}
         />
       </section>
       <section>
         <GoalsPanel goals={goals} handleSaveInfo={updatePeople} />
-        <SkillsPanel />
+        <SkillsPanel skills={skills} handleSaveInfo={updatePeople} />
         <OneToOnePanel />
         <SalaryPanel />
       </section>

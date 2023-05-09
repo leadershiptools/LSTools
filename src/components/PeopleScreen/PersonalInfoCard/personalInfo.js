@@ -6,7 +6,6 @@ import InputBase from "@mui/material/InputBase";
 import { useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
-import AvatarPhoto from "../../../images/avatar.png";
 
 const PersonalInfo = ({
   name,
@@ -17,6 +16,8 @@ const PersonalInfo = ({
   setPhone,
   position,
   setPosition,
+  imageUrl,
+  setImageUrl,
   handleSaveInfo,
 }) => {
   const employeeRef = useRef(null);
@@ -40,7 +41,7 @@ const PersonalInfo = ({
         <Avatar
           className="iconAvatar"
           alt="Remy Sharp"
-          src={AvatarPhoto}
+          src={imageUrl}
           style={{ height: "160px", width: "160px" }}
         />
         <CameraAltIcon
@@ -153,17 +154,21 @@ const PersonalInfo = ({
           <Typography className="smallText" fontWeight={400} fontSize="12px">
             Link da imagem
           </Typography>
-          <InputBase
-            style={{
-              height: "20px",
-              width: "100%",
-              fontWeight: "700",
-              color: "#1E1848",
-              overflow: "visible",
-              border: "none",
-            }}
-            defaultValue={"https://teste.com/image.jpg"}
-          />
+          <div className="input-group">
+            <InputBase
+              style={{
+                fontWeight: "700",
+                fontSize: "16px",
+                color: "#1E1848",
+                border: "none",
+              }}
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              onBlur={(e) =>
+                handleSaveInfo("replace", "/imageUrl", e.target.value)
+              }
+            />
+          </div>
         </div>
       </Drawer>
     </div>
