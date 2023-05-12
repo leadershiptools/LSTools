@@ -69,8 +69,8 @@ const PeopleScreen = () => {
       <section>
         <GoalsPanel goals={goals} handleSaveInfo={updatePeople} />
         <SkillsPanel skills={skills} handleSaveInfo={updatePeople} />
-        <OneToOnePanel />
-        <SalaryPanel />
+        {/* <OneToOnePanel />
+        <SalaryPanel /> */}
       </section>
     </>
   );

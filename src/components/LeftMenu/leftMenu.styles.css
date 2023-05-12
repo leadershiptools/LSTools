@@ -12,10 +12,15 @@ li {
 
 aside {
     width: 15.9rem;
-    height: 2400px;
     display: flex;
     direction: row;
     padding-right: 16px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    background-color: white;
 }
 
 main {
@@ -25,8 +30,6 @@ main {
 }
 
 .container {
-    width: 256px;
-    height: 2400px;
     padding: 16px;
     left: 0px;
     top: 0px;

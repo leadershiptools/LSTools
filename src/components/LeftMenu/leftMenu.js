@@ -21,7 +21,7 @@ const LeftMenu = () => (
       </header>
       <main>
         <ol>
-          <li className="menuitem">
+          {/* <li className="menuitem">
             <Button
               className="navigationBtn"
               startIcon={<Business />}
@@ -29,7 +29,7 @@ const LeftMenu = () => (
             >
               <Typography>Company</Typography>
             </Button>
-          </li>
+          </li> */}
           <li className="menuitem">
             <Button
               className="navigationBtn"
@@ -44,7 +44,7 @@ const LeftMenu = () => (
               <Typography>People</Typography>
             </Button>
           </li>
-          <li className="menuitem">
+          {/* <li className="menuitem">
             <Button
               className="navigationBtn"
               startIcon={<Setup />}
@@ -52,7 +52,7 @@ const LeftMenu = () => (
             >
               <Typography>Setup</Typography>
             </Button>
-          </li>
+          </li> */}
         </ol>
       </main>
     </div>
