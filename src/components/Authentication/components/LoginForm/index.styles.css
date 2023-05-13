@@ -1,0 +1,73 @@
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Plus Jakarta Sans' !important;
+}
+
+.login-form-container > img{
+    max-width: 120px;
+    margin-bottom: 128px;
+}
+
+.login-form-container > h1{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 130%;
+    letter-spacing: -0.04em;
+    color: #3E3486;
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.login-form-input {
+    background: #F1F0F8;
+    border-radius: 4px;
+    margin-bottom: 40px;
+    padding: 16px;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    width: 100% !important;
+}
+
+.login-form-input-container{
+    position: relative;
+}
+
+.login-form-input-icon{
+    position: absolute;
+    right: 8px;
+    top: 33%;
+    z-index: 5;
+    transform: translate(-50%, -50%);
+
+}
+
+.login-form-input-icon svg{
+    color: #3E3486;
+}
+
+.login-form-submit-button {
+    background: #F1388D !important;
+    color: #FEECF4 !important;
+    font-size: 14px;
+    padding: 6px !important;
+    outline: 0 !important;
+    margin-bottom: 30px !important;
+}
+
+.login-form-forgot-password-button {
+    color: #F1388D !important;
+    font-size: 14px;
+    outline: 0 !important;
+    font-family: 'Plus Jakarta Sans' !important;
+    font-weight: 500 !important;
+    background-color: #fff !important;
+}
+
+
+
+.login-form-submit-button p, .login-form-forgot-password-button p {
+    font-family: 'Plus Jakarta Sans' !important;
+    font-weight: 500 !important;
+}

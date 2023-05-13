@@ -1,0 +1,42 @@
+.authentication-container{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+
+.authentication-container-left{
+    flex: 0 0 50%;
+}
+
+.authentication-container-left-wrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 64px 120px;
+}
+
+.authentication-container-right{
+    flex: 0 0 50%;
+    background-color: #EBECFF;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.authentication-container-right-text{
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
+}
+.authentication-container-right-text h2{
+    font-family: 'Plus Jakarta Sans';
+    font-weight: 700;
+    font-size: 56px;
+    letter-spacing: -0.04em;
+    color: #3E3486;
+    margin: 0;
+}
+
+.authentication-container-right > img{
+    align-self: flex-end;
+    width: 100%;
+}

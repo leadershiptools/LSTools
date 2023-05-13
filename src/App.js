@@ -3,18 +3,28 @@ import "./App.css";
 import LeftMenu from "./components/LeftMenu/leftMenu";
 import PeopleScreen from "./components/PeopleScreen/PeopleScreen";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Authentication from "./components/Authentication";
 
+const mainApplicationContainer = (component) => (
+  <div className="Main">
+    <LeftMenu />
+    <div className="Content">{component}</div>
+  </div>
+);
 function App() {
   return (
     <BrowserRouter>
-      <div className="Main">
-        <LeftMenu />
-        <div className="Content">
-          <Routes>
-            <Route path="/LSTools/:peopleId" element={<PeopleScreen />} />
-          </Routes>
-        </div>
-      </div>
+      <Routes>
+        <Route
+          path="/LSTools/:peopleId"
+          element={mainApplicationContainer(<PeopleScreen />)}
+        />
+        <Route path="/LSTools" element={<Authentication type="login" />} />
+        <Route
+          path="/LSTools/register"
+          element={<Authentication type="register" />}
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
