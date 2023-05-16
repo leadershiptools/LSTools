@@ -20,7 +20,6 @@ const RegisterForm = () => {
   const [errorType, setErrorType] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  console.log(showError)
 
   const handleRegister = async () => {
     setIsLoading(true);
@@ -48,7 +47,7 @@ const RegisterForm = () => {
   return (
     <div className="register-form-container">
       <img src={homepageLogoImage} alt="homepage logo" />
-      <h1>Welcome back!</h1>
+      <h1>Create an Account</h1>
       <InputBase
         className="register-form-input"
         style={{
