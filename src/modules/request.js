@@ -29,3 +29,17 @@ export async function patch(path, body) {
     throw new Error(error);
   }
 }
+
+export async function post(path, body) {
+  try {
+    const request = await fetch(`${baseUrl}${path}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const result = await request.json();
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+}

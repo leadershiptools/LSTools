@@ -4,6 +4,7 @@ import "./index.styles.css";
 import homepageRightImage from "../../images/homepage-right-image.png";
 import homepageRightText from "../../images/homepage-right-text.png";
 import LoginForm from "./components/LoginForm";
+import RegisterForm from "./components/RegisterForm";
 
 const Authentication = ({ type }) => {
   return (
@@ -11,6 +12,7 @@ const Authentication = ({ type }) => {
       <div className="authentication-container-left">
         <div className="authentication-container-left-wrapper">
           {type === "login" && <LoginForm />}
+          {type === "register" && <RegisterForm />}
         </div>
       </div>
       <div className="authentication-container-right">

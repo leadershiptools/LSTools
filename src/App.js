@@ -19,9 +19,9 @@ function App() {
           path="/LSTools/:peopleId"
           element={mainApplicationContainer(<PeopleScreen />)}
         />
-        <Route path="/LSTools" element={<Authentication type="login" />} />
+        <Route path="/" element={<Authentication type="login" />} />
         <Route
-          path="/LSTools/register"
+          path="/register"
           element={<Authentication type="register" />}
         />
       </Routes>

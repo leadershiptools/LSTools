@@ -6,8 +6,11 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
   const [passwordInputType, setPasswordInputType] = useState("password");
+  const navigate = useNavigate();
+
   return (
     <div className="login-form-container">
       <img src={homepageLogoImage} alt="homepage logo" />
@@ -46,7 +49,14 @@ const LoginForm = () => {
         <Typography>LOGIN</Typography>
       </Button>
       <Button className="login-form-forgot-password-button">
-        FORGOT MY PASSWORD
+        Forgot my password
+      </Button>
+
+      <Button
+        onClick={() => navigate("/register")}
+        className="login-form-forgot-password-button"
+      >
+        Create an account
       </Button>
     </div>
   );
