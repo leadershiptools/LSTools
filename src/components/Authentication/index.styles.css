@@ -40,3 +40,17 @@
     align-self: flex-end;
     width: 100%;
 }
+
+@media (max-width: 768px) {
+    .authentication-container-left{
+        flex: 0 0 100%;
+    }
+
+    .authentication-container-left-wrapper{
+        padding: 20px;
+    }
+
+    .authentication-container-right{
+        display: none;
+    }
+}

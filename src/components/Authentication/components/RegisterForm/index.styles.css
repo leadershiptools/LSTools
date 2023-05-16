@@ -72,3 +72,10 @@
     font-family: 'Plus Jakarta Sans' !important;
     font-weight: 500 !important;
 }
+
+@media (max-width: 768px) {
+    
+.register-form-container > img{
+    margin-bottom: 40px;
+}
+}
