@@ -31,11 +31,15 @@ const RegisterForm = () => {
       return;
     }
     setShowError(false);
-    const result = await post("/user/signup", {
-      name: "teste",
-      email,
-      password,
-    });
+    const result = await post(
+      "/user/signup",
+      {
+        name: "teste",
+        email,
+        password,
+      },
+      true
+    );
     if (result.uid) {
       navigate("/");
     }
@@ -105,7 +109,10 @@ const RegisterForm = () => {
           )}
         </div>
       </div>
-      <Button onClick={() => handleRegister()} className="register-form-submit-button">
+      <Button
+        onClick={() => handleRegister()}
+        className="register-form-submit-button"
+      >
         {isLoading ? (
           <CircularProgress color="inherit" size={24} />
         ) : (
