@@ -1,3 +1,29 @@
 .team-screen-container{
     padding: 12px 52px 40px 52px;
 }
+
+.team-screen-container-error{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-screen-container-error > p {
+    color: #665DAA;
+    font-size: 20px;
+}
+
+.team-screen-container-error-button{
+    border-color: #FBC4DD !important;
+    color: #F1388D !important;
+}
+
+.team-screen-container-error-button > svg{
+    margin-right: 8px;
+}
+
+.team-screen-container-error-button:hover{
+    background-color: white !important;
+}

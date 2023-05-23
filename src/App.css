@@ -5,8 +5,7 @@
 .Content {
   display: flex;
   flex-direction:column;
-  width: auto;
-  margin-left: 15.9rem;
+  width: calc(100% - 15.9rem);
 }
 
 ::-webkit-scrollbar {

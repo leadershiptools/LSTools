@@ -7,7 +7,7 @@ import People from "@mui/icons-material/PeopleAltOutlined";
 import { Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const LeftMenu = () => {
+const LeftMenu = ({ user }) => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
@@ -15,10 +15,10 @@ const LeftMenu = () => {
       <div role="menu" className="container">
         <header>
           <Typography className="headerName" fontWeight={700} fontSize="20px">
-            Dan Zendaya
+            {user?.name}
           </Typography>
           <Typography className="headerEmail" fontSize="14px" fontWeight={400}>
-            dan@zendaya.com
+            {user?.email}
           </Typography>
         </header>
         <main>

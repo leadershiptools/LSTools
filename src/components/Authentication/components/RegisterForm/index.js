@@ -23,7 +23,6 @@ const RegisterForm = () => {
 
   const handleRegister = async () => {
     setIsLoading(true);
-    console.log(typeof password);
     if (password.length === 0 || password !== passwordConfirmation) {
       setErrorType("password");
       setShowError(true);
