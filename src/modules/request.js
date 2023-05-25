@@ -45,9 +45,7 @@ export async function patch(path, body, isPublicUrl = false) {
         "Content-Type": "application/json",
         ...(!isPublicUrl && { Authorization: `Bearer ${getUserToken()}` }),
       },
-      body: JSON.stringify({
-        ...body,
-      }),
+      body: JSON.stringify(body),
     });
 
     if (request.status === 401) {
@@ -71,9 +69,30 @@ export async function post(path, body, isPublicUrl = false) {
         "Content-Type": "application/json",
         ...(!isPublicUrl && { Authorization: `Bearer ${getUserToken()}` }),
       },
-      body: JSON.stringify({
-        ...body,
-      }),
+      body: JSON.stringify(body),
+    });
+
+    if (request.status === 401) {
+      handleNotAuthorized();
+      return;
+    }
+
+    const result = await request.json();
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+export async function sendDelete(path, body, isPublicUrl = false) {
+  try {
+    const request = await fetch(`${baseUrl}${path}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        ...(!isPublicUrl && { Authorization: `Bearer ${getUserToken()}` }),
+      },
+      body: JSON.stringify(body),
     });
 
     if (request.status === 401) {

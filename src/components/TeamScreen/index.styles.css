@@ -8,11 +8,13 @@
     gap: 24px;
 }
 
-.team-screen-teams-item h2{
+.team-screen-teams-item input{
     font-weight: 700;
     font-size: 32px;
     letter-spacing: -0.04em;
     color: #1E1848;
+    border: none !important;
+    outline: none !important;
 }
 
 .team-screen-container-error{

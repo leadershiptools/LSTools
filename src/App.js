@@ -14,7 +14,6 @@ import { getUserToken } from "./modules/utils";
 initializeApp(firebaseConfig);
 
 const mainApplicationContainer = (component, user) => {
-  console.log(user);
   return (
     <div className="Main">
       <LeftMenu user={user} />
@@ -26,21 +25,15 @@ const mainApplicationContainer = (component, user) => {
 function App() {
   const [user, setUser] = useState();
   const getUser = async () => {
-    const token = getUserToken()
+    const token = getUserToken();
     if (token !== null) {
-      console.log('tem token')
       const user = await get("/user/profile");
       setUser(user);
-    }else{
-      console.log('n tem token')
     }
   };
 
   useEffect(() => {
     getUser();
-    window.addEventListener("locationchange", function () {
-      getUser();
-    });
   }, []);
 
   return (
