@@ -1,16 +1,11 @@
 import Cookies from "js-cookie";
+import { getUserToken } from "./utils";
 
 const baseUrl = "https://leadership-tools-backend.fly.dev";
 
-function getUserToken() {
-  const user = Cookies.get("user");
-  if (!user) return "";
-  return JSON.parse(user)?.stsTokenManager?.accessToken;
-}
-
 function handleNotAuthorized() {
   Cookies.set("user", "");
-  if (window.location.pathname.includes("LSTOOLS")) {
+  if (window.location.pathname.includes("LSTools")) {
     window.location.href = "/";
   }
   return;

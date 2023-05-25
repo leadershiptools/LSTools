@@ -25,7 +25,7 @@ const LoginForm = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         Cookies.set("user", JSON.stringify(user));
-        navigate('/LSTools/team')
+        window.location.href = "/LSTools/team";
       })
       .catch(() => {
         setShowError(true);

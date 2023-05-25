@@ -1,3 +1,5 @@
+import Cookies from "js-cookie";
+
 export function getMonthNames(monthIndex) {
   switch (monthIndex) {
     case 0:
@@ -27,4 +29,10 @@ export function getMonthNames(monthIndex) {
     default:
       return "";
   }
+}
+
+export function getUserToken() {
+  const user = Cookies.get("user");
+  if (!user) return null;
+  return JSON.parse(user)?.stsTokenManager?.accessToken;
 }
