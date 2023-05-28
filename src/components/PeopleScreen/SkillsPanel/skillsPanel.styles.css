@@ -7,6 +7,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
     font-family: 'Plus Jakarta Sans';
 }
 
@@ -68,18 +69,21 @@
     border-bottom : 1px solid #F1F0F8;
 }
 
-.skillsBoardListItem p{
-    font-style: normal;
+.skillsBoardListItemInputName{
     font-weight: 400;
     font-size: 16px;
     line-height: 160%;
     flex: 0 0 80%;
+    border: none;
+    outline: none;
 }
 
-.skillsBoardListItem span{
-    flex: 0 0 10%;
+.skillsBoardListItemInputScore{
+    width: 10%;
     color: #F1388D;
     font-weight: 700;
+    border: none;
+    outline: none;
 }
 
 .skillsBoardListItem button{

@@ -6,14 +6,30 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import MoreVert from "@mui/icons-material/MoreVert";
 import { SkillsGraph } from "./skillsGraph";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Menu, MenuItem } from "@mui/material";
 
 const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const [skillName, setSkillName] = useState("");
+  const [skillNameInputs, setSkillNameInputs] = useState({});
+  const [skillScoreInputs, setSkillScoreInputs] = useState({});
 
-  const addSkill = () => {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = async () => {
+    const index = anchorEl?.getAttribute("data-id");
+    // eslint-disable-next-line no-restricted-globals
+    if (index && confirm("Are you sure you want to do this?")) {
+      await handleSaveInfo("remove", `/skills/${index}`);
+      setAnchorEl(null);
+    }
+  };
+  const addSkill = async () => {
     if (skillName === "") return;
-    handleSaveInfo("add", `/skills/-`, {
+    await handleSaveInfo("add", `/skills/-`, {
       name: skillName,
       description: "",
       history: [
@@ -25,6 +41,19 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
     });
     setSkillName("");
   };
+
+  useEffect(() => {
+    skills?.forEach((skill) => {
+      setSkillNameInputs((prevState) => ({
+        ...prevState,
+        [skill.name]: skill.name,
+      }));
+      setSkillScoreInputs((prevState) => ({
+        ...prevState,
+        [skill.name]: skill.score,
+      }));
+    });
+  }, [skills]);
 
   return (
     <main className="skillsPanel">
@@ -58,22 +87,71 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
           </Button>
         </div>
         <div className="skillsBoardList">
-          {skills?.map((skill) => {
-            const { name, score } = skill;
+          {skills?.map((skill, index) => {
+            const { name } = skill;
             return (
               <div className="skillsBoardListItem">
-                <p>{name}</p>
-                <span>{score}</span>
-                <Button>
+                <input
+                  className="skillsBoardListItemInputName"
+                  value={skillNameInputs[name]}
+                  onChange={(e) =>
+                    setSkillNameInputs((prevState) => ({
+                      ...prevState,
+                      [name]: e.target.value,
+                    }))
+                  }
+                  onBlur={(e) =>
+                    handleSaveInfo(
+                      "replace",
+                      `/skills/${index}/name`,
+                      e.target.value
+                    )
+                  }
+                />
+                <input
+                  className="skillsBoardListItemInputScore"
+                  type="number"
+                  value={skillScoreInputs[name]}
+                  onChange={(e) =>
+                    setSkillScoreInputs((prevState) => ({
+                      ...prevState,
+                      [name]: e.target.value,
+                    }))
+                  }
+                  onBlur={(e) =>
+                    handleSaveInfo("add", `/skills/${index}/score/-`, {
+                      score: Number(e.target.value),
+                      date: new Date(),
+                    })
+                  }
+                />
+                <Button data-id={index} onClick={handleOpenMenu}>
                   <MoreVert />
                 </Button>
+                <Menu
+                  id="demo-positioned-menu"
+                  aria-labelledby="demo-positioned-button"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleCloseMenu}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                >
+                  <MenuItem onClick={handleCloseMenu}>Delete</MenuItem>
+                </Menu>
               </div>
             );
           })}
         </div>
       </section>
       <section className="graphicSkillsBoard">
-        <SkillsGraph />
+        <SkillsGraph skills={skills} />
       </section>
     </main>
   );
