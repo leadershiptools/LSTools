@@ -1,7 +1,7 @@
 import "./PeopleScreen.styles.css";
 import * as React from "react";
 import PersonalInfo from "./PersonalInfoCard/personalInfo";
-import GoalsPanel from "./GoalsPanel/goalsPanel";
+import OkrsPanel from "./OkrsPanel/OkrsPanel";
 import SkillsPanel from "./SkillsPanel/skillsPanel";
 import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
 import SalaryPanel from "./SalaryPanel/SalaryPanel";
@@ -10,24 +10,25 @@ import { get, patch } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 import { useParams } from "react-router-dom";
 
-const PeopleScreen = () => {
+const PeopleScreen = ({ user }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [position, setPosition] = useState("");
-  const [goals, setGoals] = useState(null);
+  const [okrs, setOkrs] = useState(null);
   const [skills, setSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-  let { peopleId } = useParams();
+  const { peopleId } = useParams();
+  const defaultOrganization = user?.organizations?.[0]?.id;
 
   const getPeople = useCallback(async () => {
     const result = await get(`/people/${peopleId}`);
-    const { name, phone, email, job, goals, skills, imageUrl } = result;
+    const { name, phone, email, job, objectives, skills, imageUrl } = result;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
     setPosition(job.name ?? "");
-    setGoals(goals);
+    setOkrs(objectives);
     setSkills(skills);
     setImageUrl(imageUrl);
   }, [peopleId]);
@@ -67,7 +68,7 @@ const PeopleScreen = () => {
         />
       </section>
       <section>
-        {/* <GoalsPanel goals={goals} handleSaveInfo={updatePeople} /> */}
+        <OkrsPanel organizationId={defaultOrganization} okrs={okrs} updatePeople={getPeople} />
         <SkillsPanel skills={skills} handleSaveInfo={updatePeople} />
         {/* <OneToOnePanel />
         <SalaryPanel /> */}

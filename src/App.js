@@ -41,7 +41,7 @@ function App() {
       <Routes>
         <Route
           path="/LSTools/people/:peopleId"
-          element={mainApplicationContainer(<PeopleScreen />, user)}
+          element={mainApplicationContainer(<PeopleScreen user={user} />, user)}
         />
         <Route
           path="/LSTools/team"
