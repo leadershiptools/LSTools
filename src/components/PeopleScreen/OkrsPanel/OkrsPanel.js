@@ -1,12 +1,12 @@
 import "./OkrsPanel.styles.css";
 import "../../Styles/commons.styles.css";
-import { Button, Typography } from "@mui/material";
+import { Button, Menu, MenuItem, Typography } from "@mui/material";
 import MoreVert from "@mui/icons-material/MoreVert";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import InputBase from "@mui/material/InputBase";
 import React, { useEffect, useState } from "react";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { patch, post } from "../../../modules/request";
+import { patch, post, sendDelete } from "../../../modules/request";
 import { useParams } from "react-router-dom";
 import { GraphicBar } from "./gaphicBar";
 const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
@@ -15,6 +15,21 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const [keyResultsNames, setKeyResultsNames] = useState({});
   const [keyResultsDescription, setKeyResultsDescription] = useState({});
   const [keyResultsAchievement, setKeyResultsAchievement] = useState({});
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleOpenMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleCloseMenu = async () => {
+    const okrId = anchorEl?.getAttribute("data-okr-id");
+    const keyResultId = anchorEl?.getAttribute("data-key-result-id");
+    // eslint-disable-next-line no-restricted-globals
+    if (okrId && keyResultId && confirm("Are you sure you want to do this?")) {
+      await deleteKeyResult(okrId, keyResultId);
+    }
+    setAnchorEl(null);
+  };
 
   const createOkr = async () => {
     await post(
@@ -65,6 +80,14 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
     updatePeople();
   };
 
+  const deleteKeyResult = async (okrId, keyResultId) => {
+    await sendDelete(
+      `/key-result/${keyResultId}?organizationId=${organizationId}&peopleId=${peopleId}&objectiveId=${okrId}&keyResultId=${keyResultId}`,
+      {}
+    );
+    updatePeople();
+  };
+
   useEffect(() => {
     okrs?.forEach((okr) => {
       setObjectivesNames((prevState) => ({
@@ -88,8 +111,6 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
       });
     });
   }, [okrs]);
-
-  console.log(keyResultsNames);
 
   return (
     <main className="okrsPanel">
@@ -222,9 +243,32 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                           />
                         </div>
                         <div className="keyResultItemRight">
-                          <Button>
+                          <Button
+                            data-okr-id={okr?.id}
+                            data-key-result-id={keyResult?.id}
+                            onClick={handleOpenMenu}
+                          >
                             <MoreVert />
                           </Button>
+                          <Menu
+                            id="demo-positioned-menu"
+                            aria-labelledby="demo-positioned-button"
+                            anchorEl={anchorEl}
+                            open={open}
+                            onClose={handleCloseMenu}
+                            anchorOrigin={{
+                              vertical: "top",
+                              horizontal: "left",
+                            }}
+                            transformOrigin={{
+                              vertical: "top",
+                              horizontal: "left",
+                            }}
+                          >
+                            <MenuItem onClick={handleCloseMenu}>
+                              Delete
+                            </MenuItem>
+                          </Menu>
                         </div>
                       </div>
                     );

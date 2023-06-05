@@ -99,9 +99,7 @@ export async function sendDelete(path, body, isPublicUrl = false) {
       handleNotAuthorized();
       return;
     }
-
-    const result = await request.json();
-    return result;
+    return;
   } catch (error) {
     throw new Error(error);
   }
