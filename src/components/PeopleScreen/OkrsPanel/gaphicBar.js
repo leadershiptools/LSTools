@@ -33,65 +33,21 @@ export const options = {
   },
 };
 
-export function GraphicBar({ goals }) {
-  const getLastThreeMonths = () => {
-    const today = new Date();
-    const lastThreeMonths = [];
-    for (let i = -2; i < 0; i++) {
-      let month = today.getMonth();
-      let year = today.getFullYear();
-      if (month + i < 1) {
-        month += 12;
-        year -= 1;
-      }
-      lastThreeMonths.push({ month: getMonthNames(month + i), year: year });
-    }
-    lastThreeMonths.push({
-      month: getMonthNames(today.getMonth()),
-      year: today.getFullYear(),
-    });
-    return lastThreeMonths;
-  };
+export function GraphicBar({ okrs }) {
   const getLabels = () => {
-    const lastThreeMonths = getLastThreeMonths();
-    return lastThreeMonths.map((item) => `${item.month} de ${item.year}`);
+    return okrs?.map((okr) => okr.name);
   };
 
   const getValues = () => {
-    const lastThreeMonths = getLastThreeMonths();
-    const lastThreeMonthsHistory = {};
-    goals?.forEach((goal) => {
-      lastThreeMonths?.forEach((item) => {
-        const { month, year } = item;
-        goal?.history?.forEach((historyItem, index) => {
-          const historyItemDate = new Date(historyItem.date);
-          const historyItemMonth = getMonthNames(historyItemDate.getMonth());
-          const historyItemYear = historyItemDate.getFullYear();
-          if (month === historyItemMonth && year === historyItemYear) {
-            lastThreeMonthsHistory[month] = {
-              ...lastThreeMonthsHistory[month],
-              [index]: historyItem,
-            };
-          }
-        });
-      });
-    });
-
-    const values = lastThreeMonths.map((item) => {
-      const { month } = item;
+    return okrs?.map((okr) => {
       let sum = 0;
-      Object.keys(lastThreeMonthsHistory[month] ?? {}).forEach((key) => {
-        sum += lastThreeMonthsHistory[month][key]?.achievement;
+      okr?.keyResults?.forEach((keyResult) => {
+        sum += keyResult.achievement;
       });
-      const mean =
-        sum / Object.keys(lastThreeMonthsHistory[month] ?? {}).length;
-      if (isNaN(mean)) return 0;
-      return sum / Object.keys(lastThreeMonthsHistory[month] ?? {}).length;
+      return sum / okr?.keyResults.length;
     });
-    return values;
   };
 
-  getLastThreeMonths();
   const labels = getLabels();
   const values = getValues();
   const data = {

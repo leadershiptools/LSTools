@@ -8,9 +8,13 @@ import React, { useEffect, useState } from "react";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { patch, post } from "../../../modules/request";
 import { useParams } from "react-router-dom";
+import { GraphicBar } from "./gaphicBar";
 const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const { peopleId } = useParams();
   const [objectivesNames, setObjectivesNames] = useState({});
+  const [keyResultsNames, setKeyResultsNames] = useState({});
+  const [keyResultsDescription, setKeyResultsDescription] = useState({});
+  const [keyResultsAchievement, setKeyResultsAchievement] = useState({});
 
   const createOkr = async () => {
     await post(
@@ -41,14 +45,51 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
     updatePeople();
   };
 
+  const updateKeyResult = async (
+    okrId,
+    keyResultId,
+    operation,
+    path,
+    value
+  ) => {
+    await patch(
+      `/key-result/${keyResultId}?organizationId=${organizationId}&peopleId=${peopleId}&objectiveId=${okrId}&keyResultId=${keyResultId}`,
+      [
+        {
+          op: operation,
+          path,
+          value,
+        },
+      ]
+    );
+    updatePeople();
+  };
+
   useEffect(() => {
     okrs?.forEach((okr) => {
       setObjectivesNames((prevState) => ({
         ...prevState,
         [okr?.id]: okr?.name,
       }));
+
+      okr?.keyResults?.forEach((keyResult) => {
+        setKeyResultsNames((prevState) => ({
+          ...prevState,
+          [keyResult.id]: keyResult.name,
+        }));
+        setKeyResultsDescription((prevState) => ({
+          ...prevState,
+          [keyResult.id]: keyResult.description,
+        }));
+        setKeyResultsAchievement((prevState) => ({
+          ...prevState,
+          [keyResult.id]: keyResult.achievement,
+        }));
+      });
     });
   }, [okrs]);
+
+  console.log(keyResultsNames);
 
   return (
     <main className="okrsPanel">
@@ -113,20 +154,72 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                 </div>
                 <div className="keyResultsContainer">
                   {okr?.keyResults?.map((keyResult, keyResultIndex) => {
-                    const { name, description } = keyResult;
                     return (
                       <div key={keyResultIndex} className="keyResultItem">
                         <div className="keyResultItemLeft">
-                          <p className="keyResultItemLeftTitle">{name}</p>
-                          <p className="keyResultItemLeftDescription">
-                            {description}
-                          </p>
+                          <InputBase
+                            className="keyResultItemLeftTitle"
+                            onChange={(e) =>
+                              setKeyResultsNames((prevState) => ({
+                                ...prevState,
+                                [keyResult.id]: e.target.value,
+                              }))
+                            }
+                            onBlur={() =>
+                              updateKeyResult(
+                                okr?.id,
+                                keyResult.id,
+                                "replace",
+                                "/name",
+                                keyResultsNames[keyResult?.id]
+                              )
+                            }
+                            value={keyResultsNames[keyResult?.id]}
+                          />
+                          <InputBase
+                            onChange={(e) =>
+                              setKeyResultsDescription((prevState) => ({
+                                ...prevState,
+                                [keyResult.id]: e.target.value,
+                              }))
+                            }
+                            onBlur={() =>
+                              updateKeyResult(
+                                okr?.id,
+                                keyResult.id,
+                                "replace",
+                                "/description",
+                                keyResultsDescription[keyResult?.id]
+                              )
+                            }
+                            value={keyResultsDescription[keyResult?.id]}
+                            className="keyResultItemLeftDescription"
+                          />
                         </div>
                         <div className="keyResultItemMiddle">
                           <label className="keyResultItemMiddleLabel">
                             Atingime...
                           </label>
-                          <p className="keyResultItemMiddleAtg">85%</p>
+                          <InputBase
+                            type="number"
+                            onChange={(e) =>
+                              setKeyResultsAchievement((prevState) => ({
+                                ...prevState,
+                                [keyResult.id]: e.target.value,
+                              }))
+                            }
+                            onBlur={() =>
+                              updateKeyResult(
+                                okr?.id,
+                                keyResult.id,
+                                "replace",
+                                "/achievement",
+                                keyResultsAchievement[keyResult?.id]
+                              )
+                            }
+                            value={keyResultsAchievement[keyResult?.id]}
+                            className="keyResultItemMiddleAtg"
+                          />
                         </div>
                         <div className="keyResultItemRight">
                           <Button>
@@ -141,6 +234,9 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
             );
           })}
         </div>
+      </section>
+      <section className="okrsGraph">
+        <GraphicBar okrs={okrs} />
       </section>
     </main>
   );
