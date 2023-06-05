@@ -175,6 +175,8 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                 </div>
                 <div className="keyResultsContainer">
                   {okr?.keyResults?.map((keyResult, keyResultIndex) => {
+                    console.log();
+
                     return (
                       <div key={keyResultIndex} className="keyResultItem">
                         <div className="keyResultItemLeft">
@@ -233,9 +235,13 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                               updateKeyResult(
                                 okr?.id,
                                 keyResult.id,
-                                "replace",
-                                "/achievement",
-                                keyResultsAchievement[keyResult?.id]
+                                "add",
+                                "/history/-",
+                                {
+                                  achievement:
+                                    keyResultsAchievement[keyResult?.id],
+                                  date: new Date(),
+                                }
                               )
                             }
                             value={keyResultsAchievement[keyResult?.id]}
