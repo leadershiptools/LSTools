@@ -39,7 +39,7 @@ const RegisterForm = () => {
       },
       true
     );
-    if (result.uid) {
+    if (result?.uid) {
       navigate("/");
     }
     setErrorType("register");

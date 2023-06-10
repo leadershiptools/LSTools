@@ -78,9 +78,9 @@ const LoginForm = () => {
           Something went wrong, please try again
         </Alert>
       )}
-      <Button className="login-form-forgot-password-button">
+      {/* <Button className="login-form-forgot-password-button">
         Forgot my password
-      </Button>
+      </Button> */}
       <Button
         onClick={() => navigate("/register")}
         className="login-form-forgot-password-button"
