@@ -14,10 +14,7 @@ export default function BasicBreadcrumbs({ name }) {
     <div role="tab" className="breadcrumb" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb" separator="›">
         <Link className="ancestor" underline="hover" href="/">
-          Team
-        </Link>
-        <Link className="ancestor" underline="hover" href="/">
-          Marketing
+          People
         </Link>
         <Typography className="actual" underline="hover">
           {name}
