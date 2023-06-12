@@ -7,6 +7,7 @@ import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined";
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useNavigate } from "react-router-dom";
+import { triggerBlurOnEnter } from "../../modules/utils";
 
 function TeamScreen({ user }) {
   const navigate = useNavigate();
@@ -79,6 +80,9 @@ function TeamScreen({ user }) {
                       defaultOrganization,
                       team?.id
                     );
+                  }}
+                  inputProps={{
+                    onKeyDown: triggerBlurOnEnter,
                   }}
                 />
                 <Button

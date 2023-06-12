@@ -31,6 +31,12 @@
     flex: 1;
 }
 
+.skillsBoardFormError{
+    color: red;
+    font-size: 12px;
+    margin: 0;
+}
+
 .skillsBoardFormButton{
     height: 40px;
     padding: 8px 12px !important;

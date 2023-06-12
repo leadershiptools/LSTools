@@ -8,11 +8,13 @@ import MoreVert from "@mui/icons-material/MoreVert";
 import { SkillsGraph } from "./skillsGraph";
 import { useEffect, useState } from "react";
 import { Menu, MenuItem } from "@mui/material";
+import { triggerBlurOnEnter } from "../../../modules/utils";
 
 const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const [skillName, setSkillName] = useState("");
   const [skillNameInputs, setSkillNameInputs] = useState({});
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
+  const [skillError, setCreateSkillError] = useState(false);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -28,7 +30,11 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
     }
   };
   const addSkill = async () => {
-    if (skillName === "") return;
+    if (skillName === "") {
+      setCreateSkillError(true);
+      return;
+    }
+    setCreateSkillError(false);
     await handleSaveInfo("add", `/skills/-`, {
       name: skillName,
       description: "",
@@ -73,7 +79,11 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
               value={skillName}
               onChange={(e) => setSkillName(e.target.value)}
             />
-            <span>40 caracteres</span>
+            {skillError && (
+              <p className="skillsBoardFormError">
+                You cannot create an empty skill
+              </p>
+            )}
           </div>
           <Button
             className="skillsBoardFormButton"
@@ -107,6 +117,9 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                       e.target.value
                     )
                   }
+                  inputProps={{
+                    onKeyDown: triggerBlurOnEnter,
+                  }}
                 />
                 <input
                   className="skillsBoardListItemInputScore"
@@ -119,11 +132,14 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                     }))
                   }
                   onBlur={(e) =>
-                    handleSaveInfo("add", `/skills/${index}/score/-`, {
+                    handleSaveInfo("add", `/skills/${index}/history/-`, {
                       score: Number(e.target.value),
                       date: new Date(),
                     })
                   }
+                  inputProps={{
+                    onKeyDown: triggerBlurOnEnter,
+                  }}
                 />
                 <Button data-id={index} onClick={handleOpenMenu}>
                   <MoreVert />

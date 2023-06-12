@@ -6,6 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import { useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import { triggerBlurOnEnter } from "../../../modules/utils";
 
 const PersonalInfo = ({
   name,
@@ -68,6 +69,9 @@ const PersonalInfo = ({
             onChange={(e) => setName(e.target.value)}
             value={name}
             onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
+            inputProps={{
+              onKeyDown: triggerBlurOnEnter,
+            }}
           />
         </div>
         <div className="colaboratorDetails">
@@ -93,6 +97,9 @@ const PersonalInfo = ({
               onBlur={(e) =>
                 handleSaveInfo("replace", "/email", e.target.value)
               }
+              inputProps={{
+                onKeyDown: triggerBlurOnEnter,
+              }}
             />
           </div>
           <div
@@ -117,6 +124,9 @@ const PersonalInfo = ({
               onBlur={(e) =>
                 handleSaveInfo("replace", "/phone", e.target.value)
               }
+              inputProps={{
+                onKeyDown: triggerBlurOnEnter,
+              }}
             />
           </div>
           <div
@@ -141,6 +151,9 @@ const PersonalInfo = ({
               onBlur={(e) =>
                 handleSaveInfo("replace", "/job/name", e.target.value)
               }
+              inputProps={{
+                onKeyDown: triggerBlurOnEnter,
+              }}
             />
           </div>
         </div>
@@ -167,6 +180,9 @@ const PersonalInfo = ({
               onBlur={(e) =>
                 handleSaveInfo("replace", "/imageUrl", e.target.value)
               }
+              inputProps={{
+                onKeyDown: triggerBlurOnEnter,
+              }}
             />
           </div>
         </div>

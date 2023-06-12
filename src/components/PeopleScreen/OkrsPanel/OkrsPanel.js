@@ -9,6 +9,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { patch, post, sendDelete } from "../../../modules/request";
 import { useParams } from "react-router-dom";
 import { GraphicBar } from "./gaphicBar";
+import { triggerBlurOnEnter } from "../../../modules/utils";
 const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const { peopleId } = useParams();
   const [objectivesNames, setObjectivesNames] = useState({});
@@ -149,6 +150,9 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                         [okr.id]: e.target.value,
                       }))
                     }
+                    inputProps={{
+                      onKeyDown: triggerBlurOnEnter,
+                    }}
                     onBlur={() =>
                       updateOkr(
                         okr?.id,
@@ -188,6 +192,9 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                                 [keyResult.id]: e.target.value,
                               }))
                             }
+                            inputProps={{
+                              onKeyDown: triggerBlurOnEnter,
+                            }}
                             onBlur={() =>
                               updateKeyResult(
                                 okr?.id,
@@ -206,6 +213,9 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                                 [keyResult.id]: e.target.value,
                               }))
                             }
+                            inputProps={{
+                              onKeyDown: triggerBlurOnEnter,
+                            }}
                             onBlur={() =>
                               updateKeyResult(
                                 okr?.id,
@@ -231,6 +241,9 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                                 [keyResult.id]: e.target.value,
                               }))
                             }
+                            inputProps={{
+                              onKeyDown: triggerBlurOnEnter,
+                            }}
                             onBlur={() =>
                               updateKeyResult(
                                 okr?.id,

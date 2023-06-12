@@ -36,3 +36,8 @@ export function getUserToken() {
   if (!user) return null;
   return JSON.parse(user)?.stsTokenManager?.accessToken;
 }
+
+export function triggerBlurOnEnter(e) {
+  console.log(e)
+  if (e.keyCode === 13) e.target.blur();
+}
