@@ -38,6 +38,5 @@ export function getUserToken() {
 }
 
 export function triggerBlurOnEnter(e) {
-  console.log(e)
   if (e.keyCode === 13) e.target.blur();
 }

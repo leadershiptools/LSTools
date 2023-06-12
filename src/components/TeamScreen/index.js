@@ -20,7 +20,8 @@ function TeamScreen({ user }) {
     if (response?.teams?.length > 0) setTeams(response.teams);
   };
 
-  const editPeople = (peopleId) => navigate(`/LSTools/people/${peopleId}`);
+  const editPeople = (peopleId, teamId) =>
+    navigate(`/LSTools/people/${peopleId}`, { state: { teamName: teamId } });
 
   const addPeople = async (organizationId, teamId) => {
     const people = await post(`/organization/${organizationId}/people`);
@@ -81,9 +82,7 @@ function TeamScreen({ user }) {
                       team?.id
                     );
                   }}
-                  inputProps={{
-                    onKeyDown: triggerBlurOnEnter,
-                  }}
+                  onKeyDown={triggerBlurOnEnter}
                 />
                 <Button
                   className="team-screen-container-button"
@@ -119,7 +118,7 @@ function TeamScreen({ user }) {
                               className="team-screen-container-button"
                               variant="outlined"
                               style={{ fontWeight: 700 }}
-                              onClick={() => editPeople(p.id)}
+                              onClick={() => editPeople(p.id, team.name)}
                             >
                               EDITAR
                             </Button>

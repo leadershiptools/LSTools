@@ -100,7 +100,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
           {skills?.map((skill, index) => {
             const { name } = skill;
             return (
-              <div className="skillsBoardListItem">
+              <div key={index} className="skillsBoardListItem">
                 <input
                   className="skillsBoardListItemInputName"
                   value={skillNameInputs[name]}
@@ -117,9 +117,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                       e.target.value
                     )
                   }
-                  inputProps={{
-                    onKeyDown: triggerBlurOnEnter,
-                  }}
+                  onKeyDown={triggerBlurOnEnter}
                 />
                 <input
                   className="skillsBoardListItemInputScore"
@@ -137,9 +135,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                       date: new Date(),
                     })
                   }
-                  inputProps={{
-                    onKeyDown: triggerBlurOnEnter,
-                  }}
+                  onKeyDown={triggerBlurOnEnter}
                 />
                 <Button data-id={index} onClick={handleOpenMenu}>
                   <MoreVert />

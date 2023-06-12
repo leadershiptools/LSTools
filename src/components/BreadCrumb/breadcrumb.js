@@ -4,21 +4,30 @@ import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Link from "@mui/material/Link";
 import "../BreadCrumb/breadcrumb.styles.css";
 
-function handleClick(event) {
-  event.preventDefault();
-  // insert redirect to the last URL
-}
-
-export default function BasicBreadcrumbs({ name }) {
+export default function BasicBreadcrumbs({ items }) {
+  const handleClick = (e) => {
+    e.preventDefault();
+    const href = e.target.href;
+    if (href) window.location.href = href;
+  };
+  
   return (
     <div role="tab" className="breadcrumb" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb" separator="›">
-        <Link className="ancestor" underline="hover" href="/">
-          People
-        </Link>
-        <Typography className="actual" underline="hover">
-          {name}
-        </Typography>
+        {items?.map(({ name, link }) => {
+          if (link === null) {
+            return (
+              <Typography className="actual" underline="hover">
+                {name}
+              </Typography>
+            );
+          }
+          return (
+            <Link className="ancestor" underline="hover" href={link}>
+              {name}
+            </Link>
+          );
+        })}
       </Breadcrumbs>
     </div>
   );

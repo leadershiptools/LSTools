@@ -3,12 +3,12 @@ import * as React from "react";
 import PersonalInfo from "./PersonalInfoCard/personalInfo";
 import OkrsPanel from "./OkrsPanel/OkrsPanel";
 import SkillsPanel from "./SkillsPanel/skillsPanel";
-import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
-import SalaryPanel from "./SalaryPanel/SalaryPanel";
+// import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
+// import SalaryPanel from "./SalaryPanel/SalaryPanel";
 import { useCallback, useEffect, useState } from "react";
 import { get, patch } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 const PeopleScreen = ({ user }) => {
   const [name, setName] = useState("");
@@ -19,6 +19,8 @@ const PeopleScreen = ({ user }) => {
   const [skills, setSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const { peopleId } = useParams();
+  const { state } = useLocation();
+  console.log(state);
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const getPeople = useCallback(async () => {
@@ -51,7 +53,13 @@ const PeopleScreen = ({ user }) => {
 
   return (
     <>
-      <BreadCrumb name={name} />
+      <BreadCrumb
+        items={[
+          { name: "Team", link: "/LSTools/team" },
+          { name: state?.teamName, link: "/LSTools/team" },
+          { name: name, link: null },
+        ]}
+      />
       <section className="ledPanel">
         <PersonalInfo
           name={name}
@@ -68,7 +76,11 @@ const PeopleScreen = ({ user }) => {
         />
       </section>
       <section>
-        <OkrsPanel organizationId={defaultOrganization} okrs={okrs} updatePeople={getPeople} />
+        <OkrsPanel
+          organizationId={defaultOrganization}
+          okrs={okrs}
+          updatePeople={getPeople}
+        />
         <SkillsPanel skills={skills} handleSaveInfo={updatePeople} />
         {/* <OneToOnePanel />
         <SalaryPanel /> */}

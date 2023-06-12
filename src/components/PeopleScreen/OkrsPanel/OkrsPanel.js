@@ -179,8 +179,6 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                 </div>
                 <div className="keyResultsContainer">
                   {okr?.keyResults?.map((keyResult, keyResultIndex) => {
-                    console.log();
-
                     return (
                       <div key={keyResultIndex} className="keyResultItem">
                         <div className="keyResultItemLeft">
