@@ -39,10 +39,17 @@ const RegisterForm = () => {
       },
       true
     );
+    console.log(result);
     if (result?.uid) {
       navigate("/");
     }
-    setErrorType("register");
+
+    if (result?.error === "Validation failed") {
+      const errorType = result?.validationErrors[0]?.field;
+      setErrorType(errorType);
+    } else {
+      setErrorType("register");
+    }
     setShowError(true);
     setIsLoading(false);
   };
@@ -120,8 +127,10 @@ const RegisterForm = () => {
       </Button>
       {showError && (
         <Alert sx={{ mb: 2 }} severity="error">
-          {errorType === "password" && "Passwords do not match"}
+          {errorType === "password" &&
+            "Passwords do not match / must be between 6 and 20 characters"}
           {errorType === "register" && "Something went wrong, please try again"}
+          {errorType === "email" && "Invalid email"}
         </Alert>
       )}
       <Button
