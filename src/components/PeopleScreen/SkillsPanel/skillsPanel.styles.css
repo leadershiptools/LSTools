@@ -109,3 +109,20 @@
     width: 45%;
     max-height: 400px;
 }
+
+@media (max-width: 1024px){
+    .skillsPanel{
+        flex-direction: column;
+        margin: 24px;
+        border: 0;
+        padding: 0;
+    }
+
+    .skillsBoard{
+        width: 100%;
+    }
+
+    .graphicSkillsBoard{
+        display: none;
+    }
+}

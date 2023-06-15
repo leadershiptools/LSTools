@@ -3,7 +3,7 @@ import "../../Styles/commons.styles.css";
 import * as React from "react";
 import { Drawer, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { triggerBlurOnEnter } from "../../../modules/utils";
@@ -32,6 +32,12 @@ const PersonalInfo = ({
     if (ref.current) ref.current.querySelector("input").focus();
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth <= 1024) setIsMobile(true);
+  }, []);
+
   return (
     <div className="personalInfoContainer">
       <button
@@ -51,30 +57,63 @@ const PersonalInfo = ({
         />
       </button>
       <div className="ledInfos">
-        <div
-          role="contentinfo"
-          className="colaboratorInfo"
-          onClick={() => inputFocus(employeeRef)}
-        >
-          <Typography className="smallText" fontWeight={400} fontSize="12px">
-            Colaborador
-          </Typography>
-          <InputBase
-            ref={employeeRef}
-            style={{
-              fontWeight: "700",
-              fontSize: "32px",
-              border: "none",
-            }}
-            onChange={(e) => setName(e.target.value)}
-            value={name}
-            onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
-            inputProps={{
-              onKeyDown: triggerBlurOnEnter,
-            }}
-          />
-        </div>
+        {!isMobile && (
+          <div
+            role="contentinfo"
+            className="colaboratorInfo"
+            onClick={() => inputFocus(employeeRef)}
+          >
+            <Typography className="smallText" fontWeight={400} fontSize="12px">
+              Colaborador
+            </Typography>
+            <InputBase
+              ref={employeeRef}
+              style={{
+                fontWeight: "700",
+                fontSize: "32px",
+                border: "none",
+              }}
+              onChange={(e) => setName(e.target.value)}
+              value={name}
+              onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
+              inputProps={{
+                onKeyDown: triggerBlurOnEnter,
+              }}
+            />
+          </div>
+        )}
         <div className="colaboratorDetails">
+          {isMobile && (
+            <div
+              role="contentinfo"
+              className="colaboratorInfo"
+              onClick={() => inputFocus(emailRef)}
+            >
+              <Typography
+                className="smallText"
+                fontWeight={400}
+                fontSize="12px"
+              >
+                Colaborador
+              </Typography>
+              <InputBase
+                ref={employeeRef}
+                style={{
+                  fontWeight: "700",
+                  fontSize: "32px",
+                  border: "none",
+                }}
+                onChange={(e) => setName(e.target.value)}
+                value={name}
+                onBlur={(e) =>
+                  handleSaveInfo("replace", "/name", e.target.value)
+                }
+                inputProps={{
+                  onKeyDown: triggerBlurOnEnter,
+                }}
+              />
+            </div>
+          )}
           <div
             role="contentinfo"
             className="colaboratorInfo"

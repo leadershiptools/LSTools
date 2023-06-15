@@ -5,3 +5,9 @@
     align-items: flex-start;
 }
 
+@media (max-width: 1024px){
+    .ledPanel{
+        padding: 24px;
+    }
+}
+

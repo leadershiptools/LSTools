@@ -155,3 +155,42 @@
 .addOkrBtn span{
     padding-right: 8px
 }
+
+
+@media (max-width: 1024px){
+    .okrsPanel{
+        flex-direction: column;
+        margin: 24px;
+        border: 0;
+        padding: 0;
+    }
+
+    .okrsBoard{
+        width: 100%;
+    }
+
+    .okrsGraph{
+        display: none;
+    }
+
+    .okrContainerHeader{
+        gap: 8px;
+    }
+
+    .addOkrBtn > p{
+        font-size: 8px;
+    }
+
+    .addOkrBtn > span{
+        margin-right: 0;
+        padding-right: 4px;
+    }
+
+    .keyResultItem{
+        gap: 16px;
+    }
+
+    .keyResultItemLeft{
+        flex: 0 0 60%;
+    }
+}

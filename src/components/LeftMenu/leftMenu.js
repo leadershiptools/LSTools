@@ -14,10 +14,9 @@ const LeftMenu = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (window.outerWidth <= 1024) setIsMobile(true);
+    if (window.innerWidth <= 1024) setIsMobile(true);
   }, []);
 
-  console.log(isMobile);
   return (
     <>
       {isMobile && (

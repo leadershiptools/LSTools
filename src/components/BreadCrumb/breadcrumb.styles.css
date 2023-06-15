@@ -19,3 +19,13 @@ nav ol li {
     font-weight: 400;
     font-size: 16px;
 }
+
+@media (max-width: 1024px){
+    .breadcrumb {
+        padding: 48px 24px 0 24px;
+    }
+
+    .ancestor, .actual {
+        font-size: 12px !important;
+    }
+}
