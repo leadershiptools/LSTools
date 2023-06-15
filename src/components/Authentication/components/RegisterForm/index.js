@@ -39,7 +39,6 @@ const RegisterForm = () => {
       },
       true
     );
-    console.log(result);
     if (result?.uid) {
       navigate("/");
     }
@@ -47,9 +46,12 @@ const RegisterForm = () => {
     if (result?.error === "Validation failed") {
       const errorType = result?.validationErrors[0]?.field;
       setErrorType(errorType);
+    } else if (result?.error?.indexOf("already exists") > -1) {
+      setErrorType("user-exists");
     } else {
       setErrorType("register");
     }
+
     setShowError(true);
     setIsLoading(false);
   };
@@ -131,6 +133,7 @@ const RegisterForm = () => {
             "Passwords do not match / must be between 6 and 20 characters"}
           {errorType === "register" && "Something went wrong, please try again"}
           {errorType === "email" && "Invalid email"}
+          {errorType === "user-exists" && "User already exists"}
         </Alert>
       )}
       <Button
