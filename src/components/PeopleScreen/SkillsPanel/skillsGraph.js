@@ -32,5 +32,14 @@ export function SkillsGraph({ skills }) {
       },
     ],
   };
-  return <Radar data={data} />;
+
+  const options = {
+    scales: {
+      r: {
+        min: 0,
+        max: 5,
+      },
+    },
+  };
+  return <Radar data={data} options={options} />;
 }
