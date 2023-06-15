@@ -21,7 +21,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleCloseMenu = async () => {
+  const handleDeleteSkill = async () => {
     const index = anchorEl?.getAttribute("data-id");
     // eslint-disable-next-line no-restricted-globals
     if (index && confirm("Are you sure you want to do this?")) {
@@ -29,6 +29,9 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
       setAnchorEl(null);
     }
   };
+
+  const handleCloseMenu = () => setAnchorEl(null);
+
   const addSkill = async () => {
     if (skillName === "") {
       setCreateSkillError(true);
@@ -155,7 +158,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                     horizontal: "left",
                   }}
                 >
-                  <MenuItem onClick={handleCloseMenu}>Delete</MenuItem>
+                  <MenuItem onClick={handleDeleteSkill}>Delete</MenuItem>
                 </Menu>
               </div>
             );
