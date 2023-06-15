@@ -9,6 +9,14 @@
   margin-left: 15.9rem;
 }
 
+
+@media (max-width: 1024px){
+  .Content{
+    width: 100%;
+    margin-left: unset;
+  }
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

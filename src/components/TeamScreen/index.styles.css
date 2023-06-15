@@ -90,3 +90,17 @@
 .team-screen-container-button:hover{
     background-color: white !important;
 }
+
+@media (max-width: 1024px){
+    .team-screen-container{
+        padding: 48px 24px;
+    }
+
+    .team-screen-peoples{
+        gap: 24px 0; 
+    }
+
+    .team-screen-peoples-item{
+        width: 100%;
+    }
+}

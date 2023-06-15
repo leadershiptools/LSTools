@@ -84,3 +84,41 @@ main {
     margin: 0;
     padding-right: 33px;
 }
+
+.menu-icon{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 32px !important;
+}
+
+.menu-overlay{
+    background: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+}
+
+.menu-overlay.isOpen{
+    display: unset;
+}
+
+@media (max-width: 1024px){
+    aside{
+        position: absolute;
+        left: -20rem;
+        transition: ease-in-out 0.5s all;
+    }
+
+    aside.isOpen{
+        left: 0;
+    }
+
+    .container{
+        z-index: 1;
+        background-color: white;
+    }
+}
