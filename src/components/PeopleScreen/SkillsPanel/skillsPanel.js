@@ -53,7 +53,6 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
 
   useEffect(() => {
     skills?.forEach((skill) => {
-      console.log(skill)
       setSkillNameInputs((prevState) => ({
         ...prevState,
         [skill.id]: skill.name,
