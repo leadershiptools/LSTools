@@ -53,13 +53,14 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
 
   useEffect(() => {
     skills?.forEach((skill) => {
+      console.log(skill)
       setSkillNameInputs((prevState) => ({
         ...prevState,
-        [skill.name]: skill.name,
+        [skill.id]: skill.name,
       }));
       setSkillScoreInputs((prevState) => ({
         ...prevState,
-        [skill.name]: skill.score,
+        [skill.id]: skill.score,
       }));
     });
   }, [skills]);
@@ -101,16 +102,16 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
         </div>
         <div className="skillsBoardList">
           {skills?.map((skill, index) => {
-            const { name } = skill;
+            const { id } = skill;
             return (
               <div key={index} className="skillsBoardListItem">
                 <input
                   className="skillsBoardListItemInputName"
-                  value={skillNameInputs[name]}
+                  value={skillNameInputs[id]}
                   onChange={(e) =>
                     setSkillNameInputs((prevState) => ({
                       ...prevState,
-                      [name]: e.target.value,
+                      [id]: e.target.value,
                     }))
                   }
                   onBlur={(e) =>
@@ -125,11 +126,11 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                 <input
                   className="skillsBoardListItemInputScore"
                   type="number"
-                  value={skillScoreInputs[name]}
+                  value={skillScoreInputs[id]}
                   onChange={(e) =>
                     setSkillScoreInputs((prevState) => ({
                       ...prevState,
-                      [name]: e.target.value,
+                      [id]: e.target.value,
                     }))
                   }
                   onBlur={(e) =>

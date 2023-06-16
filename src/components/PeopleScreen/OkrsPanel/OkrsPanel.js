@@ -22,7 +22,10 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const handleOpenMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleCloseMenu = async () => {
+
+  const handleCloseMenu = () => setAnchorEl(null);
+  
+  const handleDeleteOkr = async () => {
     const okrId = anchorEl?.getAttribute("data-okr-id");
     const keyResultId = anchorEl?.getAttribute("data-key-result-id");
     // eslint-disable-next-line no-restricted-globals
@@ -282,7 +285,7 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                               horizontal: "left",
                             }}
                           >
-                            <MenuItem onClick={handleCloseMenu}>
+                            <MenuItem onClick={handleDeleteOkr}>
                               Delete
                             </MenuItem>
                           </Menu>
