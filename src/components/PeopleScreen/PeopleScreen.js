@@ -20,7 +20,7 @@ const PeopleScreen = ({ user }) => {
   const [imageUrl, setImageUrl] = useState(null);
   const { peopleId } = useParams();
   const { state } = useLocation();
-  console.log(state);
+
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const getPeople = useCallback(async () => {

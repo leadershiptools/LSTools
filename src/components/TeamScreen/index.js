@@ -108,11 +108,16 @@ function TeamScreen({ user }) {
                               width: "auto",
                               borderRadius: "none",
                             }}
+                            onClick={() => editPeople(p.id, team.name)}
                           />
                         </div>
                         <div className="team-screen-peoples-item-content">
-                          <p>{p.name}</p>
-                          <span>{p?.job?.name}</span>
+                          <p onClick={() => editPeople(p.id, team.name)}>
+                            {p.name}
+                          </p>
+                          <span onClick={() => editPeople(p.id, team.name)}>
+                            {p?.job?.name}
+                          </span>
                           <div className="team-screen-peoples-item-content-actions">
                             <Button
                               className="team-screen-container-button"
