@@ -1,3 +1,7 @@
+#root{
+  overflow-x: hidden;
+}
+
 .Main {
   display: flex;
   flex-direction: row;

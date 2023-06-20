@@ -104,45 +104,51 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
             const { id } = skill;
             return (
               <div key={index} className="skillsBoardListItem">
-                <input
-                  className="skillsBoardListItemInputName"
-                  value={skillNameInputs[id]}
-                  onChange={(e) =>
-                    setSkillNameInputs((prevState) => ({
-                      ...prevState,
-                      [id]: e.target.value,
-                    }))
-                  }
-                  onBlur={(e) =>
-                    handleSaveInfo(
-                      "replace",
-                      `/skills/${index}/name`,
-                      e.target.value
-                    )
-                  }
-                  onKeyDown={triggerBlurOnEnter}
-                />
-                <input
-                  className="skillsBoardListItemInputScore"
-                  type="number"
-                  value={skillScoreInputs[id]}
-                  onChange={(e) =>
-                    setSkillScoreInputs((prevState) => ({
-                      ...prevState,
-                      [id]: e.target.value,
-                    }))
-                  }
-                  onBlur={(e) =>
-                    handleSaveInfo("add", `/skills/${index}/history/-`, {
-                      score: Number(e.target.value),
-                      date: new Date(),
-                    })
-                  }
-                  onKeyDown={triggerBlurOnEnter}
-                />
-                <Button data-id={index} onClick={handleOpenMenu}>
-                  <MoreVert />
-                </Button>
+                <div className="skillsBoardListItemLeft">
+                  <input
+                    className="skillsBoardListItemInputName"
+                    value={skillNameInputs[id]}
+                    onChange={(e) =>
+                      setSkillNameInputs((prevState) => ({
+                        ...prevState,
+                        [id]: e.target.value,
+                      }))
+                    }
+                    onBlur={(e) =>
+                      handleSaveInfo(
+                        "replace",
+                        `/skills/${index}/name`,
+                        e.target.value
+                      )
+                    }
+                    onKeyDown={triggerBlurOnEnter}
+                  />
+                </div>
+                <div className="skillsBoardListItemMiddle">
+                  <input
+                    className="skillsBoardListItemInputScore"
+                    type="number"
+                    value={skillScoreInputs[id]}
+                    onChange={(e) =>
+                      setSkillScoreInputs((prevState) => ({
+                        ...prevState,
+                        [id]: e.target.value,
+                      }))
+                    }
+                    onBlur={(e) =>
+                      handleSaveInfo("add", `/skills/${index}/history/-`, {
+                        score: Number(e.target.value),
+                        date: new Date(),
+                      })
+                    }
+                    onKeyDown={triggerBlurOnEnter}
+                  />
+                </div>
+                <div className="skillsBoardListItemRight">
+                  <Button data-id={index} onClick={handleOpenMenu}>
+                    <MoreVert />
+                  </Button>
+                </div>
                 <Menu
                   id="demo-positioned-menu"
                   aria-labelledby="demo-positioned-button"
