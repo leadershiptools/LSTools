@@ -59,6 +59,7 @@
     margin-bottom: 12px;
     align-items: center;
     padding-bottom: 12px;
+    gap: 8px;
 }
 
 .keyResultItem:first-child{
