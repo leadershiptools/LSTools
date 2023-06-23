@@ -1,7 +1,7 @@
 import "./OkrsPanel.styles.css";
 import "../../Styles/commons.styles.css";
-import { Button, Menu, MenuItem, Typography } from "@mui/material";
-import MoreVert from "@mui/icons-material/MoreVert";
+import { Button, Typography } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import InputBase from "@mui/material/InputBase";
 import React, { useEffect, useState } from "react";
@@ -17,22 +17,11 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const [keyResultsDescription, setKeyResultsDescription] = useState({});
   const [keyResultsAchievement, setKeyResultsAchievement] = useState({});
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleOpenMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleCloseMenu = () => setAnchorEl(null);
-  
-  const handleDeleteOkr = async () => {
-    const okrId = anchorEl?.getAttribute("data-okr-id");
-    const keyResultId = anchorEl?.getAttribute("data-key-result-id");
+  const handleDeleteOkr = async (okrId, keyResultId) => {
     // eslint-disable-next-line no-restricted-globals
     if (okrId && keyResultId && confirm("Are you sure you want to do this?")) {
       await deleteKeyResult(okrId, keyResultId);
     }
-    setAnchorEl(null);
   };
 
   const createOkr = async () => {
@@ -55,6 +44,17 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
       ]
     );
     updatePeople();
+  };
+
+  const deleteOkr = async (okrId) => {
+    // eslint-disable-next-line no-restricted-globals
+    if (okrId && confirm("Are you sure you want to do this?")) {
+      await sendDelete(
+        `/objective/${okrId}?organizationId=${organizationId}&peopleId=${peopleId}&objectiveId=${okrId}`,
+        {}
+      );
+      updatePeople();
+    }
   };
 
   const createKeyResult = async (okrId) => {
@@ -166,19 +166,27 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                     }
                     value={objectivesNames[okr?.id]}
                   />
-                  <Button
-                    className="addOkrBtn"
-                    style={{
-                      marginRight: "5px",
-                    }}
-                    aria-label="adicionar meta"
-                    variant="outlined"
-                    color="secondary"
-                    startIcon={<AddIcon />}
-                    onClick={() => createKeyResult(okr?.id)}
-                  >
-                    <Typography fontWeight={700}>New key result</Typography>
-                  </Button>
+                  <div>
+                    <Button
+                      className="addOkrBtn"
+                      style={{
+                        marginRight: "5px",
+                      }}
+                      aria-label="adicionar meta"
+                      variant="outlined"
+                      color="secondary"
+                      startIcon={<AddIcon />}
+                      onClick={() => createKeyResult(okr?.id)}
+                    >
+                      <Typography fontWeight={700}>New key result</Typography>
+                    </Button>
+                    <Button
+                      className="deleteOkrBtn"
+                      onClick={() => deleteOkr(okr?.id)}
+                    >
+                      <DeleteIcon />
+                    </Button>
+                  </div>
                 </div>
                 <div className="keyResultsContainer">
                   {okr?.keyResults?.map((keyResult, keyResultIndex) => {
@@ -266,29 +274,12 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                           <Button
                             data-okr-id={okr?.id}
                             data-key-result-id={keyResult?.id}
-                            onClick={handleOpenMenu}
+                            onClick={() =>
+                              handleDeleteOkr(okr?.id, keyResult?.id)
+                            }
                           >
-                            <MoreVert />
+                            <DeleteIcon />
                           </Button>
-                          <Menu
-                            id="demo-positioned-menu"
-                            aria-labelledby="demo-positioned-button"
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleCloseMenu}
-                            anchorOrigin={{
-                              vertical: "top",
-                              horizontal: "left",
-                            }}
-                            transformOrigin={{
-                              vertical: "top",
-                              horizontal: "left",
-                            }}
-                          >
-                            <MenuItem onClick={handleDeleteOkr}>
-                              Delete
-                            </MenuItem>
-                          </Menu>
                         </div>
                       </div>
                     );

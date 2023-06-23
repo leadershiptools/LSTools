@@ -103,13 +103,13 @@
 }
 
 
-.keyResultItemRight > button{
+.keyResultItemRight > button, .deleteOkrBtn{
     flex: 0 0 5%;
     color: #f1388D !important;
     min-width: unset !important;
 }
 
-.keyResultItemRight > button:hover{
+.keyResultItemRight > button:hover, .deleteOkrBtn:hover{
     background-color: #feecf4 !important;
 }
 

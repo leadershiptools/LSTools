@@ -4,11 +4,10 @@ import InputBase from "@mui/material/InputBase";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import MoreVert from "@mui/icons-material/MoreVert";
 import { SkillsGraph } from "./skillsGraph";
 import { useEffect, useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
 import { triggerBlurOnEnter } from "../../../modules/utils";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const [skillName, setSkillName] = useState("");
@@ -16,21 +15,12 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
   const [skillError, setCreateSkillError] = useState(false);
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleOpenMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleDeleteSkill = async () => {
-    const index = anchorEl?.getAttribute("data-id");
+  const handleDeleteSkill = async (index) => {
     // eslint-disable-next-line no-restricted-globals
     if (index && confirm("Are you sure you want to do this?")) {
       await handleSaveInfo("remove", `/skills/${index}`);
-      setAnchorEl(null);
     }
   };
-
-  const handleCloseMenu = () => setAnchorEl(null);
 
   const addSkill = async () => {
     if (skillName === "") {
@@ -141,31 +131,16 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                         date: new Date(),
                       })
                     }
+                    min={0}
+                    max={5}
                     onKeyDown={triggerBlurOnEnter}
                   />
                 </div>
                 <div className="skillsBoardListItemRight">
-                  <Button data-id={index} onClick={handleOpenMenu}>
-                    <MoreVert />
+                  <Button onClick={() => handleDeleteSkill(index)}>
+                    <DeleteIcon />
                   </Button>
                 </div>
-                <Menu
-                  id="demo-positioned-menu"
-                  aria-labelledby="demo-positioned-button"
-                  anchorEl={anchorEl}
-                  open={open}
-                  onClose={handleCloseMenu}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                >
-                  <MenuItem onClick={handleDeleteSkill}>Delete</MenuItem>
-                </Menu>
               </div>
             );
           })}
