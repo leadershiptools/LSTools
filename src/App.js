@@ -11,6 +11,7 @@ import { initializeApp } from "firebase/app";
 import { firebaseConfig } from "./config/firebase";
 import TeamScreen from "./components/TeamScreen";
 import { getUserToken } from "./modules/utils";
+import PeopleListScreen from "./components/PeopleListScreen";
 initializeApp(firebaseConfig);
 
 const mainApplicationContainer = (component, user) => {
@@ -42,6 +43,13 @@ function App() {
         <Route
           path="/LSTools/people/:peopleId"
           element={mainApplicationContainer(<PeopleScreen user={user} />, user)}
+        />
+        <Route
+          path="/LSTools/people"
+          element={mainApplicationContainer(
+            <PeopleListScreen user={user} />,
+            user
+          )}
         />
         <Route
           path="/LSTools/team"

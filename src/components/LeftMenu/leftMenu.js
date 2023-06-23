@@ -55,7 +55,7 @@ const LeftMenu = ({ user }) => {
                     location.pathname.includes("people") && "active"
                   }`}
                   startIcon={<People />}
-                  disabled={true}
+                  onClick={() => navigate("/LSTools/people")}
                 >
                   <Typography>People</Typography>
                 </Button>
