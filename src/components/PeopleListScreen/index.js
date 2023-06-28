@@ -10,6 +10,7 @@ function PeopleListScreen({ user }) {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
   const [teamName, setTeamName] = useState("");
+
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const getTeams = async () => {
