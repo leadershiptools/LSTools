@@ -4,7 +4,6 @@ import LeftMenu from "./components/LeftMenu/leftMenu";
 import PeopleScreen from "./components/PeopleScreen/PeopleScreen";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Authentication from "./components/Authentication";
-import { get } from "./modules/request";
 
 // Initialize firebase
 import { initializeApp } from "firebase/app";
@@ -12,6 +11,7 @@ import { firebaseConfig } from "./config/firebase";
 import TeamScreen from "./components/TeamScreen";
 import { getUserToken } from "./modules/utils";
 import PeopleListScreen from "./components/PeopleListScreen";
+import { getAuth } from "firebase/auth";
 initializeApp(firebaseConfig);
 
 const mainApplicationContainer = (component, user) => {
@@ -25,16 +25,16 @@ const mainApplicationContainer = (component, user) => {
 
 function App() {
   const [user, setUser] = useState();
-  const getUser = async () => {
-    const token = getUserToken();
-    if (token !== null) {
-      const user = await get("/user/profile");
-      setUser(user);
-    }
-  };
 
   useEffect(() => {
-    getUser();
+    const token = getUserToken();
+
+    if (token !== null) {
+      const auth = getAuth();
+      auth.onAuthStateChanged((user) => {
+        setUser(user?.providerData?.[0]);
+      });
+    }
   }, []);
 
   return (

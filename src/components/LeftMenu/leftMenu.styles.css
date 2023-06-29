@@ -43,7 +43,11 @@ main {
 }
 
 .headerName {
-    color: #1E1848 ;
+    color: #1E1848;
+    font-size: 24px;
+    border: none;
+    outline: none;
+    font-weight: 700;
 }
 
 .headerEmail {

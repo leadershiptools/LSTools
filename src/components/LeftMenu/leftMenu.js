@@ -7,15 +7,25 @@ import People from "@mui/icons-material/PeopleAltOutlined";
 import { Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import { getAuth, updateProfile } from "firebase/auth";
 const LeftMenu = ({ user }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState("");
+  const auth = getAuth();
 
   useEffect(() => {
     if (window.innerWidth <= 1024) setIsMobile(true);
-  }, []);
+    setName(auth.currentUser?.displayName);
+  }, [auth.currentUser?.displayName, user]);
+
+  const updateUserName = () => {
+    updateProfile(auth.currentUser, {
+      displayName: name,
+    });
+  };
 
   return (
     <>
@@ -25,9 +35,12 @@ const LeftMenu = ({ user }) => {
       <aside className={`${isOpen && "isOpen"}`}>
         <div role="menu" className="container">
           <header>
-            <Typography className="headerName" fontWeight={700} fontSize="20px">
-              {user?.name}
-            </Typography>
+            <input
+              onChange={(e) => setName(e.target.value)}
+              onBlur={updateUserName}
+              className="headerName"
+              value={name}
+            />
             <Typography
               className="headerEmail"
               fontSize="14px"
