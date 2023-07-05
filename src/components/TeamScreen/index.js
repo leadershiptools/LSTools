@@ -6,6 +6,8 @@ import { Button } from "@mui/material";
 import WorkspacesOutlinedIcon from "@mui/icons-material/WorkspacesOutlined";
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useNavigate } from "react-router-dom";
 import { triggerBlurOnEnter } from "../../modules/utils";
 
@@ -13,8 +15,15 @@ function TeamScreen({ user }) {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
   const [teamName, setTeamName] = useState("");
+  const [minimizedTeams, setMinimizedTeams] = useState({});
 
   const defaultOrganization = user?.organizations?.[0]?.id;
+
+  const handleMinimizeTeams = (teamId) =>
+    setMinimizedTeams((prevState) => ({
+      ...prevState,
+      [teamId]: prevState[teamId] ? !prevState[teamId] : true,
+    }));
 
   const getTeams = async () => {
     const response = await get(`/organization/${defaultOrganization}/teams`);
@@ -64,12 +73,16 @@ function TeamScreen({ user }) {
 
   return (
     <div className="team-screen-container">
-      {/* <div className="team-screen-header">
-        <Button className="team-screen-header-button" variant="outlined">
+      <div className="team-screen-header">
+        <Button
+          className="team-screen-header-button"
+          onClick={() => alert("development")}
+          variant="outlined"
+        >
           <WorkspacesOutlinedIcon />
           Add team
         </Button>
-      </div> */}
+      </div>
       {teams?.length ? (
         <div className="team-screen-teams">
           {teams.map((team, index) => {
@@ -77,22 +90,46 @@ function TeamScreen({ user }) {
             if (teamName === "") setTeamName(name);
             return (
               <div key={index} className="team-screen-teams-item">
-                <input
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                  onBlur={(e) => {
-                    updateTeam(
-                      "replace",
-                      `/name`,
-                      e.target.value,
-                      defaultOrganization,
-                      team?.id
-                    );
-                  }}
-                  onKeyDown={triggerBlurOnEnter}
-                />
+                <div className="team-screen-teams-item-header">
+                  <input
+                    value={teamName}
+                    onChange={(e) => setTeamName(e.target.value)}
+                    onBlur={(e) => {
+                      updateTeam(
+                        "replace",
+                        `/name`,
+                        e.target.value,
+                        defaultOrganization,
+                        team?.id
+                      );
+                    }}
+                    onKeyDown={triggerBlurOnEnter}
+                  />
+                  <div className="team-screen-teams-item-header-actions">
+                    <Button
+                      className="team-screen-header-button"
+                      onClick={() => handleMinimizeTeams(team?.id)}
+                    >
+                      Minimizar
+                      {minimizedTeams?.[team?.id] ? (
+                        <KeyboardArrowUpIcon />
+                      ) : (
+                        <KeyboardArrowDownIcon />
+                      )}
+                    </Button>
+                    <Button
+                      className="team-screen-header-button"
+                      variant="outlined"
+                      onClick={() => alert("development")}
+                    >
+                      <DeleteOutlineIcon style={{ margin: 0 }} />
+                    </Button>
+                  </div>
+                </div>
                 <Button
-                  className="team-screen-container-button"
+                  className={`${
+                    minimizedTeams?.[team?.id] && "minimized"
+                  } team-screen-container-button`}
                   style={{
                     width: "200px",
                   }}
@@ -102,7 +139,11 @@ function TeamScreen({ user }) {
                   <PeopleOutlineOutlinedIcon />
                   Adicionar integrante
                 </Button>
-                <div className="team-screen-peoples">
+                <div
+                  className={`${
+                    minimizedTeams?.[team?.id] && "minimized"
+                  } team-screen-peoples`}
+                >
                   {people?.map((p) => {
                     return (
                       <div key={p.id} className="team-screen-peoples-item">
