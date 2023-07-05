@@ -7,7 +7,12 @@ import Typography from "@mui/material/Typography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { useNavigate } from "react-router-dom";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  setPersistence,
+  signInWithEmailAndPassword,
+  browserLocalPersistence,
+} from "firebase/auth";
 import Cookies from "js-cookie";
 import { Alert } from "@mui/material";
 
@@ -21,15 +26,17 @@ const LoginForm = () => {
 
   const handleLogin = () => {
     const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        Cookies.set("user", JSON.stringify(user));
-        window.location.href = "/LSTools/team";
-      })
-      .catch(() => {
-        setShowError(true);
-      });
+    setPersistence(auth, browserLocalPersistence).then(() => {
+      signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          Cookies.set("user", JSON.stringify(user));
+          window.location.href = "/LSTools/team";
+        })
+        .catch(() => {
+          setShowError(true);
+        });
+    });
   };
 
   return (

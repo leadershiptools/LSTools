@@ -45,8 +45,6 @@ function TeamScreen({ user }) {
     }
   };
 
-  const createTeam = ()
-
   const updateTeam = async (action, path, value, organizationId, teamId) => {
     await patch(`/organization/${organizationId}/team/${teamId}`, [
       {

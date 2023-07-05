@@ -34,7 +34,7 @@ function App() {
       const auth = getAuth();
       auth.onAuthStateChanged(async (user) => {
         const userProfile = await get("/user/profile");
-        setUser({...userProfile, ...user?.providerData?.[0]});
+        setUser({ ...userProfile, ...user?.providerData?.[0] });
       });
     }
   }, []);
