@@ -12,6 +12,7 @@ import TeamScreen from "./components/TeamScreen";
 import { getUserToken } from "./modules/utils";
 import PeopleListScreen from "./components/PeopleListScreen";
 import { getAuth } from "firebase/auth";
+import { get } from "./modules/request";
 initializeApp(firebaseConfig);
 
 const mainApplicationContainer = (component, user) => {
@@ -31,8 +32,9 @@ function App() {
 
     if (token !== null) {
       const auth = getAuth();
-      auth.onAuthStateChanged((user) => {
-        setUser(user?.providerData?.[0]);
+      auth.onAuthStateChanged(async (user) => {
+        const userProfile = await get("/user/profile");
+        setUser({...userProfile, ...user?.providerData?.[0]});
       });
     }
   }, []);

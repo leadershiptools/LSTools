@@ -2,6 +2,12 @@
     padding: 12px 52px 40px 52px;
 }
 
+.team-screen-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
 .team-screen-teams-item{
     display: flex;
     flex-direction: column;
@@ -78,17 +84,17 @@
     font-size: 20px;
 }
 
-.team-screen-container-button{
+.team-screen-container-button, .team-screen-header-button{
     border-color: #FBC4DD !important;
     color: #F1388D !important;
     text-transform: none !important;
 }
 
-.team-screen-container-button > svg{
+.team-screen-container-button > svg, .team-screen-header-button > svg{
     margin-right: 8px;
 }
 
-.team-screen-container-button:hover{
+.team-screen-container-button:hover, .team-screen-header-button:hover{
     background-color: white !important;
 }
 

@@ -13,6 +13,7 @@ function TeamScreen({ user }) {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
   const [teamName, setTeamName] = useState("");
+
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const getTeams = async () => {
@@ -44,6 +45,8 @@ function TeamScreen({ user }) {
     }
   };
 
+  const createTeam = ()
+
   const updateTeam = async (action, path, value, organizationId, teamId) => {
     await patch(`/organization/${organizationId}/team/${teamId}`, [
       {
@@ -63,6 +66,12 @@ function TeamScreen({ user }) {
 
   return (
     <div className="team-screen-container">
+      {/* <div className="team-screen-header">
+        <Button className="team-screen-header-button" variant="outlined">
+          <WorkspacesOutlinedIcon />
+          Add team
+        </Button>
+      </div> */}
       {teams?.length ? (
         <div className="team-screen-teams">
           {teams.map((team, index) => {

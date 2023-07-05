@@ -48,6 +48,7 @@ main {
     border: none;
     outline: none;
     font-weight: 700;
+    width: 100%;
 }
 
 .headerEmail {
