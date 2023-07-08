@@ -9,6 +9,12 @@
     margin-bottom: 32px;
 }
 
+.team-screen-teams{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
 .team-screen-teams-item{
     display: flex;
     flex-direction: column;

@@ -54,6 +54,23 @@ function TeamScreen({ user }) {
     }
   };
 
+  const createTeam = async (organizationId) => {
+    await post(`/team?organizationId=${organizationId}`, {
+      name: "Team name",
+    });
+    await getTeams();
+  };
+
+  const deleteTeam = async (organizationId, teamId) => {
+    // eslint-disable-next-line no-restricted-globals
+    if (confirm("Are you sure you want to do this?")) {
+      await sendDelete(
+        `/team/${teamId}?teamId=${teamId}&organizationId=${organizationId}`
+      );
+      await getTeams();
+    }
+  };
+
   const updateTeam = async (action, path, value, organizationId, teamId) => {
     await patch(`/organization/${organizationId}/team/${teamId}`, [
       {
@@ -76,8 +93,8 @@ function TeamScreen({ user }) {
       <div className="team-screen-header">
         <Button
           className="team-screen-header-button"
-          onClick={() => alert("development")}
           variant="outlined"
+          onClick={() => createTeam(defaultOrganization)}
         >
           <WorkspacesOutlinedIcon />
           Add team
@@ -120,7 +137,7 @@ function TeamScreen({ user }) {
                     <Button
                       className="team-screen-header-button"
                       variant="outlined"
-                      onClick={() => alert("development")}
+                      onClick={() => deleteTeam(defaultOrganization, team?.id)}
                     >
                       <DeleteOutlineIcon style={{ margin: 0 }} />
                     </Button>
