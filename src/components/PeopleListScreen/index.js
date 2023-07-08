@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import teamErrorImage from "../../images/teams-error-image.png";
 import "./index.styles.css";
 import { get, sendDelete } from "../../modules/request";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useNavigate } from "react-router-dom";
 
@@ -93,8 +93,7 @@ function PeopleListScreen({ user }) {
         </div>
       ) : (
         <div className="team-screen-container-error">
-          <img src={teamErrorImage} alt="Teams" />
-          <p>Something went wrong</p>
+          <CircularProgress sx={{ color: "#000" }} />
         </div>
       )}
     </div>

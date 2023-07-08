@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import teamErrorImage from "../../images/teams-error-image.png";
 import "./index.styles.css";
 import { get, patch, post, sendDelete } from "../../modules/request";
 import { Button } from "@mui/material";
@@ -10,6 +9,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { useNavigate } from "react-router-dom";
 import { triggerBlurOnEnter } from "../../modules/utils";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function TeamScreen({ user }) {
   const navigate = useNavigate();
@@ -217,12 +217,7 @@ function TeamScreen({ user }) {
         </div>
       ) : (
         <div className="team-screen-container-error">
-          <img src={teamErrorImage} alt="Teams" />
-          <p>You need to create a team to add people</p>
-          <Button className="team-screen-container-button" variant="outlined">
-            <WorkspacesOutlinedIcon />
-            Criar time
-          </Button>
+          <CircularProgress sx={{ color: "#000" }} />
         </div>
       )}
     </div>
