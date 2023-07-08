@@ -24,40 +24,22 @@
     display: flex;
     flex-direction: row;
     gap: 24px;
-
+    align-items: center;
+    border: 1px solid #493D8A;
+    border-style: dashed;
+    border-radius: 5px;
+    padding: 16px;
+    margin-top: 24px;
 }
 
-.skillsBoardForm .input-group{
-    flex: 1;
+.skillsBoardForm input{
+    color: #493D8A;
+    border: none;
+    outline: none;
+    font-size: 16px;
 }
 
-.skillsBoardFormError{
-    color: red;
-    font-size: 12px;
-    margin: 0;
-}
 
-.skillsBoardFormButton{
-    height: 40px;
-    padding: 8px 12px !important;
-    border-color: #fbc4dd !important;
-}
-
-.skillsBoardFormButton p{
-    color: #f1388D !important;
-    font-size: 12px !important;
-    text-transform: none !important;
-}
-
-.skillsBoardFormButton svg {
-    color: #f1388D !important;
-    font-size: 18px;
-}
-
-.skillsBoardFormButton:hover{
-    border-color: #f1388D !important;
-    background-color: white !important;
-}
 
 .skillsBoardList{
     display: flex;

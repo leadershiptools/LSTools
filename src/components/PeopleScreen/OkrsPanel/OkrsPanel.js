@@ -168,19 +168,6 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                   />
                   <div>
                     <Button
-                      className="addOkrBtn"
-                      style={{
-                        marginRight: "5px",
-                      }}
-                      aria-label="adicionar meta"
-                      variant="outlined"
-                      color="secondary"
-                      startIcon={<AddIcon />}
-                      onClick={() => createKeyResult(okr?.id)}
-                    >
-                      <Typography fontWeight={700}>New key result</Typography>
-                    </Button>
-                    <Button
                       className="deleteOkrBtn"
                       onClick={() => deleteOkr(okr?.id)}
                     >
@@ -284,6 +271,15 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
                       </div>
                     );
                   })}
+                  <div className="addKeyResultBtnContainer">
+                    <button
+                      className="addKeyResultBtn"
+                      onClick={() => createKeyResult(okr?.id)}
+                    >
+                      <AddIcon sx={{ marginRight: 2 }} />
+                      <Typography fontWeight={400}>New key result</Typography>
+                    </button>
+                  </div>
                 </div>
               </div>
             );

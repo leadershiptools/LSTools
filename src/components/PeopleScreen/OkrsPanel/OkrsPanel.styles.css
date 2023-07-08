@@ -153,6 +153,25 @@
     font-family:"Plus Jakarta Sans" !important;
 }
 
+
+.addKeyResultBtnContainer{
+    display: flex;
+}
+
+.addKeyResultBtn {
+    display: flex;
+    color:#493D8A;
+    font-size: 16px;
+    padding: 16px;
+    border: 1px solid #493D8A;
+    border-style: dashed;
+    width: 100%;
+    border-radius: 5px;
+    background-color: #fff;
+    outline: none;
+    cursor: pointer;
+}
+
 .addOkrBtn span{
     padding-right: 8px
 }

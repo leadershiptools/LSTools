@@ -1,9 +1,7 @@
 import "../SkillsPanel/skillsPanel.styles.css";
 import * as React from "react";
-import InputBase from "@mui/material/InputBase";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import { SkillsGraph } from "./skillsGraph";
 import { useEffect, useState } from "react";
 import { triggerBlurOnEnter } from "../../../modules/utils";
@@ -13,21 +11,16 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
   const [skillName, setSkillName] = useState("");
   const [skillNameInputs, setSkillNameInputs] = useState({});
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
-  const [skillError, setCreateSkillError] = useState(false);
 
   const handleDeleteSkill = async (index) => {
     // eslint-disable-next-line no-restricted-globals
-    if (index && confirm("Are you sure you want to do this?")) {
+    if (confirm("Are you sure you want to do this?")) {
       await handleSaveInfo("remove", `/skills/${index}`);
     }
   };
 
   const addSkill = async () => {
-    if (skillName === "") {
-      setCreateSkillError(true);
-      return;
-    }
-    setCreateSkillError(false);
+    if (skillName === "") return;
     await handleSaveInfo("add", `/skills/-`, {
       name: skillName,
       description: "",
@@ -39,6 +32,10 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
       ],
     });
     setSkillName("");
+  };
+
+  const handleKeyPressAddSkill = async (e) => {
+    if (e.keyCode === 13) addSkill();
   };
 
   useEffect(() => {
@@ -58,37 +55,6 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
     <main className="skillsPanel">
       <section className="skillsBoard">
         <h2>🧩 Skills</h2>
-        <div className="skillsBoardForm">
-          <div className="input-group">
-            <InputBase
-              inputProps={{ maxLength: 40 }}
-              style={{
-                fontWeight: "700",
-                fontSize: "16px",
-                color: "#1E1848",
-                border: "none",
-              }}
-              placeholder="Ex: Inglês Fluente"
-              value={skillName}
-              onChange={(e) => setSkillName(e.target.value)}
-            />
-            {skillError && (
-              <p className="skillsBoardFormError">
-                You cannot create an empty skill
-              </p>
-            )}
-          </div>
-          <Button
-            className="skillsBoardFormButton"
-            aria-label="adicionar"
-            variant="outlined"
-            color="secondary"
-            startIcon={<AddIcon />}
-            onClick={addSkill}
-          >
-            <Typography fontWeight={700}>Adicionar</Typography>
-          </Button>
-        </div>
         <div className="skillsBoardList">
           {skills?.map((skill, index) => {
             const { id } = skill;
@@ -144,6 +110,16 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
               </div>
             );
           })}
+        </div>
+        <div className="skillsBoardForm">
+          <AddIcon onClick={addSkill} sx={{ color: "#493D8A" }} />
+          <input
+            className="skillsBoardFormButton"
+            placeholder="Add new Skill"
+            value={skillName}
+            onChange={(e) => setSkillName(e.target.value)}
+            onKeyDown={handleKeyPressAddSkill}
+          />
         </div>
       </section>
       <section className="graphicSkillsBoard">

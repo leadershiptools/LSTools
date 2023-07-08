@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import teamErrorImage from "../../images/teams-error-image.png";
 import "./index.styles.css";
 import { get, sendDelete } from "../../modules/request";
 import { Button, CircularProgress } from "@mui/material";
