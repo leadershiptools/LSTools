@@ -38,6 +38,11 @@ main {
 
 .containerLogo{
     margin-bottom: 16px;
+    margin-left: 8px;
+}
+
+header{
+    overflow: hidden;
 }
 
 .menuitem {
@@ -53,10 +58,16 @@ main {
     outline: none;
     font-weight: 700;
     width: 100%;
+    padding: 8px;
+}
+
+.headerName:hover{
+    background-color: #c9c6dc1e;
 }
 
 .headerEmail {
-    color:#665DAA ;
+    color:#665DAA;
+    padding: 8px;
 }
 .headerEmail, .headerEmail {
     justify-content: left;

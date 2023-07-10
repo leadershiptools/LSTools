@@ -32,14 +32,19 @@
     margin-top: 24px;
 }
 
-.skillsBoardForm input{
+.skillsBoardFormInput{
     color: #493D8A;
     border: none;
     outline: none;
     font-size: 16px;
+    padding: 4px;
+    width: 100%;
+    border-radius: 5px;
 }
 
-
+.skillsBoardFormInput:hover{
+    background-color: #c9c6dc1e;
+}
 
 .skillsBoardList{
     display: flex;
@@ -74,6 +79,14 @@
     line-height: 160%;
     border: none;
     outline: none;
+    width: 100%;
+    padding: 4px;
+    margin: 4px 0;
+    border-radius: 5px;
+}
+
+.skillsBoardListItemInputName:hover{
+    background-color: #c9c6dc1e;
 }
 
 .skillsBoardListItemInputScore{

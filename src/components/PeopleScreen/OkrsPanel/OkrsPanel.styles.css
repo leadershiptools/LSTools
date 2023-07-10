@@ -77,12 +77,20 @@
     font-size: 16px !important;
     color: #1E1848 !important;
     margin: 0 !important;
+    padding: 0 4px;
+    border-radius: 5px;
+}
+
+.keyResultItemLeftTitle:hover, .keyResultItemLeftDescription:hover{
+    background-color: #c9c6dc1e;
 }
 
 .keyResultItemLeftDescription{
     margin: 0;
     font-size: 12px !important;
     color: #665Daa !important;
+    padding: 0 4px;
+    border-radius: 5px;
 }
 
 .keyResultItemMiddle{

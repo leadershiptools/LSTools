@@ -114,7 +114,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
         <div className="skillsBoardForm">
           <AddIcon onClick={addSkill} sx={{ color: "#493D8A" }} />
           <input
-            className="skillsBoardFormButton"
+            className="skillsBoardFormInput"
             placeholder="Add new Skill"
             value={skillName}
             onChange={(e) => setSkillName(e.target.value)}
