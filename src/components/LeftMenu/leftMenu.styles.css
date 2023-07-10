@@ -36,6 +36,10 @@ main {
     top: 0px;
 }
 
+.containerLogo{
+    margin-bottom: 16px;
+}
+
 .menuitem {
     display: flex;
     flex-direction: row;

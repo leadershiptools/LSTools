@@ -25,7 +25,11 @@ const PeopleScreen = ({ user }) => {
 
   const getPeople = useCallback(async () => {
     const result = await get(`/people/${peopleId}`);
-    const { name, phone, email, job, objectives, skills, imageUrl } = result;
+    setPeople(result);
+  }, [peopleId]);
+
+  const setPeople = (people) => {
+    const { name, phone, email, job, objectives, skills, imageUrl } = people;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
@@ -33,10 +37,10 @@ const PeopleScreen = ({ user }) => {
     setOkrs(objectives);
     setSkills(skills);
     setImageUrl(imageUrl);
-  }, [peopleId]);
+  };
 
   const updatePeople = async (action, path, value) => {
-    await patch(`/people/${peopleId}`, [
+    const result = await patch(`/people/${peopleId}`, [
       {
         op: action,
         path,
@@ -44,7 +48,7 @@ const PeopleScreen = ({ user }) => {
       },
     ]);
 
-    await getPeople();
+    setPeople(result)
   };
 
   useEffect(() => {

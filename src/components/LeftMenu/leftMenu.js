@@ -8,6 +8,8 @@ import { Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { getAuth, updateProfile } from "firebase/auth";
+import lsToolsLogo from "../../images/homepage-logo.png";
+
 const LeftMenu = ({ user }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,6 +36,7 @@ const LeftMenu = ({ user }) => {
       )}
       <aside className={`${isOpen && "isOpen"}`}>
         <div role="menu" className="container">
+          <img className="containerLogo" src={lsToolsLogo} alt="LSTools" />
           <header>
             <input
               onChange={(e) => setName(e.target.value)}
