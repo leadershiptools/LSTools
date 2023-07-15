@@ -1,12 +1,13 @@
 import "../PersonalInfoCard/personalInfo.styles.css";
 import "../../Styles/commons.styles.css";
 import * as React from "react";
-import { Drawer, Typography } from "@mui/material";
+import { Drawer, Typography, Select, MenuItem } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useEffect, useRef, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { triggerBlurOnEnter } from "../../../modules/utils";
+import { get } from "../../../modules/request";
 
 const PersonalInfo = ({
   name,
@@ -19,6 +20,8 @@ const PersonalInfo = ({
   setPosition,
   imageUrl,
   setImageUrl,
+  skillSet,
+  setSkillSet,
   handleSaveInfo,
 }) => {
   const employeeRef = useRef(null);
@@ -27,15 +30,22 @@ const PersonalInfo = ({
   const positionRef = useRef(null);
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [skillsSet, setSkillsSet] = useState([]);
 
   const inputFocus = (ref) => {
     if (ref.current) ref.current.querySelector("input").focus();
+  };
+
+  const getSkillSets = async () => {
+    const response = await get("/skills-groups");
+    setSkillsSet(response.content);
   };
 
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth <= 1024) setIsMobile(true);
+    getSkillSets();
   }, []);
 
   return (
@@ -128,7 +138,7 @@ const PersonalInfo = ({
                 fontWeight: "700",
                 fontSize: "16px",
                 display: "inline",
-                width: "250px",
+                width: "180px",
                 border: "none",
               }}
               onChange={(e) => setEmail(e.target.value)}
@@ -155,7 +165,7 @@ const PersonalInfo = ({
                 fontWeight: "700",
                 fontSize: "16px",
                 display: "inline",
-                width: "150px",
+                width: "140px",
                 border: "none",
               }}
               onChange={(e) => setPhone(e.target.value)}
@@ -182,7 +192,7 @@ const PersonalInfo = ({
                 fontWeight: "700",
                 fontSize: "16px",
                 display: "inline",
-                width: "225px",
+                width: "130px",
                 border: "none",
               }}
               onChange={(e) => setPosition(e.target.value)}
@@ -194,6 +204,21 @@ const PersonalInfo = ({
                 onKeyDown: triggerBlurOnEnter,
               }}
             />
+          </div>
+
+          <div role="contentinfo">
+            <Typography className="smallText" fontWeight={400} fontSize="12px">
+              Skill set
+            </Typography>
+            <Select
+              value={skillSet}
+              onChange={setSkillSet}
+              sx={{ width: "200px" }}
+            >
+              {skillsSet?.map((s) => {
+                return <MenuItem value={s.id}>{s.name}</MenuItem>;
+              })}
+            </Select>
           </div>
         </div>
       </div>

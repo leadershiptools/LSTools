@@ -6,7 +6,7 @@ import SkillsPanel from "./SkillsPanel/skillsPanel";
 // import OneToOnePanel from "./OneToOnePanel/OneToOnePanel";
 // import SalaryPanel from "./SalaryPanel/SalaryPanel";
 import { useCallback, useEffect, useState } from "react";
-import { get, patch } from "../../modules/request";
+import { get, patch, put } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 import { useParams, useLocation } from "react-router-dom";
 
@@ -18,6 +18,7 @@ const PeopleScreen = ({ user }) => {
   const [okrs, setOkrs] = useState(null);
   const [skills, setSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [skillSet, setSkillSet] = useState("");
   const { peopleId } = useParams();
   const { state } = useLocation();
 
@@ -25,6 +26,7 @@ const PeopleScreen = ({ user }) => {
 
   const getPeople = useCallback(async () => {
     const result = await get(`/people/${peopleId}`);
+    console.log(result);
     setPeople(result);
   }, [peopleId]);
 
@@ -48,7 +50,17 @@ const PeopleScreen = ({ user }) => {
       },
     ]);
 
-    setPeople(result)
+    setPeople(result);
+  };
+
+  const handleChangeSkillSet = async (e) => {
+    await put(`/people/${peopleId}/skills/replace-all`, {
+      id: peopleId,
+      organizationId: defaultOrganization,
+      skillsGroupId: e.target.value,
+    });
+    setSkillSet(e.target.value);
+    getPeople();
   };
 
   useEffect(() => {
@@ -77,6 +89,8 @@ const PeopleScreen = ({ user }) => {
           imageUrl={imageUrl}
           setImageUrl={setImageUrl}
           handleSaveInfo={updatePeople}
+          skillSet={skillSet}
+          setSkillSet={handleChangeSkillSet}
         />
       </section>
       <section>

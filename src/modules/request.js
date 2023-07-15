@@ -61,6 +61,30 @@ export async function patch(path, body, isPublicUrl = false) {
   }
 }
 
+export async function put(path, body, isPublicUrl = false) {
+  try {
+    const request = await fetch(`${baseUrl}${path}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        ...(!isPublicUrl && { Authorization: `Bearer ${getUserToken()}` }),
+      },
+      body: JSON.stringify(body),
+    });
+
+    if (request.status === 401) {
+      handleNotAuthorized();
+      return;
+    }
+
+    const result = await request.json();
+    return result;
+  } catch (error) {
+    handleNotAuthorized(error);
+    throw new Error(error);
+  }
+}
+
 export async function post(path, body, isPublicUrl = false) {
   try {
     const request = await fetch(`${baseUrl}${path}`, {
