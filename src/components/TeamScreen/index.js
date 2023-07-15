@@ -14,7 +14,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 function TeamScreen({ user }) {
   const navigate = useNavigate();
   const [teams, setTeams] = useState([]);
-  const [teamName, setTeamName] = useState("");
+  const [teamName, setTeamName] = useState({});
   const [minimizedTeams, setMinimizedTeams] = useState({});
 
   const defaultOrganization = user?.organizations?.[0]?.id;
@@ -27,7 +27,12 @@ function TeamScreen({ user }) {
 
   const getTeams = async () => {
     const response = await get(`/organization/${defaultOrganization}/teams`);
-    if (response?.teams?.length > 0) setTeams(response.teams);
+    if (response?.teams?.length > 0) {
+      setTeams(response.teams);
+      response.teams.forEach((team) => {
+        setTeamName((prevState) => ({ ...prevState, [team?.id]: team.name }));
+      });
+    }
   };
 
   const editPeople = (peopleId, teamId) =>
@@ -103,13 +108,12 @@ function TeamScreen({ user }) {
       {teams?.length ? (
         <div className="team-screen-teams">
           {teams.map((team, index) => {
-            const { name, people } = team;
-            if (teamName === "") setTeamName(name);
+            const { people } = team;
             return (
               <div key={index} className="team-screen-teams-item">
                 <div className="team-screen-teams-item-header">
                   <input
-                    value={teamName}
+                    value={teamName?.[team?.id]}
                     onChange={(e) => setTeamName(e.target.value)}
                     onBlur={(e) => {
                       updateTeam(
