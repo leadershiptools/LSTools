@@ -2,13 +2,14 @@ import "../SkillsPanel/skillsPanel.styles.css";
 import * as React from "react";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import { SkillsGraph } from "./skillsGraph";
 import { useEffect, useState } from "react";
 import { triggerBlurOnEnter } from "../../../modules/utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const SkillsPanel = ({ skills, handleSaveInfo }) => {
-  const [skillName, setSkillName] = useState("");
+  const [hasAdded, setHasAdded] = useState(false);
   const [skillNameInputs, setSkillNameInputs] = useState({});
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
 
@@ -20,9 +21,8 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
   };
 
   const addSkill = async () => {
-    if (skillName === "") return;
     await handleSaveInfo("add", `/skills/-`, {
-      name: skillName,
+      name: "",
       description: "",
       history: [
         {
@@ -31,12 +31,16 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
         },
       ],
     });
-    setSkillName("");
+    setHasAdded(true);
   };
 
-  const handleKeyPressAddSkill = async (e) => {
-    if (e.keyCode === 13) addSkill();
-  };
+  useEffect(() => {
+    if (hasAdded) {
+      document.getElementById(skills[0].id)?.focus();
+      setHasAdded(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skills]);
 
   useEffect(() => {
     skills?.forEach((skill) => {
@@ -64,6 +68,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                   <input
                     className="skillsBoardListItemInputName"
                     value={skillNameInputs[id]}
+                    id={id}
                     onChange={(e) =>
                       setSkillNameInputs((prevState) => ({
                         ...prevState,
@@ -111,16 +116,10 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
             );
           })}
         </div>
-        <div className="skillsBoardForm">
-          <AddIcon onClick={addSkill} sx={{ color: "#493D8A" }} />
-          <input
-            className="skillsBoardFormInput"
-            placeholder="Add new Skill"
-            value={skillName}
-            onChange={(e) => setSkillName(e.target.value)}
-            onKeyDown={handleKeyPressAddSkill}
-          />
-        </div>
+        <button onClick={addSkill} className="skillsBoardForm">
+          <AddIcon sx={{ color: "#493D8A" }} />
+          <Typography>Add new Skill</Typography>
+        </button>
       </section>
       <section className="graphicSkillsBoard">
         <SkillsGraph skills={skills} />
