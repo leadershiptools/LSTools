@@ -31,7 +31,16 @@ const PeopleScreen = ({ user }) => {
   }, [peopleId]);
 
   const setPeople = (people) => {
-    const { name, phone, email, job, objectives, skills, imageUrl } = people;
+    const {
+      name,
+      phone,
+      email,
+      job,
+      objectives,
+      skills,
+      imageUrl,
+      skillsGroup,
+    } = people;
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
@@ -39,6 +48,7 @@ const PeopleScreen = ({ user }) => {
     setOkrs(objectives);
     setSkills(skills);
     setImageUrl(imageUrl);
+    setSkillSet(skillsGroup?.id ?? "");
   };
 
   const updatePeople = async (action, path, value) => {
@@ -54,11 +64,14 @@ const PeopleScreen = ({ user }) => {
   };
 
   const handleChangeSkillSet = async (e) => {
-    await put(`/people/${peopleId}/skills/replace-all`, {
-      id: peopleId,
-      organizationId: defaultOrganization,
-      skillsGroupId: e.target.value,
-    });
+    await put(
+      `/people/${peopleId}/skills/replace-all?organizationId=${defaultOrganization}&skillsGroupId=${e.target.value}`,
+      {
+        id: peopleId,
+        organizationId: defaultOrganization,
+        skillsGroupId: e.target.value,
+      }
+    );
     setSkillSet(e.target.value);
     getPeople();
   };
