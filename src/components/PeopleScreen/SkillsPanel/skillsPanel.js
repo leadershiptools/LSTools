@@ -35,11 +35,11 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
   };
 
   useEffect(() => {
-    if (hasAdded) {
-      document.getElementById(skills[0].id)?.focus();
+    if (hasAdded && skills) {
+      document.getElementById(skills?.[skills?.length - 1].id)?.focus();
       setHasAdded(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [skills]);
 
   useEffect(() => {
