@@ -39,6 +39,7 @@ main {
 .containerLogo{
     margin-bottom: 16px;
     margin-left: 8px;
+    max-width: 130px;
 }
 
 header{
