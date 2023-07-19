@@ -64,16 +64,23 @@ const PeopleScreen = ({ user }) => {
   };
 
   const handleChangeSkillSet = async (e) => {
-    await put(
-      `/people/${peopleId}/skills/replace-all?organizationId=${defaultOrganization}&skillsGroupId=${e.target.value}`,
-      {
-        id: peopleId,
-        organizationId: defaultOrganization,
-        skillsGroupId: e.target.value,
-      }
-    );
-    setSkillSet(e.target.value);
-    getPeople();
+    if (
+      // eslint-disable-next-line no-restricted-globals
+      confirm(
+        "When changing the skill set all skills will be reset, do you want to continue?"
+      )
+    ) {
+      await put(
+        `/people/${peopleId}/skills/replace-all?organizationId=${defaultOrganization}&skillsGroupId=${e.target.value}`,
+        {
+          id: peopleId,
+          organizationId: defaultOrganization,
+          skillsGroupId: e.target.value,
+        }
+      );
+      setSkillSet(e.target.value);
+      getPeople();
+    }
   };
 
   useEffect(() => {
