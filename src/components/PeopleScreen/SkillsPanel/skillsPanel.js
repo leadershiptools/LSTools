@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { triggerBlurOnEnter } from "../../../modules/utils";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const SkillsPanel = ({ skills, handleSaveInfo }) => {
+const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
   const [hasAdded, setHasAdded] = useState(false);
   const [skillNameInputs, setSkillNameInputs] = useState({});
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
@@ -90,12 +90,19 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
                     className="skillsBoardListItemInputScore"
                     type="number"
                     value={skillScoreInputs[id]}
-                    onChange={(e) =>
-                      setSkillScoreInputs((prevState) => ({
-                        ...prevState,
-                        [id]: e.target.value,
-                      }))
-                    }
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      if (Number(value) >= 0 && Number(value) <= 5) {
+                        setSkillScoreInputs((prevState) => ({
+                          ...prevState,
+                          [id]: e.target.value,
+                        }));
+                        handleSaveInfo("add", `/skills/${index}/history/-`, {
+                          score: Number(e.target.value),
+                          date: new Date(),
+                        });
+                      }
+                    }}
                     onBlur={(e) =>
                       handleSaveInfo("add", `/skills/${index}/history/-`, {
                         score: Number(e.target.value),
@@ -122,7 +129,7 @@ const SkillsPanel = ({ skills, handleSaveInfo }) => {
         </button>
       </section>
       <section className="graphicSkillsBoard">
-        <SkillsGraph skills={skills} />
+        <SkillsGraph skills={graphSkills} />
       </section>
     </main>
   );

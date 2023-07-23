@@ -17,6 +17,7 @@ const PeopleScreen = ({ user }) => {
   const [position, setPosition] = useState("");
   const [okrs, setOkrs] = useState(null);
   const [skills, setSkills] = useState(null);
+  const [graphSkills, setGraphSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [skillSet, setSkillSet] = useState("");
   const { peopleId } = useParams();
@@ -26,7 +27,6 @@ const PeopleScreen = ({ user }) => {
 
   const getPeople = useCallback(async () => {
     const result = await get(`/people/${peopleId}`);
-    console.log(result);
     setPeople(result);
   }, [peopleId]);
 
@@ -47,6 +47,7 @@ const PeopleScreen = ({ user }) => {
     setPosition(job.name ?? "");
     setOkrs(objectives);
     setSkills(skills);
+    setGraphSkills(skills);
     setImageUrl(imageUrl);
     setSkillSet(skillsGroup?.id ?? "");
   };
@@ -60,7 +61,12 @@ const PeopleScreen = ({ user }) => {
       },
     ]);
 
-    setPeople(result);
+    if (action === "remove" || action === "add") {
+      setPeople(result);
+      return;
+    }
+
+    setGraphSkills(result?.skills);
   };
 
   const handleChangeSkillSet = async (e) => {
@@ -119,7 +125,11 @@ const PeopleScreen = ({ user }) => {
           okrs={okrs}
           updatePeople={getPeople}
         />
-        <SkillsPanel skills={skills} handleSaveInfo={updatePeople} />
+        <SkillsPanel
+          graphSkills={graphSkills}
+          skills={skills}
+          handleSaveInfo={updatePeople}
+        />
         {/* <OneToOnePanel />
         <SalaryPanel /> */}
       </section>
