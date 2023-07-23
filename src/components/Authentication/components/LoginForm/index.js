@@ -14,17 +14,19 @@ import {
   browserLocalPersistence,
 } from "firebase/auth";
 import Cookies from "js-cookie";
-import { Alert } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 
 const LoginForm = () => {
   const [passwordInputType, setPasswordInputType] = useState("password");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showError, setShowError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    setIsLoading(true);
     const auth = getAuth();
     setPersistence(auth, browserLocalPersistence).then(() => {
       signInWithEmailAndPassword(auth, email, password)
@@ -32,9 +34,11 @@ const LoginForm = () => {
           const user = userCredential.user;
           Cookies.set("user", JSON.stringify(user));
           window.location.href = "/LSTools/team";
+          setIsLoading(false);
         })
         .catch(() => {
           setShowError(true);
+          setIsLoading(false);
         });
     });
   };
@@ -77,8 +81,16 @@ const LoginForm = () => {
           )}
         </div>
       </div>
-      <Button onClick={handleLogin} className="login-form-submit-button">
-        <Typography>LOGIN</Typography>
+      <Button
+        disabled={isLoading}
+        onClick={handleLogin}
+        className="login-form-submit-button"
+      >
+        {isLoading ? (
+          <CircularProgress size={24} sx={{ color: "#fff" }} />
+        ) : (
+          <Typography>LOGIN</Typography>
+        )}
       </Button>
       {showError && (
         <Alert sx={{ mb: 2 }} severity="error">

@@ -16,6 +16,8 @@ function TeamScreen({ user }) {
   const [teams, setTeams] = useState([]);
   const [teamName, setTeamName] = useState({});
   const [minimizedTeams, setMinimizedTeams] = useState({});
+  const [isLoadingCreateTeam, setIsLoadingCreateTeam] = useState(false);
+  const [isLoadingAddPeople, setIsLoadingAddPeople] = useState(false);
 
   const defaultOrganization = user?.organizations?.[0]?.id;
 
@@ -39,11 +41,13 @@ function TeamScreen({ user }) {
     navigate(`/LSTools/people/${peopleId}`, { state: { teamName: teamId } });
 
   const addPeople = async (organizationId, teamId) => {
+    setIsLoadingAddPeople(true);
     const people = await post(`/organization/${organizationId}/people`);
     await post(`/organization/${organizationId}/team/${teamId}/people`, {
       peopleIds: [people.id],
     });
     await getTeams();
+    setIsLoadingAddPeople(false);
   };
 
   const deletePeople = async (organizationId, teamId, peopleId) => {
@@ -60,10 +64,12 @@ function TeamScreen({ user }) {
   };
 
   const createTeam = async (organizationId) => {
+    setIsLoadingCreateTeam(true);
     await post(`/team?organizationId=${organizationId}`, {
       name: "Team name",
     });
     await getTeams();
+    setIsLoadingCreateTeam(false);
   };
 
   const deleteTeam = async (organizationId, teamId) => {
@@ -100,9 +106,16 @@ function TeamScreen({ user }) {
           className="team-screen-header-button"
           variant="outlined"
           onClick={() => createTeam(defaultOrganization)}
+          disabled={isLoadingCreateTeam}
         >
-          <WorkspacesOutlinedIcon />
-          Add team
+          {isLoadingCreateTeam ? (
+            <CircularProgress size={24} sx={{ color: "#F1388D" }} />
+          ) : (
+            <>
+              <WorkspacesOutlinedIcon />
+              Add team
+            </>
+          )}
         </Button>
       </div>
       {teams?.length ? (
@@ -156,9 +169,16 @@ function TeamScreen({ user }) {
                   }}
                   variant="outlined"
                   onClick={() => addPeople(defaultOrganization, team?.id)}
+                  disabled={isLoadingAddPeople}
                 >
-                  <PeopleOutlineOutlinedIcon />
-                  Add people
+                  {isLoadingAddPeople ? (
+                    <CircularProgress size={24} sx={{ color: "#F1388D" }} />
+                  ) : (
+                    <>
+                      <PeopleOutlineOutlinedIcon />
+                      Add people
+                    </>
+                  )}
                 </Button>
                 <div
                   className={`${
@@ -221,7 +241,7 @@ function TeamScreen({ user }) {
         </div>
       ) : (
         <div className="team-screen-container-error">
-          <CircularProgress sx={{ color: "#000" }} />
+          <CircularProgress sx={{ color: "#F1388D" }} />
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 import "./OkrsPanel.styles.css";
 import "../../Styles/commons.styles.css";
-import { Button, Typography } from "@mui/material";
+import { Button, CircularProgress, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/AddOutlined";
 import InputBase from "@mui/material/InputBase";
@@ -16,7 +16,7 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   const [keyResultsNames, setKeyResultsNames] = useState({});
   const [keyResultsDescription, setKeyResultsDescription] = useState({});
   const [keyResultsAchievement, setKeyResultsAchievement] = useState({});
-
+  const [isLoadingCreateOkr, setIsLoadingCreateOkr] = useState(false);
   const handleDeleteOkr = async (okrId, keyResultId) => {
     // eslint-disable-next-line no-restricted-globals
     if (okrId && keyResultId && confirm("Are you sure you want to do this?")) {
@@ -25,11 +25,13 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   };
 
   const createOkr = async () => {
+    setIsLoadingCreateOkr(true);
     await post(
       `/objective?organizationId=${organizationId}&peopleId=${peopleId}`,
       {}
     );
     updatePeople();
+    setIsLoadingCreateOkr(false);
   };
 
   const updateOkr = async (okrId, operation, path, value) => {
@@ -133,10 +135,15 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
             color="secondary"
             startIcon={<CalendarTodayIcon sx={{ color: "white" }} />}
             onClick={createOkr}
+            disabled={isLoadingCreateOkr}
           >
-            <Typography style={{ color: "white" }} fontWeight={700}>
-              New objective
-            </Typography>
+            {isLoadingCreateOkr ? (
+              <CircularProgress size={24} sx={{ color: "#fff" }} />
+            ) : (
+              <Typography style={{ color: "white" }} fontWeight={700}>
+                New objective
+              </Typography>
+            )}
           </Button>
         </div>
         <div className="okrsContainer">
