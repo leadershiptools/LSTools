@@ -27,7 +27,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
       history: [
         {
           date: new Date(),
-          score: 1,
+          score: 0,
         },
       ],
     });
