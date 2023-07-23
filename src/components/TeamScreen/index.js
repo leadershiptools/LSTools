@@ -131,7 +131,7 @@ function TeamScreen({ user }) {
                       className="team-screen-header-button"
                       onClick={() => handleMinimizeTeams(team?.id)}
                     >
-                      Minimizar
+                      Minimize
                       {minimizedTeams?.[team?.id] ? (
                         <KeyboardArrowUpIcon />
                       ) : (
@@ -158,7 +158,7 @@ function TeamScreen({ user }) {
                   onClick={() => addPeople(defaultOrganization, team?.id)}
                 >
                   <PeopleOutlineOutlinedIcon />
-                  Adicionar integrante
+                  Add people
                 </Button>
                 <div
                   className={`${

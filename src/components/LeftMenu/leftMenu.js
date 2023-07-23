@@ -62,7 +62,7 @@ const LeftMenu = ({ user }) => {
                   startIcon={<Team />}
                   onClick={() => navigate("/LSTools/team")}
                 >
-                  <Typography>Team</Typography>
+                  <Typography>Teams</Typography>
                 </Button>
               </li>
               <li className="menuitem">

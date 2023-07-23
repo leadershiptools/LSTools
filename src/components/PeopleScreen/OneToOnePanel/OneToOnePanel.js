@@ -14,12 +14,11 @@ const OneToOnePanel = () => (
 
       <Button
         className="oneToOneButton"
-        aria-label="adicionar"
         variant="outlined"
         color="secondary"
         startIcon={<AddIcon />}
       >
-        <Typography fontWeight={700}>Adicionar</Typography>
+        <Typography fontWeight={700}>Add</Typography>
       </Button>
     </div>
     <div className="oneToOneContainerBottom">

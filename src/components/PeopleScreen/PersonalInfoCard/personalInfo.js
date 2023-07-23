@@ -74,7 +74,7 @@ const PersonalInfo = ({
             onClick={() => inputFocus(employeeRef)}
           >
             <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Colaborador
+              Name
             </Typography>
             <InputBase
               ref={employeeRef}
@@ -104,7 +104,7 @@ const PersonalInfo = ({
                 fontWeight={400}
                 fontSize="12px"
               >
-                Colaborador
+                Name
               </Typography>
               <InputBase
                 ref={employeeRef}
@@ -157,7 +157,7 @@ const PersonalInfo = ({
             onClick={() => inputFocus(phoneRef)}
           >
             <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Telefone
+              Phone
             </Typography>
             <InputBase
               ref={phoneRef}
@@ -184,7 +184,7 @@ const PersonalInfo = ({
             onClick={() => inputFocus(positionRef)}
           >
             <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Posição
+              Position
             </Typography>
             <InputBase
               ref={positionRef}

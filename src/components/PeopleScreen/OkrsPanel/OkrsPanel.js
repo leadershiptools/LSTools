@@ -129,7 +129,6 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
               marginRight: "5px",
               background: "#f1388d",
             }}
-            aria-label="adicionar meta"
             variant="outlined"
             color="secondary"
             startIcon={<CalendarTodayIcon sx={{ color: "white" }} />}
