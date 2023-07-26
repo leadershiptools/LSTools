@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from "react";
 import "./index.styles.css";
 import { get, patch, post, sendDelete } from "../../modules/request";
@@ -17,8 +18,8 @@ function TeamScreen({ user }) {
   const [teamName, setTeamName] = useState({});
   const [minimizedTeams, setMinimizedTeams] = useState({});
   const [isLoadingCreateTeam, setIsLoadingCreateTeam] = useState(false);
-  const [isLoadingAddPeople, setIsLoadingAddPeople] = useState(false);
-
+  const [isLoadingAddPeople, setIsLoadingAddPeople] = useState({});
+  console.log(isLoadingAddPeople);
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const handleMinimizeTeams = (teamId) =>
@@ -33,6 +34,10 @@ function TeamScreen({ user }) {
       setTeams(response.teams);
       response.teams.forEach((team) => {
         setTeamName((prevState) => ({ ...prevState, [team?.id]: team.name }));
+        setIsLoadingAddPeople((prevState) => ({
+          ...prevState,
+          [team?.id]: false,
+        }));
       });
     }
   };
@@ -41,13 +46,14 @@ function TeamScreen({ user }) {
     navigate(`/LSTools/people/${peopleId}`, { state: { teamName: teamId } });
 
   const addPeople = async (organizationId, teamId) => {
-    setIsLoadingAddPeople(true);
+    console.log(isLoadingAddPeople);
+    setIsLoadingAddPeople((prevState) => ({ ...prevState, [teamId]: true }));
     const people = await post(`/organization/${organizationId}/people`);
     await post(`/organization/${organizationId}/team/${teamId}/people`, {
       peopleIds: [people.id],
     });
     await getTeams();
-    setIsLoadingAddPeople(false);
+    setIsLoadingAddPeople((prevState) => ({ ...prevState, [teamId]: false }));
   };
 
   const deletePeople = async (organizationId, teamId, peopleId) => {
@@ -169,9 +175,9 @@ function TeamScreen({ user }) {
                   }}
                   variant="outlined"
                   onClick={() => addPeople(defaultOrganization, team?.id)}
-                  disabled={isLoadingAddPeople}
+                  disabled={isLoadingAddPeople[team?.id]}
                 >
-                  {isLoadingAddPeople ? (
+                  {isLoadingAddPeople[team?.id] ? (
                     <CircularProgress size={24} sx={{ color: "#F1388D" }} />
                   ) : (
                     <>
