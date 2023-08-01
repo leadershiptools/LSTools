@@ -2,7 +2,7 @@ nav ol li {
     padding-left: 10px;
 }
 .breadcrumb {
-    padding: 35px 40px 40px 53px;
+    padding: 35px 40px 16px 53px;
     height: fit-content;
     width: auto;
 }
@@ -11,7 +11,7 @@ nav ol li {
 }
 
 .actual {
-    color:#665DAA !important;
+    color:#757383 !important;
 }
 .ancestor, .actual {
     font-family: 'Plus Jakarta Sans';

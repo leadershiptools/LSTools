@@ -27,34 +27,36 @@
     opacity: 0.5;
 }
 
-.ledInfos, .colaboratorInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 56px 10px 10px;
-    align-items: flex-start;
+.colaboratorInfo {
+    padding: 0 8px !important;
+    border-radius: 5px !important;
 }
 
-.colaboratorInfo{
-    border-radius: 5px;
+
+.colaboratorInfo input{
+    padding: 0 !important;
 }
 
 .colaboratorInfo:hover{
-    background-color: #c9c6dc1e;
-    text-decoration: none;
-}
-
-.colaboratorInfo p{
-    color: #665DAA;
-}
-
-.colaboratorInfo:hover, .colaboratorInfo:hover input {
-    cursor: pointer;
+    background-color: #c9c6dc1e !important;
+    text-decoration: none !important;
 }
 
 .colaboratorDetails {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.colaboratorDetailsRow{
+    display: flex;
     flex-direction: row;
     gap: 8px;
+}
+
+.colaboratorDetailsRow.marginTop{
+    margin-top: 12px;
 }
 
 .personalInfoDetails {
