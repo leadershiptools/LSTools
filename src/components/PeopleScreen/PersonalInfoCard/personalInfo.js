@@ -1,9 +1,9 @@
 import "../PersonalInfoCard/personalInfo.styles.css";
 import "../../Styles/commons.styles.css";
 import * as React from "react";
-import { Drawer, Typography, Select, MenuItem } from "@mui/material";
+import { Drawer, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { triggerBlurOnEnter } from "../../../modules/utils";
@@ -122,6 +122,7 @@ const PersonalInfo = ({
                 display: "inline",
                 border: "none",
                 color: "#493D8A",
+                width: "100px",
               }}
               onChange={(e) => setPosition(e.target.value)}
               value={position}
@@ -135,18 +136,17 @@ const PersonalInfo = ({
           </div>
 
           <div>
-            <Select
+            <select
               value={skillSet}
               onChange={setSkillSet}
-              sx={{ height: "20px" }}
+              className="skillSetSelect"
             >
               {skillsSet?.map((s) => {
-                return <MenuItem value={s.id}>{s.name}</MenuItem>;
+                return <option value={s.id}>{s.name}</option>;
               })}
-            </Select>
+            </select>
           </div>
         </div>
-        <div className="colaboratorDetailsTeams"></div>
       </div>
       <Drawer
         anchor={"right"}

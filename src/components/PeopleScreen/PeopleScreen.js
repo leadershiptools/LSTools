@@ -9,6 +9,7 @@ import { useCallback, useEffect, useState } from "react";
 import { get, patch, put } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 import { useParams, useLocation } from "react-router-dom";
+import PersonalMetrics from "./PersonalMetrics/PersonalMetrics";
 
 const PeopleScreen = ({ user }) => {
   const [name, setName] = useState("");
@@ -119,16 +120,19 @@ const PeopleScreen = ({ user }) => {
           setSkillSet={handleChangeSkillSet}
         />
       </section>
+      <section className="ledPanel">
+        <PersonalMetrics skills={skills} okrs={okrs} />
+      </section>
       <section>
-        <OkrsPanel
-          organizationId={defaultOrganization}
-          okrs={okrs}
-          updatePeople={getPeople}
-        />
         <SkillsPanel
           graphSkills={graphSkills}
           skills={skills}
           handleSaveInfo={updatePeople}
+        />
+        <OkrsPanel
+          organizationId={defaultOrganization}
+          okrs={okrs}
+          updatePeople={getPeople}
         />
         {/* <OneToOnePanel />
         <SalaryPanel /> */}

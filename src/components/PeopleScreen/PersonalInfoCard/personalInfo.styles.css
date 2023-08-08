@@ -37,7 +37,7 @@
     padding: 0 !important;
 }
 
-.colaboratorInfo:hover{
+.colaboratorInfo input:hover{
     background-color: #c9c6dc1e !important;
     text-decoration: none !important;
 }
@@ -76,6 +76,26 @@
 
 .personalInfoDetails:hover input {
     text-decoration: underline;
+}
+
+.skillSetSelect{
+    outline: none !important;
+    border: 1px solid white !important;
+    color: #4E4E65 !important;
+    font-size: 20px;
+    background: url('data:image/svg+xml,<svg width="8" height="6" viewBox="0 0 8 6" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.06 0.530273L4 3.58361L0.94 0.530273L0 1.47027L4 5.47027L8 1.47027L7.06 0.530273Z" fill="%234E4E65"/></svg>') no-repeat;
+    background-position: calc(0%) center !important;
+    -moz-appearance:none !important;
+    -webkit-appearance: none !important; 
+    appearance: none !important;
+    padding-left: 14px;
+    height: 100%;
+    text-shadow: 0 1px 0 #4E4E65;
+}
+
+.skillSetSelect option{
+    /* color */
+    background: #fff;
 }
 
 

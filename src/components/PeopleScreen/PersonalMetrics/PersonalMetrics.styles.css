@@ -1,0 +1,37 @@
+.personalMetricsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    gap: 20px;
+}
+
+.personalMetricsItem{
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 calc(25% - 48px);
+    background-color: #f5f7ff;
+    padding: 16px;
+    color: #757383;
+    border-radius: 12px;
+}
+
+.personalMetricsItemHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.personalMetricsItemHeader p{
+    margin: 0;
+}
+
+.personalMetricsItemBody{
+    display: flex;
+}
+
+.personalMetricsItemBody p{
+    font-size: 32px;
+    font-weight: bold;
+    margin: 8px 0;
+}
