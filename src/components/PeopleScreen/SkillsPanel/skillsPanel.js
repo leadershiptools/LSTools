@@ -66,7 +66,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
             <div>
               <SkillsGraph skills={graphSkills} />
             </div>
-            <h3>💎 Craft Skills</h3>
+            <h3>💎 Craft Skills </h3>
             {skills?.map((skill, index) => {
               const { id } = skill;
               return (
