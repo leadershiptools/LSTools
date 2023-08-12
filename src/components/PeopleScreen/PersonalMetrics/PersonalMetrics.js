@@ -5,10 +5,11 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const PersonalMetrics = ({ skills, okrs }) => {
   console.log(okrs);
-  const skillsMean =
+  const skillsMean = (
     skills?.reduce((acc, item) => {
       return acc + item.score;
-    }, 0) / skills?.length;
+    }, 0) / skills?.length
+  )?.toFixed(2);
 
   const okrsMean =
     okrs?.reduce((acc, okr) => {
@@ -18,13 +19,15 @@ const PersonalMetrics = ({ skills, okrs }) => {
       });
       return sum;
     }, 0) /
-    okrs?.reduce((acc, okr) => {
-      let sum = acc;
-      okr?.keyResults?.forEach((keyResult) => {
-        sum += 1;
-      });
-      return sum;
-    }, 0);
+    okrs
+      ?.reduce((acc, okr) => {
+        let sum = acc;
+        okr?.keyResults?.forEach((keyResult) => {
+          sum += 1;
+        });
+        return sum;
+      }, 0)
+      ?.toFixed(2);
 
   return (
     <div className="personalMetricsContainer">
@@ -44,7 +47,7 @@ const PersonalMetrics = ({ skills, okrs }) => {
           <InfoOutlinedIcon />
         </div>
         <div className="personalMetricsItemBody">
-          <p>{isNaN(skillsMean) ? 0 : skillsMean}</p>
+          <p>{skillsMean}</p>
         </div>
       </div>
 

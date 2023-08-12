@@ -1,7 +1,7 @@
 import "../PersonalInfoCard/personalInfo.styles.css";
 import "../../Styles/commons.styles.css";
 import * as React from "react";
-import { Drawer, Typography } from "@mui/material";
+import { Drawer, MenuItem, Select, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
@@ -122,7 +122,8 @@ const PersonalInfo = ({
                 display: "inline",
                 border: "none",
                 color: "#493D8A",
-                width: "100px",
+                width: "10px",
+                minWidth: "unset"
               }}
               onChange={(e) => setPosition(e.target.value)}
               value={position}
@@ -136,7 +137,12 @@ const PersonalInfo = ({
           </div>
 
           <div>
-            <select
+            <Select className="skillSetSelect" value={skillSet} label="Age" onChange={setSkillSet}>
+              {skillsSet?.map((s) => {
+                return <MenuItem value={s.id}>{s.name}</MenuItem>;
+              })}
+            </Select>
+            {/* <select
               value={skillSet}
               onChange={setSkillSet}
               className="skillSetSelect"
@@ -144,7 +150,7 @@ const PersonalInfo = ({
               {skillsSet?.map((s) => {
                 return <option value={s.id}>{s.name}</option>;
               })}
-            </select>
+            </select> */}
           </div>
         </div>
       </div>
