@@ -30,11 +30,19 @@ const LeftMenu = ({ user }) => {
     });
   };
 
+  const handleOpenMenu = () => {
+    setIsOpen(true);
+    document.querySelector("body").style.overflow = "hidden";
+  };
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+    document.querySelector("body").style.overflow = "";
+  };
+
   return (
     <>
-      {isMobile && (
-        <MenuIcon className="menu-icon" onClick={() => setIsOpen(true)} />
-      )}
+      {isMobile && <MenuIcon className="menu-icon" onClick={handleOpenMenu} />}
       <aside className={`${isOpen && "isOpen"}`}>
         <div role="menu" className="container">
           <h2 className="containerOrganization">{defaultOrganization}</h2>
@@ -70,7 +78,10 @@ const LeftMenu = ({ user }) => {
               <Button
                 className="navigationBtn"
                 startIcon={<Team sx={{ fontSize: 24 }} />}
-                onClick={() => navigate("/LSTools/team")}
+                onClick={() => {
+                  navigate("/LSTools/team");
+                  handleCloseMenu();
+                }}
               >
                 <Typography>Teams</Typography>
               </Button>
@@ -83,7 +94,10 @@ const LeftMenu = ({ user }) => {
               <Button
                 className={"navigationBtn"}
                 startIcon={<People sx={{ fontSize: 24 }} />}
-                onClick={() => navigate("/LSTools/people")}
+                onClick={() => {
+                  navigate("/LSTools/people");
+                  handleCloseMenu();
+                }}
               >
                 <Typography>People</Typography>
               </Button>
@@ -100,7 +114,7 @@ const LeftMenu = ({ user }) => {
           </div>
         ) : (
           <div
-            onClick={() => setIsOpen(false)}
+            onClick={handleCloseMenu}
             className={`menu-overlay ${isOpen && "isOpen"}`}
           />
         )}
