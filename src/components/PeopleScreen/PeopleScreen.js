@@ -41,7 +41,9 @@ const PeopleScreen = ({ user }) => {
       skills,
       imageUrl,
       skillsGroup,
+      teams,
     } = people;
+
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");

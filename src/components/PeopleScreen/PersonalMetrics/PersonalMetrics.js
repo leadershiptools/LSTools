@@ -4,7 +4,6 @@ import * as React from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 
 const PersonalMetrics = ({ skills, okrs }) => {
-  console.log(okrs);
   const skillsMean = (
     skills?.reduce((acc, item) => {
       return acc + item.score;
