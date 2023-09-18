@@ -15,6 +15,7 @@ import {
 } from "firebase/auth";
 import Cookies from "js-cookie";
 import { Alert, CircularProgress } from "@mui/material";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const LoginForm = () => {
   const [passwordInputType, setPasswordInputType] = useState("password");
@@ -41,6 +42,12 @@ const LoginForm = () => {
           setIsLoading(false);
         });
     });
+  };
+
+  const handleLinkedinLogin = () => {
+    window.open(
+      "https://leadership-tools.fly.dev/oauth2/authorization/linkedin"
+    );
   };
 
   return (
@@ -100,6 +107,13 @@ const LoginForm = () => {
       {/* <Button className="login-form-forgot-password-button">
         Forgot my password
       </Button> */}
+      <Button
+        onClick={handleLinkedinLogin}
+        className="login-form-linkedin-button"
+      >
+        <LinkedInIcon sx={{ mr: 1 }} />
+        Login with LinkedIn
+      </Button>
       <Button
         onClick={() => navigate("/register")}
         className="login-form-forgot-password-button"

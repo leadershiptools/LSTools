@@ -66,6 +66,15 @@
     text-transform: none !important;
 }
 
+.login-form-linkedin-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500 !important;
+    background-color: #fff !important;
+    text-transform: none !important;
+}
+
 
 
 .login-form-submit-button p, .login-form-forgot-password-button p {
