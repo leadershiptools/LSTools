@@ -46,7 +46,7 @@ const LoginForm = () => {
 
   const handleLinkedinLogin = () => {
     window.open(
-      "https://leadership-tools.fly.dev/oauth2/authorization/linkedin"
+      "https://leadership-tools-stg.fly.dev/oauth2/authorization/linkedin"
     );
   };
 
