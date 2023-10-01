@@ -95,6 +95,11 @@
     border: none !important;
 }
 
+.colaboratorDetailsTeams{
+    display: flex;
+    gap: 8px
+}
+
 
 @media (max-width: 1024px){
     .ledInfos{

@@ -21,6 +21,7 @@ const PeopleScreen = ({ user }) => {
   const [graphSkills, setGraphSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [skillSet, setSkillSet] = useState("");
+  const [teams, setTeams] = useState([]);
   const { peopleId } = useParams();
   const { state } = useLocation();
 
@@ -44,6 +45,8 @@ const PeopleScreen = ({ user }) => {
       teams,
     } = people;
 
+    console.log(people);
+
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
@@ -53,6 +56,7 @@ const PeopleScreen = ({ user }) => {
     setGraphSkills(skills);
     setImageUrl(imageUrl);
     setSkillSet(skillsGroup?.id ?? "");
+    setTeams(teams);
   };
 
   const updatePeople = async (action, path, value) => {
@@ -120,6 +124,7 @@ const PeopleScreen = ({ user }) => {
           handleSaveInfo={updatePeople}
           skillSet={skillSet}
           setSkillSet={handleChangeSkillSet}
+          teams={teams}
         />
       </section>
       <section className="ledPanel">

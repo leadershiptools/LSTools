@@ -1,7 +1,7 @@
 import "../PersonalInfoCard/personalInfo.styles.css";
 import "../../Styles/commons.styles.css";
 import * as React from "react";
-import { Drawer, MenuItem, Select, Typography } from "@mui/material";
+import { Chip, Drawer, MenuItem, Select, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
 import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
@@ -22,6 +22,7 @@ const PersonalInfo = ({
   setImageUrl,
   skillSet,
   setSkillSet,
+  teams,
   handleSaveInfo,
 }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -123,7 +124,7 @@ const PersonalInfo = ({
                 border: "none",
                 color: "#493D8A",
                 width: "10px",
-                minWidth: "unset"
+                minWidth: "unset",
               }}
               onChange={(e) => setPosition(e.target.value)}
               value={position}
@@ -137,21 +138,32 @@ const PersonalInfo = ({
           </div>
 
           <div>
-            <Select className="skillSetSelect" value={skillSet} label="Age" onChange={setSkillSet}>
+            <Select
+              className="skillSetSelect"
+              value={skillSet}
+              label="Age"
+              onChange={setSkillSet}
+            >
               {skillsSet?.map((s) => {
                 return <MenuItem value={s.id}>{s.name}</MenuItem>;
               })}
             </Select>
-            {/* <select
-              value={skillSet}
-              onChange={setSkillSet}
-              className="skillSetSelect"
-            >
-              {skillsSet?.map((s) => {
-                return <option value={s.id}>{s.name}</option>;
-              })}
-            </select> */}
           </div>
+        </div>
+        <div className="colaboratorDetailsTeams">
+          {teams?.map((team) => {
+            const { name } = team;
+            return (
+              <Chip
+                sx={{ background: "#F5F7FF", color: "#493D8A" }}
+                label={name}
+              />
+            );
+          })}
+          {/* {teams?.map((team) => {
+            const { name } = team
+            return <Typography>{name}</Typography>
+          }} */}
         </div>
       </div>
       <Drawer
