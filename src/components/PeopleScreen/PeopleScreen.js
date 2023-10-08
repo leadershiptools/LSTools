@@ -10,6 +10,8 @@ import { get, patch, put } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 import { useParams, useLocation } from "react-router-dom";
 import PersonalMetrics from "./PersonalMetrics/PersonalMetrics";
+import commingSoonImg from "../../images/comming-soon.png";
+import { Box } from "@mui/material";
 
 const PeopleScreen = ({ user }) => {
   const [name, setName] = useState("");
@@ -141,6 +143,9 @@ const PeopleScreen = ({ user }) => {
           okrs={okrs}
           updatePeople={getPeople}
         />
+        <Box className="commingSoonBoard">
+          <img style={{ height: "auto", width: "100%" }} src={commingSoonImg} />
+        </Box>
         {/* <OneToOnePanel />
         <SalaryPanel /> */}
       </section>

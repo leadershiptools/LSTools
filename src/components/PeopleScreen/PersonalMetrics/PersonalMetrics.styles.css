@@ -35,3 +35,9 @@
     font-weight: bold;
     margin: 8px 0;
 }
+
+@media (max-width: 1024px){
+    .personalMetricsContainer{
+        flex-direction: column;
+    }
+}

@@ -71,6 +71,7 @@ const PersonalInfo = ({
             inputProps={{
               onKeyDown: triggerBlurOnEnter,
             }}
+            className="colaboratorInfoName"
           />
         </div>
         <div className="colaboratorDetailsRow">

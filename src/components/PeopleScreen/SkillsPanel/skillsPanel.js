@@ -63,9 +63,9 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
         </div>
         <div className="skillsBoardContainer">
           <div className="skillsBoardList">
-            <div>
+            {/* <div>
               <SkillsGraph skills={graphSkills} />
-            </div>
+            </div> */}
             <h3>💎 Craft Skills </h3>
             {skills?.map((skill, index) => {
               const { id } = skill;
@@ -136,9 +136,9 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
             </button>
           </div>
           <div className="skillsBoardList">
-            <div>
+            {/* <div>
               <SkillsGraph skills={graphSkills} />
-            </div>
+            </div> */}
             <h3>⭐️ Behavioural Skills</h3>
             {skills?.map((skill, index) => {
               const { id } = skill;

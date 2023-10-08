@@ -14,6 +14,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding-bottom: 24px; 
     border-bottom: 1px solid #CFCFDB;
 }
@@ -159,15 +160,15 @@
 
 
 @media (max-width: 1024px){
-    .okrsPanel{
+    .okrsBoard{
         flex-direction: column;
         margin: 24px;
         border: 0;
         padding: 0;
     }
 
-    .okrsBoard{
-        width: 100%;
+    .addOkrsTitle{
+        font-size: 14px !important;
     }
 
     .okrsGraph{

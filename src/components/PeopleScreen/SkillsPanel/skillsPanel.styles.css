@@ -148,7 +148,7 @@
         width: 100%;
     }
 
-    .graphicSkillsBoard{
-        display: none;
+    .skillsBoardContainer{
+        flex-direction: column;
     }
 }
