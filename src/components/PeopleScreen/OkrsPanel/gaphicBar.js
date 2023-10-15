@@ -9,7 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { getMonthNames } from "../../../modules/utils";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import "./graphicBar.styles.css";
 
 ChartJS.register(
   CategoryScale,
@@ -17,7 +18,8 @@ ChartJS.register(
   BarElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 export const options = {
@@ -25,10 +27,30 @@ export const options = {
   scales: {
     x: {
       stacked: true,
+      fontSize: 40,
+      ticks: {
+        font: {
+          size: 16,
+        },
+      },
     },
     y: {
       stacked: true,
       beginAtZero: true,
+    },
+  },
+  plugins: {
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      color: "#fff",
+      fontWeight: "bold",
+      align: "end",
+      anchor: "start",
+      formatter: (value) => {
+        return `${value}%`;
+      },
     },
   },
 };
@@ -54,12 +76,12 @@ export function GraphicBar({ okrs }) {
     labels,
     datasets: [
       {
-        label: "Atingimento",
+        barThickness: 100,
         data: values,
-        backgroundColor: "#2f4390",
-        maxBarThickness: 100,
+        backgroundColor: "#F3328D",
+        fontSize: 16,
       },
     ],
   };
-  return <Bar className="chart-container" options={options} data={data} />;
+  return <Bar className="chart-okr" options={options} data={data} />;
 }

@@ -120,7 +120,12 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
   return (
     <main className="okrsBoard">
       <div className="addOkrs">
-        <Typography className="addOkrsTitle" sx={{ color: "#757383" }} fontWeight={700} fontSize="24px">
+        <Typography
+          className="addOkrsTitle"
+          sx={{ color: "#757383" }}
+          fontWeight={700}
+          fontSize="24px"
+        >
           🎯 Objectives & Key Results
         </Typography>
         <Button
@@ -144,11 +149,8 @@ const OkrsPanel = ({ okrs, organizationId, updatePeople }) => {
           )}
         </Button>
       </div>
-        {/* <div>graph</div> */}
+      <GraphicBar okrs={okrs} />
       <div className="okrsContainer">
-        {/* <section className="okrsGraph"> */}
-          {/* <GraphicBar okrs={okrs} /> */}
-        {/* </section> */}
         {okrs?.map((okr, okrIndex) => {
           return (
             <div key={okrIndex} className="okrContainer">

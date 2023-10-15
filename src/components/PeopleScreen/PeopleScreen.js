@@ -47,8 +47,6 @@ const PeopleScreen = ({ user }) => {
       teams,
     } = people;
 
-    console.log(people);
-
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
