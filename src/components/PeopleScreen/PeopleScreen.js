@@ -142,7 +142,7 @@ const PeopleScreen = ({ user }) => {
           updatePeople={getPeople}
         />
         <Box className="commingSoonBoard">
-          <img style={{ height: "auto", width: "100%" }} src={commingSoonImg} />
+          <img style={{ height: "auto", width: "100%" }} alt="commingSoon" src={commingSoonImg} />
         </Box>
         {/* <OneToOnePanel />
         <SalaryPanel /> */}
