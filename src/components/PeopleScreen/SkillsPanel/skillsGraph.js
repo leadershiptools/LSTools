@@ -17,7 +17,7 @@ ChartJS.register(
   LineElement,
   Filler,
   Tooltip,
-  Legend,
+  Legend
 );
 
 export function SkillsGraph({ skills }) {
@@ -74,7 +74,7 @@ export function SkillsGraph({ skills }) {
     },
   };
   return (
-    <Box sx={{mt: -10}}>
+    <Box sx={{ mt: -10 }}>
       <Radar data={data} options={options} />
     </Box>
   );

@@ -23,6 +23,8 @@ const PeopleScreen = ({ user }) => {
   const [graphSkills, setGraphSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [skillSet, setSkillSet] = useState("");
+  const [grossAnnualSalary, setGrossAnualSalary] = useState(0);
+  const [trainingInvested, setTrainingInvested] = useState(0);
   const [teams, setTeams] = useState([]);
   const { peopleId } = useParams();
   const { state } = useLocation();
@@ -45,6 +47,8 @@ const PeopleScreen = ({ user }) => {
       imageUrl,
       skillsGroup,
       teams,
+      grossAnnualSalary,
+      trainingInvested,
     } = people;
 
     setName(name ?? "");
@@ -57,6 +61,8 @@ const PeopleScreen = ({ user }) => {
     setImageUrl(imageUrl);
     setSkillSet(skillsGroup?.id ?? "");
     setTeams(teams);
+    setGrossAnualSalary(grossAnnualSalary);
+    setTrainingInvested(trainingInvested);
   };
 
   const updatePeople = async (action, path, value) => {
@@ -128,7 +134,13 @@ const PeopleScreen = ({ user }) => {
         />
       </section>
       <section className="ledPanel">
-        <PersonalMetrics skills={skills} okrs={okrs} />
+        <PersonalMetrics
+          trainingInvestedValue={trainingInvested}
+          grossAnnualSalaryValue={grossAnnualSalary}
+          handleSaveInfo={updatePeople}
+          skills={skills}
+          okrs={okrs}
+        />
       </section>
       <section>
         <SkillsPanel
@@ -142,7 +154,11 @@ const PeopleScreen = ({ user }) => {
           updatePeople={getPeople}
         />
         <Box className="commingSoonBoard">
-          <img style={{ height: "auto", width: "100%" }} alt="commingSoon" src={commingSoonImg} />
+          <img
+            style={{ height: "auto", width: "100%" }}
+            alt="commingSoon"
+            src={commingSoonImg}
+          />
         </Box>
         {/* <OneToOnePanel />
         <SalaryPanel /> */}

@@ -30,7 +30,7 @@ export const options = {
       fontSize: 40,
       ticks: {
         font: {
-          size: 16,
+          size: 12,
         },
       },
     },
