@@ -1,22 +1,23 @@
 import "./PersonalMetrics.styles.css";
 import "../../Styles/commons.styles.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import InputBase from "@mui/material/InputBase";
 
 const PersonalMetrics = ({
-  grossAnualSalaryValue,
+  grossAnnualSalaryValue,
   trainingInvestedValue,
   skills,
   okrs,
   handleSaveInfo,
 }) => {
-  const [grossAnualSalary, setGrossAnualSalary] = useState(
-    grossAnualSalaryValue
-  );
-  const [trainingInvested, setTrainingInvested] = useState(
-    trainingInvestedValue
-  );
+  const [grossAnnualSalary, setGrossAnualSalary] = useState();
+  const [trainingInvested, setTrainingInvested] = useState();
+
+  useEffect(() => {
+    setGrossAnualSalary(grossAnnualSalaryValue.toFixed(2).replace(".", ","));
+    setTrainingInvested(trainingInvestedValue.toFixed(2).replace(".", ","));
+  }, [grossAnnualSalaryValue, trainingInvestedValue]);
 
   const skillsMean = (
     skills?.reduce((acc, item) => {
@@ -43,15 +44,19 @@ const PersonalMetrics = ({
       ?.toFixed(2);
 
   const updateGrossAnualSalary = async () => {
-    await handleSaveInfo("replace", `/grossAnnualSalary`, {
-      value: parseFloat(Number(grossAnualSalary).toFixed(2)),
-    });
+    await handleSaveInfo(
+      "replace",
+      `/grossAnnualSalary`,
+      grossAnnualSalary.replace(",", ".")
+    );
   };
 
   const updateTrainingInvested = async () => {
-    await handleSaveInfo("replace", `/trainingInvested`, {
-      value: parseFloat(Number(trainingInvested).toFixed(2)),
-    });
+    await handleSaveInfo(
+      "replace",
+      `/trainingInvested`,
+      trainingInvested.replace(",", ".")
+    );
   };
 
   return (
@@ -90,9 +95,10 @@ const PersonalMetrics = ({
             }}
             maxLength={5}
             placeholder="$0,00"
-            value={grossAnualSalary}
+            value={grossAnnualSalary}
             onBlur={updateGrossAnualSalary}
             onChange={(e) => setGrossAnualSalary(e.target.value)}
+            startAdornment="$"
           />
         </div>
       </div>
@@ -114,6 +120,7 @@ const PersonalMetrics = ({
             onBlur={updateTrainingInvested}
             value={trainingInvested}
             onChange={(e) => setTrainingInvested(e.target.value)}
+            startAdornment="$"
           />
         </div>
       </div>

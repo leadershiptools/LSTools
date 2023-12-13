@@ -23,7 +23,7 @@ const PeopleScreen = ({ user }) => {
   const [graphSkills, setGraphSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [skillSet, setSkillSet] = useState("");
-  const [grossAnnualSalary, setGrossAnualSalary] = useState(0);
+  const [grossAnnualSalary, setGrossAnnualSalary] = useState(0);
   const [trainingInvested, setTrainingInvested] = useState(0);
   const [teams, setTeams] = useState([]);
   const { peopleId } = useParams();
@@ -61,7 +61,7 @@ const PeopleScreen = ({ user }) => {
     setImageUrl(imageUrl);
     setSkillSet(skillsGroup?.id ?? "");
     setTeams(teams);
-    setGrossAnualSalary(grossAnnualSalary);
+    setGrossAnnualSalary(grossAnnualSalary);
     setTrainingInvested(trainingInvested);
   };
 
