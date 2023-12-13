@@ -13,6 +13,35 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
   const [skillNameInputs, setSkillNameInputs] = useState({});
   const [skillScoreInputs, setSkillScoreInputs] = useState({});
 
+  const hardSkills = skills?.filter(
+    (skill) =>
+      !!skill?.groups?.filter((group) => {
+        return group.id === "hard-skills";
+      }).length
+  );
+
+  const softSkills = skills?.filter(
+    (skill) =>
+      !!skill?.groups?.filter((group) => {
+        return group.id === "soft-skills";
+      }).length
+  );
+
+  const graphHardSkills = graphSkills?.filter(
+    (skill) =>
+      !!skill?.groups?.filter((group) => {
+        return group.id === "hard-skills";
+      }).length
+  );
+
+  const graphSoftSkills = graphSkills?.filter(
+    (skill) =>
+      !!skill?.groups?.filter((group) => {
+        return group.id === "soft-skills";
+      }).length
+  );
+
+  console.log(softSkills);
   const handleDeleteSkill = async (index) => {
     // eslint-disable-next-line no-restricted-globals
     if (confirm("Are you sure you want to do this?")) {
@@ -20,7 +49,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
     }
   };
 
-  const addSkill = async () => {
+  const addSkill = async (type) => {
     await handleSaveInfo("add", `/skills/-`, {
       name: "",
       description: "",
@@ -28,6 +57,13 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
         {
           date: new Date(),
           score: 0,
+        },
+      ],
+      groups: [
+        {
+          id: type === "hard" ? "hard-skills" : "soft-skills",
+          name: type === "hard" ? "Hard Skills" : "Soft Skills",
+          description: type === "hard" ? "Hard Skills" : "Soft Skills",
         },
       ],
     });
@@ -63,12 +99,16 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
         </div>
         <div className="skillsBoardContainer">
           <div className="skillsBoardList">
-            <SkillsGraph skills={graphSkills} />
+            <SkillsGraph skills={graphHardSkills} />
             <h3>💎 Craft Skills </h3>
-            {skills?.map((skill, index) => {
+            {hardSkills?.map((skill) => {
               const { id } = skill;
+              const allSkillsIndex = skills.indexOf(
+                skills.find((skill) => skill.id === id)
+              );
+
               return (
-                <div key={index} className="skillsBoardListItem">
+                <div key={allSkillsIndex} className="skillsBoardListItem">
                   <div className="skillsBoardListItemLeft">
                     <input
                       className="skillsBoardListItemInputName"
@@ -83,7 +123,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                       onBlur={(e) =>
                         handleSaveInfo(
                           "replace",
-                          `/skills/${index}/name`,
+                          `/skills/${allSkillsIndex}/name`,
                           e.target.value
                         )
                       }
@@ -102,17 +142,25 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                             ...prevState,
                             [id]: e.target.value,
                           }));
-                          handleSaveInfo("add", `/skills/${index}/history/-`, {
-                            score: Number(e.target.value),
-                            date: new Date(),
-                          });
+                          handleSaveInfo(
+                            "add",
+                            `/skills/${allSkillsIndex}/history/-`,
+                            {
+                              score: Number(e.target.value),
+                              date: new Date(),
+                            }
+                          );
                         }
                       }}
                       onBlur={(e) =>
-                        handleSaveInfo("add", `/skills/${index}/history/-`, {
-                          score: Number(e.target.value),
-                          date: new Date(),
-                        })
+                        handleSaveInfo(
+                          "add",
+                          `/skills/${allSkillsIndex}/history/-`,
+                          {
+                            score: Number(e.target.value),
+                            date: new Date(),
+                          }
+                        )
                       }
                       min={0}
                       max={5}
@@ -120,7 +168,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                     />
                   </div>
                   <div className="skillsBoardListItemRight">
-                    <Button onClick={() => handleDeleteSkill(index)}>
+                    <Button onClick={() => handleDeleteSkill(allSkillsIndex)}>
                       <CloseIcon />
                     </Button>
                   </div>
@@ -128,18 +176,24 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
               );
             })}
 
-            <button onClick={addSkill} className="skillsBoardForm">
+            <button
+              onClick={() => addSkill("hard")}
+              className="skillsBoardForm"
+            >
               <AddIcon sx={{ color: "#493D8A" }} />
               <Typography>Add new Skill</Typography>
             </button>
           </div>
           <div className="skillsBoardList">
-            <SkillsGraph skills={graphSkills} />
+            <SkillsGraph skills={graphSoftSkills} />
             <h3>⭐️ Behavioural Skills</h3>
-            {skills?.map((skill, index) => {
+            {softSkills?.map((skill) => {
               const { id } = skill;
+              const allSkillsIndex = skills.indexOf(
+                skills.find((skill) => skill.id === id)
+              );
               return (
-                <div key={index} className="skillsBoardListItem">
+                <div key={allSkillsIndex} className="skillsBoardListItem">
                   <div className="skillsBoardListItemLeft">
                     <input
                       className="skillsBoardListItemInputName"
@@ -154,7 +208,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                       onBlur={(e) =>
                         handleSaveInfo(
                           "replace",
-                          `/skills/${index}/name`,
+                          `/skills/${allSkillsIndex}/name`,
                           e.target.value
                         )
                       }
@@ -173,17 +227,25 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                             ...prevState,
                             [id]: e.target.value,
                           }));
-                          handleSaveInfo("add", `/skills/${index}/history/-`, {
-                            score: Number(e.target.value),
-                            date: new Date(),
-                          });
+                          handleSaveInfo(
+                            "add",
+                            `/skills/${allSkillsIndex}/history/-`,
+                            {
+                              score: Number(e.target.value),
+                              date: new Date(),
+                            }
+                          );
                         }
                       }}
                       onBlur={(e) =>
-                        handleSaveInfo("add", `/skills/${index}/history/-`, {
-                          score: Number(e.target.value),
-                          date: new Date(),
-                        })
+                        handleSaveInfo(
+                          "add",
+                          `/skills/${allSkillsIndex}/history/-`,
+                          {
+                            score: Number(e.target.value),
+                            date: new Date(),
+                          }
+                        )
                       }
                       min={0}
                       max={5}
@@ -193,7 +255,7 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
                   <div className="skillsBoardListItemRight">
                     <Button
                       className="skillsBoardListItemRightButton"
-                      onClick={() => handleDeleteSkill(index)}
+                      onClick={() => handleDeleteSkill(allSkillsIndex)}
                     >
                       <CloseIcon />
                     </Button>
@@ -202,7 +264,10 @@ const SkillsPanel = ({ skills, handleSaveInfo, graphSkills }) => {
               );
             })}
 
-            <button onClick={addSkill} className="skillsBoardForm">
+            <button
+              onClick={() => addSkill("soft")}
+              className="skillsBoardForm"
+            >
               <AddIcon sx={{ color: "#493D8A" }} />
               <Typography>Add new Skill</Typography>
             </button>
