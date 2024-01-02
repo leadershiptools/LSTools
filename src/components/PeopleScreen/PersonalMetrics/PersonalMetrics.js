@@ -99,6 +99,11 @@ const PersonalMetrics = ({
             onBlur={updateGrossAnualSalary}
             onChange={(e) => setGrossAnualSalary(e.target.value)}
             startAdornment="$"
+            onFocus={() =>
+              setGrossAnualSalary((prevState) =>
+                prevState === "0,00" ? "" : prevState
+              )
+            }
           />
         </div>
       </div>
@@ -121,6 +126,11 @@ const PersonalMetrics = ({
             value={trainingInvested}
             onChange={(e) => setTrainingInvested(e.target.value)}
             startAdornment="$"
+            onFocus={() =>
+              setTrainingInvested((prevState) =>
+                prevState === "0,00" ? "" : prevState
+              )
+            }
           />
         </div>
       </div>
