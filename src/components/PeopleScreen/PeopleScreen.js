@@ -9,6 +9,9 @@ import { useCallback, useEffect, useState } from "react";
 import { get, patch, put } from "../../modules/request";
 import BreadCrumb from "../../components/BreadCrumb/breadcrumb";
 import { useParams, useLocation } from "react-router-dom";
+import PersonalMetrics from "./PersonalMetrics/PersonalMetrics";
+import commingSoonImg from "../../images/comming-soon.png";
+import { Box } from "@mui/material";
 
 const PeopleScreen = ({ user }) => {
   const [name, setName] = useState("");
@@ -20,6 +23,9 @@ const PeopleScreen = ({ user }) => {
   const [graphSkills, setGraphSkills] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [skillSet, setSkillSet] = useState("");
+  const [grossAnnualSalary, setGrossAnnualSalary] = useState(0);
+  const [trainingInvested, setTrainingInvested] = useState(0);
+  const [teams, setTeams] = useState([]);
   const { peopleId } = useParams();
   const { state } = useLocation();
 
@@ -40,7 +46,11 @@ const PeopleScreen = ({ user }) => {
       skills,
       imageUrl,
       skillsGroup,
+      teams,
+      grossAnnualSalary,
+      trainingInvested,
     } = people;
+
     setName(name ?? "");
     setEmail(email ?? "");
     setPhone(phone ?? "");
@@ -50,6 +60,9 @@ const PeopleScreen = ({ user }) => {
     setGraphSkills(skills);
     setImageUrl(imageUrl);
     setSkillSet(skillsGroup?.id ?? "");
+    setTeams(teams);
+    setGrossAnnualSalary(grossAnnualSalary);
+    setTrainingInvested(trainingInvested);
   };
 
   const updatePeople = async (action, path, value) => {
@@ -117,19 +130,36 @@ const PeopleScreen = ({ user }) => {
           handleSaveInfo={updatePeople}
           skillSet={skillSet}
           setSkillSet={handleChangeSkillSet}
+          teams={teams}
+        />
+      </section>
+      <section className="ledPanel">
+        <PersonalMetrics
+          trainingInvestedValue={trainingInvested}
+          grossAnnualSalaryValue={grossAnnualSalary}
+          handleSaveInfo={updatePeople}
+          skills={skills}
+          okrs={okrs}
         />
       </section>
       <section>
-        <OkrsPanel
-          organizationId={defaultOrganization}
-          okrs={okrs}
-          updatePeople={getPeople}
-        />
         <SkillsPanel
           graphSkills={graphSkills}
           skills={skills}
           handleSaveInfo={updatePeople}
         />
+        <OkrsPanel
+          organizationId={defaultOrganization}
+          okrs={okrs}
+          updatePeople={getPeople}
+        />
+        <Box className="commingSoonBoard">
+          <img
+            style={{ height: "auto", width: "100%" }}
+            alt="commingSoon"
+            src={commingSoonImg}
+          />
+        </Box>
         {/* <OneToOnePanel />
         <SalaryPanel /> */}
       </section>

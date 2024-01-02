@@ -27,34 +27,36 @@
     opacity: 0.5;
 }
 
-.ledInfos, .colaboratorInfo {
-    display: flex;
-    flex-direction: column;
-    padding: 10px 56px 10px 10px;
-    align-items: flex-start;
+.colaboratorInfo {
+    padding: 0 8px !important;
+    border-radius: 5px !important;
 }
 
-.colaboratorInfo{
-    border-radius: 5px;
+
+.colaboratorInfo input{
+    padding: 0 !important;
 }
 
-.colaboratorInfo:hover{
-    background-color: #c9c6dc1e;
-    text-decoration: none;
-}
-
-.colaboratorInfo p{
-    color: #665DAA;
-}
-
-.colaboratorInfo:hover, .colaboratorInfo:hover input {
-    cursor: pointer;
+.colaboratorInfo input:hover{
+    background-color: #c9c6dc1e !important;
+    text-decoration: none !important;
 }
 
 .colaboratorDetails {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+.colaboratorDetailsRow{
+    display: flex;
     flex-direction: row;
     gap: 8px;
+}
+
+.colaboratorDetailsRow.marginTop{
+    margin-top: 12px;
 }
 
 .personalInfoDetails {
@@ -76,6 +78,28 @@
     text-decoration: underline;
 }
 
+.skillSetSelect{
+    height: 32px !important;
+    padding: 16.5px 14px 16.5px 16.5px !important; 
+    color: #493D8A !important;
+    font-weight: bold !important;
+}
+
+.skillSetSelect svg {
+    right: unset !important;
+    left: 7px !important;
+    fill: #493D8A !important;
+}
+
+.skillSetSelect fieldset{
+    border: none !important;
+}
+
+.colaboratorDetailsTeams{
+    display: flex;
+    gap: 8px
+}
+
 
 @media (max-width: 1024px){
     .ledInfos{
@@ -84,6 +108,7 @@
     }
 
     .personalInfoContainer{
+        width: 100%;
         flex-direction: column;
     }
 
@@ -96,17 +121,51 @@
     }
     
     .colaboratorDetails{
-        flex-direction: row;
+        flex-direction: column;
         flex-wrap: wrap; 
         justify-content: space-between;
     }
 
     .colaboratorInfo{
         padding: 6px 0;
-        width: 45%;
     }
 
     .colaboratorInfo > div{
         font-size: 12px !important;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .colaboratorDetails > .colaboratorInfo:nth-child(1){
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .colaboratorDetails > .colaboratorInfo:nth-child(1) div{
+        margin-top: 18px;
+        width: unset !important;
+    }
+
+    .colaboratorDetails > .colaboratorInfo:nth-child(1) div input{
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .colaboratorDetailsRow{
+        justify-content: space-around;
+    }
+
+    .colaboratorDetailsRow:nth-child(1) > .colaboratorInfo{
+        padding: 0 !important;
+    }
+
+    .colaboratorDetailsRow:nth-child(3){
+        align-items: flex-start;
+        flex-direction: column !important;
+    }
+
+    .colaboratorDetailsTeams{
+        margin-top: 30px;
     }
 }

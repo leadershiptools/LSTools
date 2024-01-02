@@ -5,9 +5,19 @@
     align-items: flex-start;
 }
 
+.commingSoonBoard {
+    margin: 0 52px 40px;
+    border-radius: 6px;
+}
+
 @media (max-width: 1024px){
     .ledPanel{
         padding: 24px;
+    }
+
+    .commingSoonBoard{
+        margin: 0;
+        padding: 10px 20px;
     }
 }
 

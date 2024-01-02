@@ -1,9 +1,9 @@
 import "../PersonalInfoCard/personalInfo.styles.css";
 import "../../Styles/commons.styles.css";
 import * as React from "react";
-import { Drawer, Typography, Select, MenuItem } from "@mui/material";
+import { Chip, Drawer, MenuItem, Select, Typography } from "@mui/material";
 import InputBase from "@mui/material/InputBase";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import { triggerBlurOnEnter } from "../../../modules/utils";
@@ -22,29 +22,18 @@ const PersonalInfo = ({
   setImageUrl,
   skillSet,
   setSkillSet,
+  teams,
   handleSaveInfo,
 }) => {
-  const employeeRef = useRef(null);
-  const emailRef = useRef(null);
-  const phoneRef = useRef(null);
-  const positionRef = useRef(null);
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [skillsSet, setSkillsSet] = useState([]);
-
-  const inputFocus = (ref) => {
-    if (ref.current) ref.current.querySelector("input").focus();
-  };
 
   const getSkillSets = async () => {
     const response = await get("/skills-groups");
     setSkillsSet(response.content);
   };
 
-  const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    if (window.innerWidth <= 1024) setIsMobile(true);
     getSkillSets();
   }, []);
 
@@ -66,107 +55,54 @@ const PersonalInfo = ({
           style={{ height: "40px", width: "40px" }}
         />
       </button>
-      <div className="ledInfos">
-        {!isMobile && (
-          <div
-            role="contentinfo"
-            className="colaboratorInfo"
-            onClick={() => inputFocus(employeeRef)}
-          >
-            <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Name
-            </Typography>
+      <div className="colaboratorDetails">
+        <div className="colaboratorInfo">
+          <InputBase
+            style={{
+              fontWeight: "700",
+              fontSize: "40px",
+              border: "none",
+              color: "#493D8A",
+            }}
+            onChange={(e) => setName(e.target.value)}
+            value={name}
+            placeholder="Name"
+            onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
+            inputProps={{
+              onKeyDown: triggerBlurOnEnter,
+            }}
+            className="colaboratorInfoName"
+          />
+        </div>
+        <div className="colaboratorDetailsRow">
+          <div className="colaboratorInfo">
             <InputBase
-              ref={employeeRef}
               style={{
-                fontWeight: "700",
-                fontSize: "32px",
-                border: "none",
-              }}
-              onChange={(e) => setName(e.target.value)}
-              value={name}
-              onBlur={(e) => handleSaveInfo("replace", "/name", e.target.value)}
-              inputProps={{
-                onKeyDown: triggerBlurOnEnter,
-              }}
-            />
-          </div>
-        )}
-        <div className="colaboratorDetails">
-          {isMobile && (
-            <div
-              role="contentinfo"
-              className="colaboratorInfo"
-              onClick={() => inputFocus(emailRef)}
-            >
-              <Typography
-                className="smallText"
-                fontWeight={400}
-                fontSize="12px"
-              >
-                Name
-              </Typography>
-              <InputBase
-                ref={employeeRef}
-                style={{
-                  fontWeight: "700",
-                  fontSize: "32px",
-                  border: "none",
-                }}
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                onBlur={(e) =>
-                  handleSaveInfo("replace", "/name", e.target.value)
-                }
-                inputProps={{
-                  onKeyDown: triggerBlurOnEnter,
-                }}
-              />
-            </div>
-          )}
-          <div
-            role="contentinfo"
-            className="colaboratorInfo"
-            onClick={() => inputFocus(emailRef)}
-          >
-            <Typography className="smallText" fontWeight={400} fontSize="12px">
-              E-mail
-            </Typography>
-            <InputBase
-              ref={emailRef}
-              style={{
-                fontWeight: "700",
-                fontSize: "16px",
+                fontWeight: "400",
+                fontSize: "12px",
                 display: "inline",
-                width: "180px",
                 border: "none",
+                color: "#493D8A",
               }}
               onChange={(e) => setEmail(e.target.value)}
               value={email}
               onBlur={(e) =>
                 handleSaveInfo("replace", "/email", e.target.value)
               }
+              placeholder="Email"
               inputProps={{
                 onKeyDown: triggerBlurOnEnter,
               }}
             />
           </div>
-          <div
-            role="contentinfo"
-            className="colaboratorInfo"
-            onClick={() => inputFocus(phoneRef)}
-          >
-            <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Phone
-            </Typography>
+          <div className="colaboratorInfo">
             <InputBase
-              ref={phoneRef}
               style={{
-                fontWeight: "700",
-                fontSize: "16px",
+                fontWeight: "400",
+                fontSize: "12px",
                 display: "inline",
-                width: "140px",
                 border: "none",
+                color: "#493D8A",
               }}
               onChange={(e) => setPhone(e.target.value)}
               value={phone}
@@ -178,22 +114,18 @@ const PersonalInfo = ({
               }}
             />
           </div>
-          <div
-            role="contentinfo"
-            className="colaboratorInfo"
-            onClick={() => inputFocus(positionRef)}
-          >
-            <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Position
-            </Typography>
+        </div>
+        <div className="colaboratorDetailsRow marginTop">
+          <div className="colaboratorInfo">
             <InputBase
-              ref={positionRef}
               style={{
                 fontWeight: "700",
-                fontSize: "16px",
+                fontSize: "20px",
                 display: "inline",
-                width: "130px",
                 border: "none",
+                color: "#493D8A",
+                width: "10px",
+                minWidth: "unset",
               }}
               onChange={(e) => setPosition(e.target.value)}
               value={position}
@@ -206,20 +138,33 @@ const PersonalInfo = ({
             />
           </div>
 
-          <div role="contentinfo">
-            <Typography className="smallText" fontWeight={400} fontSize="12px">
-              Skill set
-            </Typography>
+          <div>
             <Select
+              className="skillSetSelect"
               value={skillSet}
+              label="Age"
               onChange={setSkillSet}
-              sx={{ width: "200px" }}
             >
               {skillsSet?.map((s) => {
                 return <MenuItem value={s.id}>{s.name}</MenuItem>;
               })}
             </Select>
           </div>
+        </div>
+        <div className="colaboratorDetailsTeams">
+          {teams?.map((team) => {
+            const { name } = team;
+            return (
+              <Chip
+                sx={{ background: "#F5F7FF", color: "#493D8A" }}
+                label={name}
+              />
+            );
+          })}
+          {/* {teams?.map((team) => {
+            const { name } = team
+            return <Typography>{name}</Typography>
+          }} */}
         </div>
       </div>
       <Drawer

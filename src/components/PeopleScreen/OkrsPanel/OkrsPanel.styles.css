@@ -1,4 +1,4 @@
-.okrsPanel{
+.okrsBoard {
     margin: 0 52px 40px;
     padding: 24px;
     border: 1px solid #C9C6DC;
@@ -6,23 +6,17 @@
     height: fit-content;
     width: auto;
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.okrsBoard {
-    width: 100%;
-    display: flex;
     flex-direction: column;
-    flex: 0 0 45%;
+    gap: 20px;
 }
 
 .addOkrs {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-bottom: 24px;
+    align-items: center;
+    padding-bottom: 24px; 
+    border-bottom: 1px solid #CFCFDB;
 }
 
 
@@ -33,52 +27,59 @@
 .okrContainer{
     display: flex;
     flex-direction: column;
+    margin-bottom: 32px;
+}
+
+.okrContainer:last-child{
+    margin-bottom: 0;
 }
 
 .okrContainerHeader{
     display: flex;
+    align-items: center;
     justify-content: space-between;
     margin-bottom: 16px;
+    border-bottom: 1px solid #CFCFDB;
 }
 
 .okrContainerHeaderInput {    
     font-weight: 700 !important;
     border: 0;
-    font-size: 20px !important;
-    color: #1E1848 !important;
+    font-size: 32px !important;
+    color: #493D8A !important;
 }
 
 .keyResultsContainer{
     margin-bottom: 24px;
 }
 
+.keyResultsContainer:last-child{
+    margin-bottom: 0;
+}
+
 .keyResultItem{
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid #F1F0F8;
+    border-bottom: 1px solid #F5F7FF;
     margin-bottom: 12px;
     align-items: center;
     padding-bottom: 12px;
     gap: 8px;
 }
 
-.keyResultItem:first-child{
-    border-top: 1px solid #F1F0F8;
-    padding-top: 12px;
-}
-
 .keyResultItemLeft{
-    flex: 0 0 75%;
+    flex: 0 0 85%;
     display: flex;
     flex-direction: column;
 }
 
 .keyResultItemLeftTitle{
-    font-size: 16px !important;
-    color: #1E1848 !important;
+    font-size: 18px !important;
+    color: #493D8A !important;
     margin: 0 !important;
-    padding: 0 4px;
+    padding: 0 2px;
     border-radius: 5px;
+    font-weight: bold !important;
 }
 
 .keyResultItemLeftTitle:hover, .keyResultItemLeftDescription:hover{
@@ -87,16 +88,17 @@
 
 .keyResultItemLeftDescription{
     margin: 0;
-    font-size: 12px !important;
-    color: #665Daa !important;
-    padding: 0 4px;
+    font-size: 14px !important;
+    color: #493D8A !important;
+    font-weight: 300 !important;
+    padding: 0 2px;
     border-radius: 5px;
 }
 
 .keyResultItemMiddle{
     display: flex;
     flex-direction: column;
-    flex: 0 0 15%;
+    flex: 0 0 10%;
 }
 
 .keyResultItemMiddleLabel{
@@ -106,8 +108,9 @@
 
 .keyResultItemMiddleAtg{
     margin: 0;
-    font-size: 16px;
-    color: #1E1848;
+    font-size: 16px !important;
+    color: #F3328D !important;
+    font-weight: bold !important;
 }
 
 
@@ -115,39 +118,6 @@
     flex: 0 0 5%;
     color: #f1388D !important;
     min-width: unset !important;
-}
-
-.keyResultItemRight > button:hover, .deleteOkrBtn:hover{
-    background-color: #feecf4 !important;
-}
-
-.okrsGraph {
-    flex: 0 0 55%;
-}
-
-.graphicBoardGraphContainer{
-    height: 100%;
-}
-
-.graphicBoardBtn > span{
-    display: none !important;
-}
-
-.moreDetailsContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.separator {
-    width: 0.01rem;
-    height:10rem;
-    display: flex;
-    direction: row;
-    top: 0;
-    background: #c9c6dc;
-    border: none;
-    margin: 0%;
 }
 
 .addOkrBtn {
@@ -186,19 +156,15 @@
 
 
 @media (max-width: 1024px){
-    .okrsPanel{
+    .okrsBoard{
         flex-direction: column;
         margin: 24px;
         border: 0;
         padding: 0;
     }
 
-    .okrsBoard{
-        width: 100%;
-    }
-
-    .okrsGraph{
-        display: none;
+    .addOkrsTitle{
+        font-size: 14px !important;
     }
 
     .okrContainerHeader{

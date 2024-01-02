@@ -24,42 +24,41 @@ aside {
     height: 100vh;
 }
 
-main {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 .container {
     padding: 16px;
     left: 0px;
     top: 0px;
+    font-family:"Plus Jakarta Sans";
+    display: flex;
+    flex-direction: column;
 }
 
-.containerLogo{
-    margin-bottom: 16px;
-    margin-left: 8px;
-    max-width: 130px;
+.containerOrganization{
+    font-size: 20px;
+    color: #757383;
+    text-align: center;
+    margin-bottom: 32px;
 }
 
-header{
+.header{
     overflow: hidden;
-}
-
-.menuitem {
+    border-radius: 5px;
+    border: 1px solid #CFCFDB;
+    padding: 8px;
     display: flex;
     flex-direction: row;
-
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 32px;
 }
 
 .headerName {
-    color: #1E1848;
-    font-size: 24px;
+    color: #4E4E65;
+    font-size: 12px;
     border: none;
     outline: none;
     font-weight: 700;
     width: 100%;
-    padding: 8px;
 }
 
 .headerName:hover{
@@ -67,38 +66,61 @@ header{
 }
 
 .headerEmail {
-    color:#665DAA;
-    padding: 8px;
-}
-.headerEmail, .headerEmail {
-    justify-content: left;
-    font-family:"Plus Jakarta Sans"
+    color:#4E4E65;
 }
 
-.textbox {
+.menu{
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    flex-direction: column;
+    padding: 0;
+}
+
+.menuItem {
+    display: flex;
+    flex-direction: row;
+    padding: 16px;
+    border-radius: 5px;
 }
 
 .navigationBtn {
-    width: 240px;
+    width: 220px;
     display: flex;
-    color:black !important;
+    color: #757383 !important;
     justify-content: flex-start !important;
-    padding: 9px;
 }
 
 .navigationBtn p {
-    font-weight:700 !important;
-    font-size: 14px !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
     text-transform:none !important;
     line-height: 160% !important;
 }
 
 .active{
-   background-color:#FEECF4 !important;
-   color:#C71760 !important;
+   background-color:#757383 !important;
+}
+
+.active button{
+    color:#fff !important;
+}
+
+.footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: auto;
+}
+
+
+.footer p{
+    color: #493D8A;
+    font-size: 12px;
+}
+
+
+.containerLogo{
+    max-width: 88px;
 }
 
 .navigationBtn span {
@@ -136,6 +158,7 @@ header{
 
     aside.isOpen{
         left: 0;
+        height: 90vh;
     }
 
     .container{

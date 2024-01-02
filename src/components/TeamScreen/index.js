@@ -19,7 +19,6 @@ function TeamScreen({ user }) {
   const [minimizedTeams, setMinimizedTeams] = useState({});
   const [isLoadingCreateTeam, setIsLoadingCreateTeam] = useState(false);
   const [isLoadingAddPeople, setIsLoadingAddPeople] = useState({});
-  console.log(isLoadingAddPeople);
   const defaultOrganization = user?.organizations?.[0]?.id;
 
   const handleMinimizeTeams = (teamId) =>
@@ -46,7 +45,6 @@ function TeamScreen({ user }) {
     navigate(`/LSTools/people/${peopleId}`, { state: { teamName: teamId } });
 
   const addPeople = async (organizationId, teamId) => {
-    console.log(isLoadingAddPeople);
     setIsLoadingAddPeople((prevState) => ({ ...prevState, [teamId]: true }));
     const people = await post(`/organization/${organizationId}/people`);
     await post(`/organization/${organizationId}/team/${teamId}/people`, {

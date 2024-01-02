@@ -1,7 +1,7 @@
 import Cookies from "js-cookie";
 import { getUserToken } from "./utils";
 
-const baseUrl = "https://leadership-tools.fly.dev";
+const baseUrl = "https://leadership-tools-stg.fly.dev";
 
 function handleNotAuthorized() {
   Cookies.set("user", "");

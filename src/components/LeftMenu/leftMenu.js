@@ -4,7 +4,7 @@ import "../Styles/commons.styles.css";
 import Typography from "@mui/material/Typography";
 import Team from "@mui/icons-material/WorkspacesOutlined";
 import People from "@mui/icons-material/PeopleAltOutlined";
-import { Button } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import { getAuth, updateProfile } from "firebase/auth";
@@ -17,6 +17,7 @@ const LeftMenu = ({ user }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const auth = getAuth();
+  const defaultOrganization = user?.organizations?.[0]?.name;
 
   useEffect(() => {
     if (window.innerWidth <= 1024) setIsMobile(true);
@@ -29,55 +30,83 @@ const LeftMenu = ({ user }) => {
     });
   };
 
+  const handleOpenMenu = () => {
+    setIsOpen(true);
+    document.querySelector("body").style.overflow = "hidden";
+  };
+
+  const handleCloseMenu = () => {
+    setIsOpen(false);
+    document.querySelector("body").style.overflow = "";
+  };
+
   return (
     <>
-      {isMobile && (
-        <MenuIcon className="menu-icon" onClick={() => setIsOpen(true)} />
-      )}
+      {isMobile && <MenuIcon className="menu-icon" onClick={handleOpenMenu} />}
       <aside className={`${isOpen && "isOpen"}`}>
         <div role="menu" className="container">
-          <img className="containerLogo" src={lsToolsLogo} alt="LSTools" />
-          <header>
-            <input
-              onChange={(e) => setName(e.target.value)}
-              onBlur={updateUserName}
-              className="headerName"
-              value={name}
+          <h2 className="containerOrganization">{defaultOrganization}</h2>
+          <div className="header">
+            <Avatar
+              className="iconAvatar"
+              alt={name}
+              src={"src"}
+              style={{ height: "32px", width: "32px" }}
             />
-            <Typography
-              className="headerEmail"
-              fontSize="14px"
-              fontWeight={400}
+            <div>
+              <input
+                onChange={(e) => setName(e.target.value)}
+                onBlur={updateUserName}
+                className="headerName"
+                value={name}
+              />
+              <Typography
+                className="headerEmail"
+                fontSize="12px"
+                fontWeight={400}
+              >
+                {user?.email}
+              </Typography>
+            </div>
+          </div>
+          <ul className="menu">
+            <li
+              className={`menuItem  ${
+                location.pathname.includes("team") && "active"
+              }`}
             >
-              {user?.email}
-            </Typography>
-          </header>
-          <main>
-            <ol>
-              <li className="menuitem">
-                <Button
-                  className={`navigationBtn ${
-                    location.pathname.includes("team") && "active"
-                  }`}
-                  startIcon={<Team />}
-                  onClick={() => navigate("/LSTools/team")}
-                >
-                  <Typography>Teams</Typography>
-                </Button>
-              </li>
-              <li className="menuitem">
-                <Button
-                  className={`navigationBtn ${
-                    location.pathname.includes("people") && "active"
-                  }`}
-                  startIcon={<People />}
-                  onClick={() => navigate("/LSTools/people")}
-                >
-                  <Typography>People</Typography>
-                </Button>
-              </li>
-            </ol>
-          </main>
+              <Button
+                className="navigationBtn"
+                startIcon={<Team sx={{ fontSize: 24 }} />}
+                onClick={() => {
+                  navigate("/LSTools/team");
+                  handleCloseMenu();
+                }}
+              >
+                <Typography>Teams</Typography>
+              </Button>
+            </li>
+            <li
+              className={`menuItem  ${
+                location.pathname.includes("people") && "active"
+              }`}
+            >
+              <Button
+                className={"navigationBtn"}
+                startIcon={<People sx={{ fontSize: 24 }} />}
+                onClick={() => {
+                  navigate("/LSTools/people");
+                  handleCloseMenu();
+                }}
+              >
+                <Typography>People</Typography>
+              </Button>
+            </li>
+          </ul>
+          <div className="footer">
+            <p>Powered by</p>
+            <img className="containerLogo" src={lsToolsLogo} alt="LSTools" />
+          </div>
         </div>
         {!isMobile ? (
           <div role="separator">
@@ -85,7 +114,7 @@ const LeftMenu = ({ user }) => {
           </div>
         ) : (
           <div
-            onClick={() => setIsOpen(false)}
+            onClick={handleCloseMenu}
             className={`menu-overlay ${isOpen && "isOpen"}`}
           />
         )}
